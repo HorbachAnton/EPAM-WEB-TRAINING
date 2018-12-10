@@ -8,7 +8,7 @@ import by.epam.javawebtraining.horbachanton.tasks.task1.model.entity.ThreeDimens
 
 public class Verifier {
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public static boolean isBall(Object object) {
 	boolean isBall = true;

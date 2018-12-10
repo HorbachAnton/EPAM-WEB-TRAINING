@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Parser {
 
-    private static int AMOUNT_BALL_PARAMETERS = 4;
+    public static final int AMOUNT_BALL_PARAMETERS = 4;
     private static Scanner scanner;
     private double[][] dates;
 

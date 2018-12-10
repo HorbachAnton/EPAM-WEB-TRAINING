@@ -5,9 +5,9 @@ import java.util.regex.Pattern;
 
 public class Validator {
 
-    private static final String MARKER_START_BALL = "Ball: «";
-    private static final String MARKER_END_BALL = "»";
-    private static final String REGEX_BALL = "^\\d+\\.\\d+\\s\\d+\\.\\d+\\s\\d+\\.\\d+\\s\\d+\\.\\d+$";
+    public static final String MARKER_START_BALL = "Ball: «";
+    public static final String MARKER_END_BALL = "»";
+    public static final String REGEX_BALL = "^\\d+\\.\\d+\\s\\d+\\.\\d+\\s\\d+\\.\\d+\\s\\d+\\.\\d+$";
     private int amountObjects;
 
     public String validateBall(String[] date) {

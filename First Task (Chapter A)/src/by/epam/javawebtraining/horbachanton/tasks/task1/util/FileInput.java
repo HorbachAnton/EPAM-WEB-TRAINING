@@ -8,7 +8,7 @@ import by.epam.javawebtraining.horbachanton.tasks.task1.model.entity.ThreeDimens
 
 public class FileInput {
 
-    private static int AMOUNT_BALL_PARAMETERS = 4;
+    public static final int AMOUNT_BALL_PARAMETERS = 4;
     private ReaderFile reader;
     private Validator validator;
     private Parser parser;

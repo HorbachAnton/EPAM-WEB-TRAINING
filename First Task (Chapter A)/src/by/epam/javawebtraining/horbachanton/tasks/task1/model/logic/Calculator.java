@@ -9,13 +9,13 @@ import by.epam.javawebtraining.horbachanton.tasks.task1.model.exception.Negative
 
 public class Calculator {
 
-    private static int POWER_BALL_VOLUME = 3;
-    private static int MULTIPLIER_BALL_VOLUME = 4;
-    private static int DIVISOR_BALL_VOLUME = 3;
-    private static int MULTIPLIER_BALL_SURFACE_AREA = 4;
-    private static int DIVISOR_VOLUME_RATIO = 3;
-    private static int POWER_VOLUME_RATIO = 2;
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final int POWER_BALL_VOLUME = 3;
+    public static final int MULTIPLIER_BALL_VOLUME = 4;
+    public static final int DIVISOR_BALL_VOLUME = 3;
+    public static final int MULTIPLIER_BALL_SURFACE_AREA = 4;
+    public static final int DIVISOR_VOLUME_RATIO = 3;
+    public static final int POWER_VOLUME_RATIO = 2;
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public static double calculateBallVolume(Ball ball) throws NegativeRadiusException {
 	double volume;

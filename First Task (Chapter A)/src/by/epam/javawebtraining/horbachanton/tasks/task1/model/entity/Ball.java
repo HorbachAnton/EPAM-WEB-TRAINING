@@ -6,8 +6,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Ball {
 
-    private static final int VALUE_FOR_HASH_1 = 15;
-    private static final int VALUE_FOR_HASH_2 = 27;
+    public static final int VALUE_FOR_HASH_1 = 15;
+    public static final int VALUE_FOR_HASH_2 = 27;
     private ThreeDimensionalPoint center;
     private double radius;
 

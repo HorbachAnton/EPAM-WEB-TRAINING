@@ -6,11 +6,11 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class ThreeDimensionalPoint {
 
-    private static final int VALUE_FOR_HASH_1 = 17;
-    private static final int VALUE_FOR_HASH_2 = 29;
-    private static final double DEFAULT_X_COORDINATE = 0;
-    private static final double DEFAULT_Y_COORDINATE = 0;
-    private static final double DEFAULT_Z_COORDINATE = 0;
+    public static final int VALUE_FOR_HASH_1 = 17;
+    public static final int VALUE_FOR_HASH_2 = 29;
+    public static final double DEFAULT_X_COORDINATE = 0;
+    public static final double DEFAULT_Y_COORDINATE = 0;
+    public static final double DEFAULT_Z_COORDINATE = 0;
     private double xCoordinate;
     private double yCoordinate;
     private double zCoordinate;
