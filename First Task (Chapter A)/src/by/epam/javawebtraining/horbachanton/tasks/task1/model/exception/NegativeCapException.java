@@ -7,6 +7,10 @@ public class NegativeCapException extends Exception {
     public NegativeCapException(String message) {
 	super(message);
     }
+    
+    public NegativeCapException(Exception exception) {
+	super(exception);
+    }
 
     public NegativeCapException(String message, Exception exception) {
 	super(message, exception);

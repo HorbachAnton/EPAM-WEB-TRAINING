@@ -7,6 +7,10 @@ public class NegativeRadiusException extends Exception {
     public NegativeRadiusException(String message) {
 	super(message);
     }
+    
+    public NegativeRadiusException(Exception exception) {
+	super(exception);
+    }
 
     public NegativeRadiusException(String message, Exception exception) {
 	super(message, exception);
