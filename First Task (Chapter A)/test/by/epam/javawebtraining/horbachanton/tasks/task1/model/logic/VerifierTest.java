@@ -8,6 +8,8 @@ import by.epam.javawebtraining.horbachanton.tasks.task1.model.entity.Ball;
 import by.epam.javawebtraining.horbachanton.tasks.task1.model.entity.ThreeDimensionalPoint;
 
 public class VerifierTest extends Assert {
+    
+    private static Verifier verifier = new Verifier();
 
     @DataProvider(name = "IsBallData")
     public static Object[][] IsBallData() {
@@ -23,13 +25,13 @@ public class VerifierTest extends Assert {
 
     @Test(dataProvider = "IsBallData")
     public void testIsBall(Object object, boolean expected) {
-	boolean actual = Verifier.isBall(object);
+	boolean actual = verifier.isBall(object);
 	assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "isBallTouchPlaneData")
     public void testisBallTouchPlane(Ball ball, boolean expected) {
-	boolean actual = Verifier.isBallTouchPlane(ball);
+	boolean actual = verifier.isBallTouchPlane(ball);
 	assertEquals(actual, expected);
     }
 
