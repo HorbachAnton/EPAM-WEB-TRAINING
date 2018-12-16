@@ -8,12 +8,16 @@ public class Ball {
 
     public static final int VALUE_FOR_HASH_1 = 15;
     public static final int VALUE_FOR_HASH_2 = 27;
+    public static final double DEFAULT_X_COORDINATE = 0;
+    public static final double DEFAULT_Y_COORDINATE = 0;
+    public static final double DEFAULT_Z_COORDINATE = 0;
+    public static final double DEFAULT_RADIUS = 0;
     private ThreeDimensionalPoint center;
     private double radius;
 
     public Ball() {
-	center = new ThreeDimensionalPoint(0, 0, 0);
-	radius = 0;
+	center = new ThreeDimensionalPoint(DEFAULT_X_COORDINATE, DEFAULT_Y_COORDINATE, DEFAULT_Z_COORDINATE);
+	radius = DEFAULT_RADIUS;
     }
 
     public Ball(ThreeDimensionalPoint center, double radius) {

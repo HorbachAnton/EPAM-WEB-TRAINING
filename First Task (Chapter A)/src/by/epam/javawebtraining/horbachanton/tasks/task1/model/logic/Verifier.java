@@ -3,14 +3,15 @@ package by.epam.javawebtraining.horbachanton.tasks.task1.model.logic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import by.epam.javawebtraining.horbachanton.tasks.task1.dao.VerifiableBall;
 import by.epam.javawebtraining.horbachanton.tasks.task1.model.entity.Ball;
 import by.epam.javawebtraining.horbachanton.tasks.task1.model.entity.ThreeDimensionalPoint;
 
-public class Verifier {
+public class Verifier implements VerifiableBall{
 
-    public static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger(Verifier.class);
 
-    public static boolean isBall(Object object) {
+    public boolean isBall(Object object) {
 	boolean isBall = true;
 	if (object == null) {
 	    LOGGER.info("Object is null.");
@@ -21,7 +22,7 @@ public class Verifier {
 	return isBall;
     }
 
-    public static boolean isBallTouchPlane(Ball ball) {
+    public boolean isBallTouchPlane(Ball ball) {
 	boolean isTouch;
 	ThreeDimensionalPoint center;
 	if (ball == null) {

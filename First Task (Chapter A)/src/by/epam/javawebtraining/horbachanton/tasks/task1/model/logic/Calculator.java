@@ -3,11 +3,12 @@ package by.epam.javawebtraining.horbachanton.tasks.task1.model.logic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import by.epam.javawebtraining.horbachanton.tasks.task1.dao.CalculatableBall;
 import by.epam.javawebtraining.horbachanton.tasks.task1.model.entity.Ball;
 import by.epam.javawebtraining.horbachanton.tasks.task1.model.exception.NegativeCapException;
 import by.epam.javawebtraining.horbachanton.tasks.task1.model.exception.NegativeRadiusException;
 
-public class Calculator {
+public class Calculator implements CalculatableBall {
 
     public static final int POWER_BALL_VOLUME = 3;
     public static final int MULTIPLIER_BALL_VOLUME = 4;
@@ -15,9 +16,9 @@ public class Calculator {
     public static final int MULTIPLIER_BALL_SURFACE_AREA = 4;
     public static final int DIVISOR_VOLUME_RATIO = 3;
     public static final int POWER_VOLUME_RATIO = 2;
-    public static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger(Calculator.class);
 
-    public static double calculateBallVolume(Ball ball) throws NegativeRadiusException {
+    public double calculateVolume(Ball ball) throws NegativeRadiusException {
 	double volume;
 	double radius;
 	if ((radius = ball.getRadius()) < 0) {
@@ -30,7 +31,7 @@ public class Calculator {
 	return volume;
     }
 
-    public static double calculateBallSurfaceArea(Ball ball) throws NegativeRadiusException {
+    public double calculateSurfaceArea(Ball ball) throws NegativeRadiusException {
 	double area;
 	double radius;
 	if ((radius = ball.getRadius()) < 0) {
@@ -43,7 +44,7 @@ public class Calculator {
 	return area;
     }
 
-    public static double calculateVolumeRatio(double heightCap, Ball ball)
+    public double calculateVolumeRatio(double heightCap, Ball ball)
 	    throws NegativeCapException, NegativeRadiusException {
 	double radius;
 	double ratio;
@@ -58,7 +59,7 @@ public class Calculator {
 	} else {
 	    ratio = (Math.PI * Math.pow(heightCap, POWER_VOLUME_RATIO)) * (radius - (heightCap / DIVISOR_VOLUME_RATIO));
 	}
-	return ratio / calculateBallVolume(ball);
+	return ratio / calculateVolume(ball);
     }
 
 }
