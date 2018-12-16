@@ -11,15 +11,17 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 
 public class CalculatorTest extends Assert {
+    
+    private static Calculator calculator = new Calculator();
 
-    @DataProvider(name = "calculateBallVolumeData")
-    public static Object[][] calculateBallVolumeData() {
+    @DataProvider(name = "calculateVolumeData")
+    public static Object[][] calculateVolumeData() {
 	return new Object[][] { { new Ball(new ThreeDimensionalPoint(4, 4, 4), 5), 524 },
 		{ new Ball(new ThreeDimensionalPoint(4, 4, 4), 6.8), 1317 } };
     }
 
-    @DataProvider(name = "calculateBallVolumeExceptionData")
-    public static Object[] calculateBallVolumeExceptionData() {
+    @DataProvider(name = "calculateVolumeExceptionData")
+    public static Object[] calculateVolumeExceptionData() {
 	return new Object[][] { { new Ball(new ThreeDimensionalPoint(4, 4, 4), -5), 524 },
 		{ new Ball(new ThreeDimensionalPoint(4, 4, 4), -6.8), 1317 } };
     }
@@ -48,39 +50,39 @@ public class CalculatorTest extends Assert {
 		{ new Ball(new ThreeDimensionalPoint(4, 4, 4), 24), -12, 0.15625 } };
     }
 
-    @Test(dataProvider = "calculateBallVolumeData")
-    public void testCalculateBallVolume(Ball ball, double expected) throws NegativeRadiusException {
-	double actual = Math.round(Calculator.calculateBallVolume(ball));
+    @Test(dataProvider = "calculateVolumeData")
+    public void testcalculateVolume(Ball ball, double expected) throws NegativeRadiusException {
+	double actual = Math.round(calculator.calculateVolume(ball));
 	assertEquals(actual, expected);
     }
 
-    @Test(dataProvider = "calculateBallVolumeExceptionData", expectedExceptions = NegativeRadiusException.class)
-    public void testExceptionCalculateBallVolume(Ball ball, double expected) throws NegativeRadiusException {
-	Calculator.calculateBallVolume(ball);
+    @Test(dataProvider = "calculateVolumeExceptionData", expectedExceptions = NegativeRadiusException.class)
+    public void testExceptioncalculateVolume(Ball ball, double expected) throws NegativeRadiusException {
+	calculator.calculateVolume(ball);
     }
 
     @Test(dataProvider = "calculateSurfaceAreaData")
     public void testCalculateBallSurfaceArea(Ball ball, double expected) throws NegativeRadiusException {
-	double actual = Math.round(Calculator.calculateBallSurfaceArea(ball));
+	double actual = Math.round(calculator.calculateSurfaceArea(ball));
 	assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "calculateSurfaceAreaExceptionData", expectedExceptions = NegativeRadiusException.class)
     public void testExceptionCalculateBallSurfaceArea(Ball ball, double expected) throws NegativeRadiusException {
-	Calculator.calculateBallSurfaceArea(ball);
+	calculator.calculateSurfaceArea(ball);
     }
 
     @Test(dataProvider = "calculateVolumeRatioData")
     public void testCalculateVolumeRatio(Ball ball, double heightCap, double expected)
 	    throws NegativeRadiusException, NegativeCapException {
-	double actual = Calculator.calculateVolumeRatio(heightCap, ball);
+	double actual = calculator.calculateVolumeRatio(heightCap, ball);
 	assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "calculateExceptionVolumeRatioData", expectedExceptions = NegativeCapException.class)
     public void testExceptionCalculateVolumeRatio(Ball ball, double heightCap, double expected)
 	    throws NegativeRadiusException, NegativeCapException {
-	Calculator.calculateVolumeRatio(heightCap, ball);
+	calculator.calculateVolumeRatio(heightCap, ball);
     }
 
 }
