@@ -53,7 +53,7 @@ public class Ball {
 	    return true;
 	}
 
-	if (object == null || !(object instanceof Ball)) {
+	if (object == null || getClass() != object.getClass()) {
 	    return false;
 	}
 

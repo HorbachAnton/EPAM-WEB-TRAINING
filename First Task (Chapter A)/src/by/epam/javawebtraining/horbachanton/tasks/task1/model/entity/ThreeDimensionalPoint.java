@@ -64,7 +64,7 @@ public class ThreeDimensionalPoint {
 	    return true;
 	}
 
-	if (object == null || !(object instanceof ThreeDimensionalPoint)) {
+	if (object == null || getClass() != object.getClass()) {
 	    return false;
 	}
 
