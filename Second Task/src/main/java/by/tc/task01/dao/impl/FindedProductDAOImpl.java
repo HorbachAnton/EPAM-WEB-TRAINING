@@ -37,7 +37,7 @@ public class FindedProductDAOImpl implements FindedProductDAO {
 
     private <E> String[] find(E key, Object value) throws IOException {
 	String[] date = Files.lines(DEFAULT_PATH).filter((s) -> s.contains(key.getClass().getSimpleName().toString()))
-		.filter((s) -> s.contains(key.toString() + "=" + value.toString())).toArray(String[]::new);
+		.filter((s) -> s.contains(key.toString() + "=" + value.toString().toLowerCase())).toArray(String[]::new);
 	return date;
     }
 
