@@ -19,11 +19,8 @@ public class ProductServiceImpl implements ProductService {
 
 	FindedProduct findedPro = findedProDAO.find(criteria);
 
-	// you may add your own code here
-
 	return findedPro;
     }
 
 }
 
-//you may add your own new classes

@@ -31,8 +31,8 @@ public class Oven extends Appliance {
 	this.width = width;
     }
 
-    public Oven(double weight, double capacity, double depth, double height, double width, double power_consumption) {
-	super(power_consumption);
+    public Oven(double weight, double capacity, double depth, double height, double width, double powerConsumption) {
+	super(powerConsumption);
 	this.weight = weight;
 	this.capacity = capacity;
 	this.depth = depth;
@@ -41,7 +41,7 @@ public class Oven extends Appliance {
     }
 
     public Oven(Oven oven) {
-	super(oven.getPower_consumption());
+	super(oven.getPowerConsumption());
 	this.weight = oven.weight;
 	this.capacity = oven.capacity;
 	this.depth = oven.depth;
@@ -109,23 +109,31 @@ public class Oven extends Appliance {
 
     @Override
     public boolean equals(Object obj) {
-	if (this == obj)
+	if (this == obj) {
 	    return true;
-	if (!super.equals(obj))
+	}
+	if (!super.equals(obj)) {
 	    return false;
-	if (getClass() != obj.getClass())
+	}
+	if (getClass() != obj.getClass()) {
 	    return false;
+	}
 	Oven other = (Oven) obj;
-	if (Double.doubleToLongBits(capacity) != Double.doubleToLongBits(other.capacity))
+	if (Double.doubleToLongBits(capacity) != Double.doubleToLongBits(other.capacity)) {
 	    return false;
-	if (Double.doubleToLongBits(depth) != Double.doubleToLongBits(other.depth))
+	}
+	if (Double.doubleToLongBits(depth) != Double.doubleToLongBits(other.depth)) {
 	    return false;
-	if (Double.doubleToLongBits(height) != Double.doubleToLongBits(other.height))
+	}
+	if (Double.doubleToLongBits(height) != Double.doubleToLongBits(other.height)) {
 	    return false;
-	if (Double.doubleToLongBits(weight) != Double.doubleToLongBits(other.weight))
+	}
+	if (Double.doubleToLongBits(weight) != Double.doubleToLongBits(other.weight)) {
 	    return false;
-	if (Double.doubleToLongBits(width) != Double.doubleToLongBits(other.width))
+	}
+	if (Double.doubleToLongBits(width) != Double.doubleToLongBits(other.width)) {
 	    return false;
+	}
 	return true;
     }
 

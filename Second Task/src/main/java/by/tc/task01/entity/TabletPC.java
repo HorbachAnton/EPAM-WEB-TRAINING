@@ -5,53 +5,53 @@ public class TabletPC extends Computer {
     private static final double DEFAULT_DISPLAY_INCHES = 0;
     private static final double DEFAULT_FLESH_MEMORY_CAPACITY = 0;
     private static final String DEFAULT_COLOR = "";
-    private double display_inches;
-    private double flesh_memory_capacity;
+    private double displayInches;
+    private double fleshMemoryCapacity;
     private String color;
 
     public TabletPC() {
 	super();
-	this.display_inches = DEFAULT_DISPLAY_INCHES;
-	this.flesh_memory_capacity = DEFAULT_FLESH_MEMORY_CAPACITY;
+	this.displayInches = DEFAULT_DISPLAY_INCHES;
+	this.fleshMemoryCapacity = DEFAULT_FLESH_MEMORY_CAPACITY;
 	this.color = DEFAULT_COLOR;
     }
 
-    public TabletPC(double display_inches, double flesh_memory_capacity, String color) {
+    public TabletPC(double displayInches, double fleshMemoryCapacity, String color) {
 	super();
-	this.display_inches = display_inches;
-	this.flesh_memory_capacity = flesh_memory_capacity;
+	this.displayInches = displayInches;
+	this.fleshMemoryCapacity = fleshMemoryCapacity;
 	this.color = color;
     }
 
-    public TabletPC(double display_inches, double flesh_memory_capacity, String color, double battery_capacity,
-	    double memory_rom) {
-	super(battery_capacity, memory_rom);
-	this.display_inches = display_inches;
-	this.flesh_memory_capacity = flesh_memory_capacity;
+    public TabletPC(double displayInches, double fleshMemoryCapacity, String color, double batteryCapacity,
+	    double memoryRom) {
+	super(batteryCapacity, memoryRom);
+	this.displayInches = displayInches;
+	this.fleshMemoryCapacity = fleshMemoryCapacity;
 	this.color = color;
     }
 
     public TabletPC(TabletPC tablet) {
-	super(tablet.getBattery_capacity(), tablet.getMemory_rom());
-	this.display_inches = tablet.display_inches;
-	this.flesh_memory_capacity = tablet.flesh_memory_capacity;
+	super(tablet.getBatteryCapacity(), tablet.getMemoryRom());
+	this.displayInches = tablet.displayInches;
+	this.fleshMemoryCapacity = tablet.fleshMemoryCapacity;
 	this.color = tablet.color;
     }
 
-    public double getDisplay_inches() {
-	return display_inches;
+    public double getDisplayInches() {
+	return displayInches;
     }
 
-    public void setDisplay_inches(double display_inches) {
-	this.display_inches = display_inches;
+    public void setDisplayInches(double displayInches) {
+	this.displayInches = displayInches;
     }
 
-    public double getFlesh_memory_capacity() {
-	return flesh_memory_capacity;
+    public double getFleshMemoryCapacity() {
+	return fleshMemoryCapacity;
     }
 
-    public void setFlesh_memory_capacity(double flesh_memory_capacity) {
-	this.flesh_memory_capacity = flesh_memory_capacity;
+    public void setFleshMemoryCapacity(double fleshMemoryCapacity) {
+	this.fleshMemoryCapacity = fleshMemoryCapacity;
     }
 
     public String getColor() {
@@ -68,37 +68,44 @@ public class TabletPC extends Computer {
 	int result = super.hashCode();
 	result = prime * result + ((color == null) ? 0 : color.hashCode());
 	long temp;
-	temp = Double.doubleToLongBits(display_inches);
+	temp = Double.doubleToLongBits(displayInches);
 	result = prime * result + (int) (temp ^ (temp >>> 32));
-	temp = Double.doubleToLongBits(flesh_memory_capacity);
+	temp = Double.doubleToLongBits(fleshMemoryCapacity);
 	result = prime * result + (int) (temp ^ (temp >>> 32));
 	return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-	if (this == obj)
+	if (this == obj) {
 	    return true;
-	if (!super.equals(obj))
+	}
+	if (!super.equals(obj)) {
 	    return false;
-	if (getClass() != obj.getClass())
+	}
+	if (getClass() != obj.getClass()) {
 	    return false;
+	}
 	TabletPC other = (TabletPC) obj;
 	if (color == null) {
-	    if (other.color != null)
+	    if (other.color != null) {
 		return false;
-	} else if (!color.equals(other.color))
+	    }
+	} else if (!color.equals(other.color)) {
 	    return false;
-	if (Double.doubleToLongBits(display_inches) != Double.doubleToLongBits(other.display_inches))
+	}
+	if (Double.doubleToLongBits(displayInches) != Double.doubleToLongBits(other.displayInches)) {
 	    return false;
-	if (Double.doubleToLongBits(flesh_memory_capacity) != Double.doubleToLongBits(other.flesh_memory_capacity))
+	}
+	if (Double.doubleToLongBits(fleshMemoryCapacity) != Double.doubleToLongBits(other.fleshMemoryCapacity)) {
 	    return false;
+	}
 	return true;
     }
 
     @Override
     public String toString() {
-	return "TabletPC [display_inches=" + display_inches + ", flesh_memory_capacity=" + flesh_memory_capacity
+	return "TabletPC [display_inches=" + displayInches + ", flesh_memory_capacity=" + fleshMemoryCapacity
 		+ ", color=" + color + "]";
     }
 

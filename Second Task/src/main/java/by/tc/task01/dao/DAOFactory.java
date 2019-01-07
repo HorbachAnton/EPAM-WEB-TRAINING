@@ -3,7 +3,7 @@ package by.tc.task01.dao;
 import by.tc.task01.dao.impl.FindedProductDAOImpl;
 
 public final class DAOFactory {
-    private static final DAOFactory instance = new DAOFactory();
+    private static final DAOFactory INSTANCE = new DAOFactory();
 
     private final FindedProductDAO findedProDAO = new FindedProductDAOImpl();
 
@@ -15,6 +15,6 @@ public final class DAOFactory {
     }
 
     public static DAOFactory getInstance() {
-	return instance;
+	return INSTANCE;
     }
 }

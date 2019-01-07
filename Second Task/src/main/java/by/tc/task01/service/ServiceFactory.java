@@ -3,7 +3,7 @@ package by.tc.task01.service;
 import by.tc.task01.service.impl.ProductServiceImpl;
 
 public final class ServiceFactory {
-	private static final ServiceFactory instance = new ServiceFactory();
+	private static final ServiceFactory INSTANCE = new ServiceFactory();
 
 	private final ProductService productService = new ProductServiceImpl();
 	
@@ -15,7 +15,7 @@ public final class ServiceFactory {
 	}
 
 	public static ServiceFactory getInstance() {
-		return instance;
+		return INSTANCE;
 	}
 
 }
