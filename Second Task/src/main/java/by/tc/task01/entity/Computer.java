@@ -43,7 +43,7 @@ public class Computer extends Product {
     @Override
     public int hashCode() {
 	final int prime = 31;
-	int result = 1;
+	int result = super.hashCode();
 	long temp;
 	temp = Double.doubleToLongBits(batteryCapacity);
 	result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -57,7 +57,7 @@ public class Computer extends Product {
 	if (this == obj) {
 	    return true;
 	}
-	if (obj == null) {
+	if (!super.equals(obj)) {
 	    return false;
 	}
 	if (getClass() != obj.getClass()) {
