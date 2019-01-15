@@ -5,21 +5,19 @@ import by.tc.task01.dao.FindedProductDAO;
 import by.tc.task01.entity.FindedProduct;
 import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.service.ProductService;
-import by.tc.task01.service.validation.Validator;
+import by.tc.task01.service.validation.CriteriaValidator;
 
 public class ProductServiceImpl implements ProductService {
 
     public <E> FindedProduct find(Criteria<E> criteria) {
-	if (!Validator.criteriaValidator(criteria)) {
+	if (!CriteriaValidator.valid(criteria)) {
 	    return null;
 	}
 
 	DAOFactory factory = DAOFactory.getInstance();
 	FindedProductDAO findedProDAO = factory.getFindedProductDAO();
 
-	FindedProduct findedPro = findedProDAO.find(criteria);
-
-	return findedPro;
+	return findedProDAO.find(criteria);
     }
 
 }

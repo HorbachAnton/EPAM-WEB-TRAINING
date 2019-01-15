@@ -1,11 +1,18 @@
 package by.tc.task01.entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class Laptop extends Computer {
 
     private static final String DEFAULT_OC = "";
     private static final double DEFAULT_SYSTEM_MEMORY = 0;
     private static final double DEFAULT_CPU = 0;
     private static final double DEFAULT_DISPLAY_INCHS = 0;
+    private static final int VALUE_FOR_HASH_1 = 1;
+    private static final int VALUE_FOR_HASH_2 = 31;
+
     private String oc;
     private double systemMemory;
     private double cpu;
@@ -19,7 +26,7 @@ public class Laptop extends Computer {
 	displayInchs = DEFAULT_DISPLAY_INCHS;
     }
 
-    public Laptop(String oc, double systemMemory, double cpu, double displayInchs) {
+    public Laptop(final String oc, final double systemMemory, final double cpu, final double displayInchs) {
 	super();
 	this.oc = oc;
 	this.systemMemory = systemMemory;
@@ -27,8 +34,8 @@ public class Laptop extends Computer {
 	this.displayInchs = displayInchs;
     }
 
-    public Laptop(String oc, double systemMemory, double cpu, double displayInchs, double batteryCapacity,
-	    double memoryRom) {
+    public Laptop(final String oc, final double systemMemory, final double cpu, final double displayInchs,
+	    final double batteryCapacity, final double memoryRom) {
 	super(batteryCapacity, memoryRom);
 	this.oc = oc;
 	this.systemMemory = systemMemory;
@@ -36,7 +43,7 @@ public class Laptop extends Computer {
 	this.displayInchs = displayInchs;
     }
 
-    public Laptop(Laptop laptop) {
+    public Laptop(final Laptop laptop) {
 	super(laptop.getBatteryCapacity(), laptop.getMemoryRom());
 	this.oc = laptop.oc;
 	this.systemMemory = laptop.systemMemory;
@@ -48,7 +55,7 @@ public class Laptop extends Computer {
 	return oc;
     }
 
-    public void setOc(String oc) {
+    public void setOc(final String oc) {
 	this.oc = oc;
     }
 
@@ -56,7 +63,7 @@ public class Laptop extends Computer {
 	return systemMemory;
     }
 
-    public void setSystemMemory(double systemMemory) {
+    public void setSystemMemory(final double systemMemory) {
 	this.systemMemory = systemMemory;
     }
 
@@ -64,7 +71,7 @@ public class Laptop extends Computer {
 	return cpu;
     }
 
-    public void setCpu(double cpu) {
+    public void setCpu(final double cpu) {
 	this.cpu = cpu;
     }
 
@@ -72,27 +79,18 @@ public class Laptop extends Computer {
 	return displayInchs;
     }
 
-    public void setDisplayInchs(double displayInchs) {
+    public void setDisplayInchs(final double displayInchs) {
 	this.displayInchs = displayInchs;
     }
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = super.hashCode();
-	long temp;
-	temp = Double.doubleToLongBits(cpu);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	temp = Double.doubleToLongBits(displayInchs);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	result = prime * result + ((oc == null) ? 0 : oc.hashCode());
-	temp = Double.doubleToLongBits(systemMemory);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	return result;
+	return new HashCodeBuilder(VALUE_FOR_HASH_1, VALUE_FOR_HASH_2).appendSuper(super.hashCode()).append(oc)
+		.append(displayInchs).append(cpu).append(systemMemory).toHashCode();
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
 	if (this == obj) {
 	    return true;
 	}
@@ -103,29 +101,15 @@ public class Laptop extends Computer {
 	    return false;
 	}
 	Laptop other = (Laptop) obj;
-	if (Double.doubleToLongBits(cpu) != Double.doubleToLongBits(other.cpu)) {
-	    return false;
-	}
-	if (Double.doubleToLongBits(displayInchs) != Double.doubleToLongBits(other.displayInchs)) {
-	    return false;
-	}
-	if (oc == null) {
-	    if (other.oc != null) {
-		return false;
-	    }
-	} else if (!oc.equals(other.oc)) {
-	    return false;
-	}
-	if (Double.doubleToLongBits(systemMemory) != Double.doubleToLongBits(other.systemMemory)) {
-	    return false;
-	}
-	return true;
+
+	return new EqualsBuilder().append(this.oc, other.oc).append(this.cpu, other.cpu)
+		.append(this.displayInchs, other.displayInchs).append(this.systemMemory, other.systemMemory).isEquals();
     }
 
     @Override
     public String toString() {
-	return "Laptop [oc=" + oc + ", system_memory=" + systemMemory + ", cpu=" + cpu + ", display_inchs="
-		+ displayInchs + "]";
+	return new ToStringBuilder(this).append("OC", oc).append("CPU", cpu).append("display inches", displayInchs)
+		.append("system memory", systemMemory).toString();
     }
 
 }

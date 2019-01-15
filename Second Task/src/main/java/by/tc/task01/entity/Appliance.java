@@ -1,19 +1,26 @@
 package by.tc.task01.entity;
 
-public class Appliance extends Product {
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+public class Appliance implements Product {
 
     private static final double DEFAULT_POWER_CONSUMPTION = 0;
+    private static final int VALUE_FOR_HASH_1 = 1;
+    private static final int VALUE_FOR_HASH_2 = 31;
+
     private double powerConsumption;
 
     public Appliance() {
 	powerConsumption = DEFAULT_POWER_CONSUMPTION;
     }
 
-    public Appliance(double powerConsumption) {
+    public Appliance(final double powerConsumption) {
 	this.powerConsumption = powerConsumption;
     }
 
-    public Appliance(Appliance appliance) {
+    public Appliance(final Appliance appliance) {
 	this.powerConsumption = appliance.powerConsumption;
     }
 
@@ -21,41 +28,34 @@ public class Appliance extends Product {
 	return powerConsumption;
     }
 
-    public void setPowerConsumption(double powerConsumption) {
+    public void setPowerConsumption(final double powerConsumption) {
 	this.powerConsumption = powerConsumption;
     }
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = super.hashCode();
-	long temp;
-	temp = Double.doubleToLongBits(powerConsumption);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	return result;
+	return new HashCodeBuilder(VALUE_FOR_HASH_1, VALUE_FOR_HASH_2).append(powerConsumption).toHashCode();
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
 	if (this == obj) {
 	    return true;
 	}
-	if (!super.equals(obj)) {
+	if (obj == null) {
 	    return false;
 	}
 	if (getClass() != obj.getClass()) {
 	    return false;
 	}
 	Appliance other = (Appliance) obj;
-	if (Double.doubleToLongBits(powerConsumption) != Double.doubleToLongBits(other.powerConsumption)) {
-	    return false;
-	}
-	return true;
+
+	return new EqualsBuilder().append(this.powerConsumption, other.powerConsumption).isEquals();
     }
 
     @Override
     public String toString() {
-	return "Appliance [powerConsumption=" + powerConsumption + "]";
+	return new ToStringBuilder(this).append("power consumption", powerConsumption).toString();
     }
 
 }

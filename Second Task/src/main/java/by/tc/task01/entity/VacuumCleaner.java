@@ -22,8 +22,8 @@ public class VacuumCleaner extends Appliance {
 	this.cleaningWidth = DEFAULT_CLEANING_WIDTH;
     }
 
-    public VacuumCleaner(String filterType, String bagType, String wandType, double motorSpeedRegulation,
-	    double cleaningWidth) {
+    public VacuumCleaner(final String filterType, final String bagType, final String wandType,
+	    final double motorSpeedRegulation, final double cleaningWidth) {
 	super();
 	this.filterType = filterType;
 	this.bagType = bagType;
@@ -32,8 +32,8 @@ public class VacuumCleaner extends Appliance {
 	this.cleaningWidth = cleaningWidth;
     }
 
-    public VacuumCleaner(String filterType, String bagType, String wandType, double motorSpeedRegulation,
-	    double cleaningWidth, double powerConsumption) {
+    public VacuumCleaner(final String filterType, final String bagType, final String wandType,
+	    final double motorSpeedRegulation, final double cleaningWidth, final double powerConsumption) {
 	super(powerConsumption);
 	this.filterType = filterType;
 	this.bagType = bagType;
@@ -42,7 +42,7 @@ public class VacuumCleaner extends Appliance {
 	this.cleaningWidth = cleaningWidth;
     }
 
-    public VacuumCleaner(VacuumCleaner vacCleaner) {
+    public VacuumCleaner(final VacuumCleaner vacCleaner) {
 	super(vacCleaner.getPowerConsumption());
 	this.filterType = vacCleaner.filterType;
 	this.bagType = vacCleaner.bagType;
@@ -55,7 +55,7 @@ public class VacuumCleaner extends Appliance {
 	return filterType;
     }
 
-    public void setFilterTtype(String filterType) {
+    public void setFilterTtype(final String filterType) {
 	this.filterType = filterType;
     }
 
@@ -63,7 +63,7 @@ public class VacuumCleaner extends Appliance {
 	return bagType;
     }
 
-    public void setBagType(String bagType) {
+    public void setBagType(final String bagType) {
 	this.bagType = bagType;
     }
 
@@ -71,7 +71,7 @@ public class VacuumCleaner extends Appliance {
 	return wandType;
     }
 
-    public void setWandType(String wandType) {
+    public void setWandType(final String wandType) {
 	this.wandType = wandType;
     }
 
@@ -79,7 +79,7 @@ public class VacuumCleaner extends Appliance {
 	return motorSpeedRegulation;
     }
 
-    public void setMotorSpeedRegulation(double motorSpeedRegulation) {
+    public void setMotorSpeedRegulation(final double motorSpeedRegulation) {
 	this.motorSpeedRegulation = motorSpeedRegulation;
     }
 
@@ -87,7 +87,7 @@ public class VacuumCleaner extends Appliance {
 	return cleaningWidth;
     }
 
-    public void setCleaningWidth(double cleaningWidth) {
+    public void setCleaningWidth(final double cleaningWidth) {
 	this.cleaningWidth = cleaningWidth;
     }
 
@@ -107,7 +107,7 @@ public class VacuumCleaner extends Appliance {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
 	if (this == obj) {
 	    return true;
 	}

@@ -1,9 +1,16 @@
 package by.tc.task01.entity;
 
-public class Computer extends Product {
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+public class Computer implements Product {
 
     private static final double DEFAULT_BATTERY_CAPACITY = 0;
     private static final double DEFAULT_MEMORY_ROM = 0;
+    private static final int VALUE_FOR_HASH_1 = 1;
+    private static final int VALUE_FOR_HASH_2 = 31;
+
     private double batteryCapacity;
     private double memoryRom;
 
@@ -13,13 +20,13 @@ public class Computer extends Product {
 	memoryRom = DEFAULT_MEMORY_ROM;
     }
 
-    public Computer(double batteryCapacity, double memoryRom) {
+    public Computer(final double batteryCapacity, final double memoryRom) {
 	super();
 	this.batteryCapacity = batteryCapacity;
 	this.memoryRom = memoryRom;
     }
 
-    public Computer(Computer computer) {
+    public Computer(final Computer computer) {
 	this.batteryCapacity = computer.batteryCapacity;
 	this.memoryRom = computer.memoryRom;
     }
@@ -28,7 +35,7 @@ public class Computer extends Product {
 	return batteryCapacity;
     }
 
-    public void setBatteryCapacity(double batteryCapacity) {
+    public void setBatteryCapacity(final double batteryCapacity) {
 	this.batteryCapacity = batteryCapacity;
     }
 
@@ -36,46 +43,37 @@ public class Computer extends Product {
 	return memoryRom;
     }
 
-    public void setMemoryRom(double memoryRom) {
+    public void setMemoryRom(final double memoryRom) {
 	this.memoryRom = memoryRom;
     }
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = super.hashCode();
-	long temp;
-	temp = Double.doubleToLongBits(batteryCapacity);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	temp = Double.doubleToLongBits(memoryRom);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	return result;
+	return new HashCodeBuilder(VALUE_FOR_HASH_1, VALUE_FOR_HASH_2).append(batteryCapacity).append(memoryRom)
+		.toHashCode();
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
 	if (this == obj) {
 	    return true;
 	}
-	if (!super.equals(obj)) {
+	if (obj == null) {
 	    return false;
 	}
 	if (getClass() != obj.getClass()) {
 	    return false;
 	}
 	Computer other = (Computer) obj;
-	if (Double.doubleToLongBits(batteryCapacity) != Double.doubleToLongBits(other.batteryCapacity)) {
-	    return false;
-	}
-	if (Double.doubleToLongBits(memoryRom) != Double.doubleToLongBits(other.memoryRom)) {
-	    return false;
-	}
-	return true;
+
+	return new EqualsBuilder().append(this.batteryCapacity, other.batteryCapacity)
+		.append(this.memoryRom, other.memoryRom).isEquals();
     }
 
     @Override
     public String toString() {
-	return "Computer [battery_capacity=" + batteryCapacity + ", memory_rom=" + memoryRom + "]";
+	return new ToStringBuilder(this).append("battery capacity", batteryCapacity).append("memory rom", memoryRom)
+		.toString();
     }
 
 }

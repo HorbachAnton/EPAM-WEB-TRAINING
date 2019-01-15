@@ -16,22 +16,22 @@ public class TabletPC extends Computer {
 	this.color = DEFAULT_COLOR;
     }
 
-    public TabletPC(double displayInches, double fleshMemoryCapacity, String color) {
+    public TabletPC(final double displayInches, final double fleshMemoryCapacity, final String color) {
 	super();
 	this.displayInches = displayInches;
 	this.fleshMemoryCapacity = fleshMemoryCapacity;
 	this.color = color;
     }
 
-    public TabletPC(double displayInches, double fleshMemoryCapacity, String color, double batteryCapacity,
-	    double memoryRom) {
+    public TabletPC(final double displayInches, final double fleshMemoryCapacity, final String color,
+	    final double batteryCapacity, final double memoryRom) {
 	super(batteryCapacity, memoryRom);
 	this.displayInches = displayInches;
 	this.fleshMemoryCapacity = fleshMemoryCapacity;
 	this.color = color;
     }
 
-    public TabletPC(TabletPC tablet) {
+    public TabletPC(final TabletPC tablet) {
 	super(tablet.getBatteryCapacity(), tablet.getMemoryRom());
 	this.displayInches = tablet.displayInches;
 	this.fleshMemoryCapacity = tablet.fleshMemoryCapacity;
@@ -42,7 +42,7 @@ public class TabletPC extends Computer {
 	return displayInches;
     }
 
-    public void setDisplayInches(double displayInches) {
+    public void setDisplayInches(final double displayInches) {
 	this.displayInches = displayInches;
     }
 
@@ -50,7 +50,7 @@ public class TabletPC extends Computer {
 	return fleshMemoryCapacity;
     }
 
-    public void setFleshMemoryCapacity(double fleshMemoryCapacity) {
+    public void setFleshMemoryCapacity(final double fleshMemoryCapacity) {
 	this.fleshMemoryCapacity = fleshMemoryCapacity;
     }
 
@@ -58,7 +58,7 @@ public class TabletPC extends Computer {
 	return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(final String color) {
 	this.color = color;
     }
 
@@ -76,7 +76,7 @@ public class TabletPC extends Computer {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
 	if (this == obj) {
 	    return true;
 	}

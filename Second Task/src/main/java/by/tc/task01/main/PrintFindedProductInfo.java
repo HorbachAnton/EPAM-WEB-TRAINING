@@ -6,6 +6,10 @@ import by.tc.task01.entity.FindedProduct;
 
 public class PrintFindedProductInfo {
 
+    private PrintFindedProductInfo() {
+
+    }
+
     public static void print(FindedProduct product) {
 	List<String> finded = product.getFinded();
 	for (String elem : finded) {

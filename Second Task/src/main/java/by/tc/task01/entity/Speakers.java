@@ -16,21 +16,22 @@ public class Speakers extends Appliance {
 	this.cordLength = DEFAULT_CORD_LENGTH;
     }
 
-    public Speakers(double numberOfSpeakers, double frequencyRange, double cordLength) {
+    public Speakers(final double numberOfSpeakers, final double frequencyRange, final double cordLength) {
 	super();
 	this.numberOfSpeakers = numberOfSpeakers;
 	this.frequencyRange = frequencyRange;
 	this.cordLength = cordLength;
     }
 
-    public Speakers(double numberOfSpeakers, double frequencyRange, double cordLength, double powerConsumption) {
+    public Speakers(final double numberOfSpeakers, final double frequencyRange, final double cordLength,
+	    final double powerConsumption) {
 	super(powerConsumption);
 	this.numberOfSpeakers = numberOfSpeakers;
 	this.frequencyRange = frequencyRange;
 	this.cordLength = cordLength;
     }
 
-    public Speakers(Speakers speakers) {
+    public Speakers(final Speakers speakers) {
 	super(speakers.getPowerConsumption());
 	this.numberOfSpeakers = speakers.numberOfSpeakers;
 	this.frequencyRange = speakers.frequencyRange;
@@ -41,7 +42,7 @@ public class Speakers extends Appliance {
 	return numberOfSpeakers;
     }
 
-    public void setNumberOfSpeakers(double numberOfSpeakers) {
+    public void setNumberOfSpeakers(final double numberOfSpeakers) {
 	this.numberOfSpeakers = numberOfSpeakers;
     }
 
@@ -49,7 +50,7 @@ public class Speakers extends Appliance {
 	return frequencyRange;
     }
 
-    public void setFrequencyRange(double frequencyRange) {
+    public void setFrequencyRange(final double frequencyRange) {
 	this.frequencyRange = frequencyRange;
     }
 
@@ -57,7 +58,7 @@ public class Speakers extends Appliance {
 	return cordLength;
     }
 
-    public void setCordLength(double cordLength) {
+    public void setCordLength(final double cordLength) {
 	this.cordLength = cordLength;
     }
 
@@ -76,7 +77,7 @@ public class Speakers extends Appliance {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
 	if (this == obj) {
 	    return true;
 	}

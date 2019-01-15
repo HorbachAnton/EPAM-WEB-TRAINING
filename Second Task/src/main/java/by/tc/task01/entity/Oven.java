@@ -1,6 +1,6 @@
 package by.tc.task01.entity;
 
-public class Oven extends Appliance {
+public class Oven extends Appliance{
 
     private static final double DEFAULT_WEIGHT = 0;
     private static final double DEFAULT_CAPACITY = 0;

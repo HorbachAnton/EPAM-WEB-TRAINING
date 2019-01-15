@@ -22,7 +22,8 @@ public class Refrigerator extends Appliance {
 	this.width = DEFAULT_WIDTH;
     }
 
-    public Refrigerator(double weight, double freezerCapacity, double overallCapacity, double height, double width) {
+    public Refrigerator(final double weight, final double freezerCapacity, final double overallCapacity,
+	    final double height, final double width) {
 	super();
 	this.weight = weight;
 	this.freezerCapacity = freezerCapacity;
@@ -31,8 +32,8 @@ public class Refrigerator extends Appliance {
 	this.width = width;
     }
 
-    public Refrigerator(double weight, double freezerCapacity, double overallCapacity, double height, double width,
-	    double powerConsumption) {
+    public Refrigerator(final double weight, final double freezerCapacity, final double overallCapacity,
+	    final double height, final double width, final double powerConsumption) {
 	super(powerConsumption);
 	this.weight = weight;
 	this.freezerCapacity = freezerCapacity;
@@ -41,7 +42,7 @@ public class Refrigerator extends Appliance {
 	this.width = width;
     }
 
-    public Refrigerator(Refrigerator refrigerator) {
+    public Refrigerator(final Refrigerator refrigerator) {
 	super(refrigerator.getPowerConsumption());
 	this.weight = refrigerator.weight;
 	this.freezerCapacity = refrigerator.freezerCapacity;
@@ -54,7 +55,7 @@ public class Refrigerator extends Appliance {
 	return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(final double weight) {
 	this.weight = weight;
     }
 
@@ -62,7 +63,7 @@ public class Refrigerator extends Appliance {
 	return freezerCapacity;
     }
 
-    public void setFreezerCapacity(double freezerCapacity) {
+    public void setFreezerCapacity(final double freezerCapacity) {
 	this.freezerCapacity = freezerCapacity;
     }
 
@@ -70,7 +71,7 @@ public class Refrigerator extends Appliance {
 	return overallCapacity;
     }
 
-    public void setOverallCapacity(double overallCapacity) {
+    public void setOverallCapacity(final double overallCapacity) {
 	this.overallCapacity = overallCapacity;
     }
 
@@ -78,7 +79,7 @@ public class Refrigerator extends Appliance {
 	return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(final double height) {
 	this.height = height;
     }
 
@@ -86,7 +87,7 @@ public class Refrigerator extends Appliance {
 	return width;
     }
 
-    public void setWidth(double width) {
+    public void setWidth(final double width) {
 	this.width = width;
     }
 
@@ -109,7 +110,7 @@ public class Refrigerator extends Appliance {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
 	if (this == obj) {
 	    return true;
 	}

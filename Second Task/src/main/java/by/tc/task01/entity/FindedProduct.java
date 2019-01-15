@@ -3,23 +3,30 @@ package by.tc.task01.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class FindedProduct {
+
+    private static final int VALUE_FOR_HASH_1 = 1;
+    private static final int VALUE_FOR_HASH_2 = 31;
 
     private List<String> finded;
 
     public FindedProduct() {
-	finded = new ArrayList<String>();
+	finded = new ArrayList<>();
     }
 
-    public FindedProduct(List<String> finded) {
+    public FindedProduct(final List<String> finded) {
 	this.finded = finded;
     }
 
-    public FindedProduct(FindedProduct findedPro) {
+    public FindedProduct(final FindedProduct findedPro) {
 	this.finded = findedPro.finded;
     }
 
-    public void add(String str) {
+    public void add(final String str) {
 	finded.add(str);
     }
 
@@ -27,20 +34,17 @@ public class FindedProduct {
 	return finded;
     }
 
-    public void setFinded(List<String> finded) {
+    public void setFinded(final List<String> finded) {
 	this.finded = finded;
     }
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + ((finded == null) ? 0 : finded.hashCode());
-	return result;
+	return new HashCodeBuilder(VALUE_FOR_HASH_1, VALUE_FOR_HASH_2).append(finded).toHashCode();
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
 	if (this == obj) {
 	    return true;
 	}
@@ -51,19 +55,13 @@ public class FindedProduct {
 	    return false;
 	}
 	FindedProduct other = (FindedProduct) obj;
-	if (finded == null) {
-	    if (other.finded != null) {
-		return false;
-	    }
-	} else if (!finded.equals(other.finded)) {
-	    return false;
-	}
-	return true;
+
+	return new EqualsBuilder().append(this.finded, other.finded).isEquals();
     }
 
     @Override
     public String toString() {
-	return "FindedProduct [finded=" + finded + "]";
+	return new ToStringBuilder(this).append("finded", finded).toString();
     }
 
 }

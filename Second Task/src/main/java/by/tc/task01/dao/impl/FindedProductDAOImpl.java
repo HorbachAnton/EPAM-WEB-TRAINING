@@ -7,7 +7,12 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import by.tc.task01.dao.FindedProductDAO;
 import by.tc.task01.entity.FindedProduct;
@@ -15,7 +20,20 @@ import by.tc.task01.entity.criteria.Criteria;
 
 public class FindedProductDAOImpl implements FindedProductDAO {
 
-    private final static Path DEFAULT_PATH = Paths.get("src/main/resources/appliances_db.txt");
+    private static final Logger logger = LogManager.getLogger(FindedProductDAOImpl.class);
+    private static final Path DEFAULT_CONFIG_PATH = Paths.get("config.txt");
+    private static Path defaultPath;
+
+    static {
+	try {
+	    Optional<String> pathOptional = Files.lines(DEFAULT_CONFIG_PATH)
+		    .filter(s -> s.matches("DEFAULT_PATH =(.)*")).findFirst();
+	    String path = pathOptional.get().replaceAll("DEFAULT_PATH = ", "");
+	    defaultPath = Paths.get(path);
+	} catch (IOException e) {
+	    logger.info("Could not read the path to the appliances_db.txt file");
+	}
+    }
 
     public <E> FindedProduct find(Criteria<E> criteria) {
 	FindedProduct findedPro = new FindedProduct();
@@ -25,11 +43,9 @@ public class FindedProductDAOImpl implements FindedProductDAO {
 		findForOneCriteria(set, findedPro);
 	    } else if (set.size() > 1) {
 		findForManyCriteria(set, findedPro);
-	    } else {
-		System.out.println("else");
 	    }
 	} catch (IOException e) {
-	    e.printStackTrace();
+	    logger.info("Could not find matching criteria.");
 	}
 	return findedPro;
     }
@@ -49,9 +65,7 @@ public class FindedProductDAOImpl implements FindedProductDAO {
 	    entry = iterator.next();
 	    String key = entry.getKey().toString();
 	    String value = entry.getValue().toString().toLowerCase();
-	    finded = Arrays.stream(finded)
-		    .filter((s) -> s.contains(key + "=" + value))
-		    .toArray(String[]::new);
+	    finded = Arrays.stream(finded).filter(s -> s.contains(key + "=" + value)).toArray(String[]::new);
 	}
 	checkFindedEmpty(finded, findedPro);
 
@@ -61,10 +75,11 @@ public class FindedProductDAOImpl implements FindedProductDAO {
 	String nameClass = sendKey.getClass().getSimpleName();
 	String key = sendKey.toString();
 	String value = sendValue.toString().toLowerCase();
-	String[] date = Files.lines(DEFAULT_PATH).filter((s) -> s.matches("^" + nameClass
-		+ "\\s*:[(\\s*\\w*\\=\\d*\\,)]*" + key + "=" + value + "\\,*[(\\s*\\w*\\=\\d*(\\.|\\,|\\;))]*"))
-		.toArray(String[]::new);
-	return date;
+	String regex = "^" + nameClass + "\\s*:[(\\s*\\w*\\=\\d*\\,)]*" + key + "=" + value
+		+ "\\,*[(\\s*\\w*\\=\\d*(\\.|\\,|\\;))]*";
+	try (Stream<String> stream = Files.lines(defaultPath)) {
+	    return stream.filter(s -> s.matches(regex)).toArray(String[]::new);
+	}
     }
 
     private void checkFindedEmpty(String[] finded, FindedProduct findedPro) {
