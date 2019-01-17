@@ -8,6 +8,7 @@ public class Computer implements Product {
 
     private static final double DEFAULT_BATTERY_CAPACITY = 0;
     private static final double DEFAULT_MEMORY_ROM = 0;
+    
     private static final int VALUE_FOR_HASH_1 = 1;
     private static final int VALUE_FOR_HASH_2 = 31;
 
@@ -55,15 +56,19 @@ public class Computer implements Product {
 
     @Override
     public boolean equals(final Object obj) {
+	
 	if (this == obj) {
 	    return true;
 	}
+	
 	if (obj == null) {
 	    return false;
 	}
+	
 	if (getClass() != obj.getClass()) {
 	    return false;
 	}
+	
 	Computer other = (Computer) obj;
 
 	return new EqualsBuilder().append(this.batteryCapacity, other.batteryCapacity)

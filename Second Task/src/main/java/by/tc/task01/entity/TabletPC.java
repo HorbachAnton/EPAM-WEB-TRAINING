@@ -1,10 +1,18 @@
 package by.tc.task01.entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class TabletPC extends Computer {
 
     private static final double DEFAULT_DISPLAY_INCHES = 0;
     private static final double DEFAULT_FLESH_MEMORY_CAPACITY = 0;
     private static final String DEFAULT_COLOR = "";
+
+    private static final int VALUE_FOR_HASH_1 = 1;
+    private static final int VALUE_FOR_HASH_2 = 31;
+
     private double displayInches;
     private double fleshMemoryCapacity;
     private String color;
@@ -64,49 +72,35 @@ public class TabletPC extends Computer {
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = super.hashCode();
-	result = prime * result + ((color == null) ? 0 : color.hashCode());
-	long temp;
-	temp = Double.doubleToLongBits(displayInches);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	temp = Double.doubleToLongBits(fleshMemoryCapacity);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	return result;
+	return new HashCodeBuilder(VALUE_FOR_HASH_1, VALUE_FOR_HASH_2).appendSuper(super.hashCode())
+		.append(displayInches).append(color).append(fleshMemoryCapacity).toHashCode();
     }
 
     @Override
     public boolean equals(final Object obj) {
+
 	if (this == obj) {
 	    return true;
 	}
+
 	if (!super.equals(obj)) {
 	    return false;
 	}
+
 	if (getClass() != obj.getClass()) {
 	    return false;
 	}
+
 	TabletPC other = (TabletPC) obj;
-	if (color == null) {
-	    if (other.color != null) {
-		return false;
-	    }
-	} else if (!color.equals(other.color)) {
-	    return false;
-	}
-	if (Double.doubleToLongBits(displayInches) != Double.doubleToLongBits(other.displayInches)) {
-	    return false;
-	}
-	if (Double.doubleToLongBits(fleshMemoryCapacity) != Double.doubleToLongBits(other.fleshMemoryCapacity)) {
-	    return false;
-	}
-	return true;
+
+	return new EqualsBuilder().append(this.displayInches, other.displayInches)
+		.append(this.fleshMemoryCapacity, other.fleshMemoryCapacity).append(this.color, other.color).isEquals();
     }
 
     @Override
     public String toString() {
-	return "TabletPC [display_inches=" + displayInches + ", flesh_memory_capacity=" + fleshMemoryCapacity
-		+ ", color=" + color + "]";
+	return new ToStringBuilder(this).append("display_inches", displayInches)
+		.append("flesh_memory_capacity", fleshMemoryCapacity).append("color", color).toString();
     }
 
 }

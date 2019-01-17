@@ -1,5 +1,9 @@
 package by.tc.task01.entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class VacuumCleaner extends Appliance {
 
     private static final String DEFAULT_FILTER_TYPE = "";
@@ -7,6 +11,10 @@ public class VacuumCleaner extends Appliance {
     private static final String DEFAULT_WAND_TYPE = "";
     private static final double DEFAULT_MOTOR_SPEED_REGULATION = 0;
     private static final double DEFAULT_CLEANING_WIDTH = 0;
+
+    private static final int VALUE_FOR_HASH_1 = 1;
+    private static final int VALUE_FOR_HASH_2 = 31;
+
     private String filterType;
     private String bagType;
     private String wandType;
@@ -93,65 +101,37 @@ public class VacuumCleaner extends Appliance {
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = super.hashCode();
-	result = prime * result + ((bagType == null) ? 0 : bagType.hashCode());
-	long temp;
-	temp = Double.doubleToLongBits(cleaningWidth);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	result = prime * result + ((filterType == null) ? 0 : filterType.hashCode());
-	temp = Double.doubleToLongBits(motorSpeedRegulation);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	result = prime * result + ((wandType == null) ? 0 : wandType.hashCode());
-	return result;
+	return new HashCodeBuilder(VALUE_FOR_HASH_1, VALUE_FOR_HASH_2).appendSuper(super.hashCode()).append(filterType)
+		.append(bagType).append(wandType).append(motorSpeedRegulation).append(cleaningWidth).toHashCode();
     }
 
     @Override
     public boolean equals(final Object obj) {
+
 	if (this == obj) {
 	    return true;
 	}
+
 	if (!super.equals(obj)) {
 	    return false;
 	}
+
 	if (getClass() != obj.getClass()) {
 	    return false;
 	}
+
 	VacuumCleaner other = (VacuumCleaner) obj;
-	if (bagType == null) {
-	    if (other.bagType != null) {
-		return false;
-	    }
-	} else if (!bagType.equals(other.bagType)) {
-	    return false;
-	}
-	if (Double.doubleToLongBits(cleaningWidth) != Double.doubleToLongBits(other.cleaningWidth)) {
-	    return false;
-	}
-	if (filterType == null) {
-	    if (other.filterType != null) {
-		return false;
-	    }
-	} else if (!filterType.equals(other.filterType)) {
-	    return false;
-	}
-	if (Double.doubleToLongBits(motorSpeedRegulation) != Double.doubleToLongBits(other.motorSpeedRegulation)) {
-	    return false;
-	}
-	if (wandType == null) {
-	    if (other.wandType != null) {
-		return false;
-	    }
-	} else if (!wandType.equals(other.wandType)) {
-	    return false;
-	}
-	return true;
+
+	return new EqualsBuilder().append(this.filterType, other.filterType).append(this.bagType, other.bagType)
+		.append(this.wandType, other.wandType).append(this.motorSpeedRegulation, other.motorSpeedRegulation)
+		.append(this.cleaningWidth, other.cleaningWidth).isEquals();
     }
 
     @Override
     public String toString() {
-	return "VacuumCleaner [filter_type=" + filterType + ", bag_type=" + bagType + ", wand_type=" + wandType
-		+ ", motor_speed_regulation=" + motorSpeedRegulation + ", cleaning_width=" + cleaningWidth + "]";
+	return new ToStringBuilder(this).append("filter_type", filterType).append("bag_type", bagType)
+		.append("wand_type", wandType).append("motor_speed_regulation", motorSpeedRegulation)
+		.append("cleaning_width", cleaningWidth).toString();
     }
 
 }

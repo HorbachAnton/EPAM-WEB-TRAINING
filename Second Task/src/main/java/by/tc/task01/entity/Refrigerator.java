@@ -1,5 +1,9 @@
 package by.tc.task01.entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class Refrigerator extends Appliance {
 
     private static final double DEFAULT_WEIGHT = 0;
@@ -7,6 +11,10 @@ public class Refrigerator extends Appliance {
     private static final double DEFAULT_OVERALL_CAPACITY = 0;
     private static final double DEFAULT_HEIGHT = 0;
     private static final double DEFAULT_WIDTH = 0;
+
+    private static final int VALUE_FOR_HASH_1 = 1;
+    private static final int VALUE_FOR_HASH_2 = 31;
+
     private double weight;
     private double freezerCapacity;
     private double overallCapacity;
@@ -93,56 +101,37 @@ public class Refrigerator extends Appliance {
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = super.hashCode();
-	long temp;
-	temp = Double.doubleToLongBits(freezerCapacity);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	temp = Double.doubleToLongBits(height);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	temp = Double.doubleToLongBits(overallCapacity);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	temp = Double.doubleToLongBits(weight);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	temp = Double.doubleToLongBits(width);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	return result;
+	return new HashCodeBuilder(VALUE_FOR_HASH_1, VALUE_FOR_HASH_2).appendSuper(super.hashCode())
+		.append(freezerCapacity).append(height).append(overallCapacity).append(weight).append(width)
+		.toHashCode();
     }
 
     @Override
     public boolean equals(final Object obj) {
+
 	if (this == obj) {
 	    return true;
 	}
+
 	if (!super.equals(obj)) {
 	    return false;
 	}
+
 	if (getClass() != obj.getClass()) {
 	    return false;
 	}
+
 	Refrigerator other = (Refrigerator) obj;
-	if (Double.doubleToLongBits(freezerCapacity) != Double.doubleToLongBits(other.freezerCapacity)) {
-	    return false;
-	}
-	if (Double.doubleToLongBits(height) != Double.doubleToLongBits(other.height)) {
-	    return false;
-	}
-	if (Double.doubleToLongBits(overallCapacity) != Double.doubleToLongBits(other.overallCapacity)) {
-	    return false;
-	}
-	if (Double.doubleToLongBits(weight) != Double.doubleToLongBits(other.weight)) {
-	    return false;
-	}
-	if (Double.doubleToLongBits(width) != Double.doubleToLongBits(other.width)) {
-	    return false;
-	}
-	return true;
+
+	return new EqualsBuilder().append(this.freezerCapacity, other.freezerCapacity).append(this.height, other.height)
+		.append(this.overallCapacity, other.overallCapacity).append(this.weight, other.weight)
+		.append(this.width, other.width).isEquals();
     }
 
     @Override
     public String toString() {
-	return "Refrigerator [weight=" + weight + ", freezer_capacity=" + freezerCapacity + ", overall_capacity="
-		+ overallCapacity + ", height=" + height + ", width=" + width + "]";
+	return new ToStringBuilder(this).append("weight", weight).append("freezer_capacity", freezerCapacity)
+		.append("overallCapacity", overallCapacity).append("height", height).append("width", width).toString();
     }
 
 }

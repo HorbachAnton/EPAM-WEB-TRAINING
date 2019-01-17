@@ -10,6 +10,7 @@ public class Laptop extends Computer {
     private static final double DEFAULT_SYSTEM_MEMORY = 0;
     private static final double DEFAULT_CPU = 0;
     private static final double DEFAULT_DISPLAY_INCHS = 0;
+    
     private static final int VALUE_FOR_HASH_1 = 1;
     private static final int VALUE_FOR_HASH_2 = 31;
 
@@ -91,15 +92,19 @@ public class Laptop extends Computer {
 
     @Override
     public boolean equals(final Object obj) {
+	
 	if (this == obj) {
 	    return true;
 	}
+	
 	if (!super.equals(obj)) {
 	    return false;
 	}
+	
 	if (getClass() != obj.getClass()) {
 	    return false;
 	}
+	
 	Laptop other = (Laptop) obj;
 
 	return new EqualsBuilder().append(this.oc, other.oc).append(this.cpu, other.cpu)

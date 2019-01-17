@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class Appliance implements Product {
 
     private static final double DEFAULT_POWER_CONSUMPTION = 0;
+    
     private static final int VALUE_FOR_HASH_1 = 1;
     private static final int VALUE_FOR_HASH_2 = 31;
 
@@ -39,15 +40,19 @@ public class Appliance implements Product {
 
     @Override
     public boolean equals(final Object obj) {
+	
 	if (this == obj) {
 	    return true;
 	}
+	
 	if (obj == null) {
 	    return false;
 	}
+	
 	if (getClass() != obj.getClass()) {
 	    return false;
 	}
+	
 	Appliance other = (Appliance) obj;
 
 	return new EqualsBuilder().append(this.powerConsumption, other.powerConsumption).isEquals();

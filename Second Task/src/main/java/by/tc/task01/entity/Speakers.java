@@ -1,10 +1,18 @@
 package by.tc.task01.entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class Speakers extends Appliance {
 
     private static final double DEFAULT_NUMBER_OF_SPEKERS = 0;
     private static final double DEFAULT_FREQUENCY_RANGE = 0;
     private static final double DEFAULT_CORD_LENGTH = 0;
+
+    private static final int VALUE_FOR_HASH_1 = 1;
+    private static final int VALUE_FOR_HASH_2 = 31;
+
     private double numberOfSpeakers;
     private double frequencyRange;
     private double cordLength;
@@ -64,46 +72,36 @@ public class Speakers extends Appliance {
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = super.hashCode();
-	long temp;
-	temp = Double.doubleToLongBits(cordLength);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	temp = Double.doubleToLongBits(frequencyRange);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	temp = Double.doubleToLongBits(numberOfSpeakers);
-	result = prime * result + (int) (temp ^ (temp >>> 32));
-	return result;
+	return new HashCodeBuilder(VALUE_FOR_HASH_1, VALUE_FOR_HASH_2).appendSuper(super.hashCode()).append(cordLength)
+		.append(frequencyRange).append(numberOfSpeakers).toHashCode();
     }
 
     @Override
     public boolean equals(final Object obj) {
+
 	if (this == obj) {
 	    return true;
 	}
+
 	if (!super.equals(obj)) {
 	    return false;
 	}
+
 	if (getClass() != obj.getClass()) {
 	    return false;
 	}
+
 	Speakers other = (Speakers) obj;
-	if (Double.doubleToLongBits(cordLength) != Double.doubleToLongBits(other.cordLength)) {
-	    return false;
-	}
-	if (Double.doubleToLongBits(frequencyRange) != Double.doubleToLongBits(other.frequencyRange)) {
-	    return false;
-	}
-	if (Double.doubleToLongBits(numberOfSpeakers) != Double.doubleToLongBits(other.numberOfSpeakers)) {
-	    return false;
-	}
-	return true;
+
+	return new EqualsBuilder().append(this.cordLength, other.cordLength)
+		.append(this.frequencyRange, other.frequencyRange).append(this.numberOfSpeakers, other.numberOfSpeakers)
+		.isEquals();
     }
 
     @Override
     public String toString() {
-	return "Speakers [number_of_speakers=" + numberOfSpeakers + ", frequency_range=" + frequencyRange
-		+ ", cord_length=" + cordLength + "]";
+	return new ToStringBuilder(this).append("number_of_speakers", numberOfSpeakers)
+		.append("frequency_range", frequencyRange).append("cord_length", cordLength).toString();
     }
 
 }
