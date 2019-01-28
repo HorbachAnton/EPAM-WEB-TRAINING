@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.horant.org/options_description"
+	xmlns:tns="http://www.horant.org/options_description"
+	elementFormDefault="qualified">
+
+	<complexType name="OptionsDescriptionType">
+		<sequence>
+			<element name="option" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="option_number" type="integer" />
+						<element name="option_description" type="string" />
+						<element name="option_portion" type="string" />
+						<element name="option_price" type="double" />
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+</schema>

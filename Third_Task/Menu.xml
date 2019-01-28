@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mn:menus xmlns:mn="http://www.horant.org/menu"
+	xmlns:fod="http://www.horant.org/food"
+	xmlns:opdes="http://www.horant.org/options_description"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.horant.org/menu Menu.xsd">
+	<mn:menu>
+
+		<mn:food category="cold_appetizer"
+			dishes_type="general_dishes" id="ID-1">
+			<fod:photo>E:\image1.png</fod:photo>
+			<fod:title>Ассорти рыбное</fod:title>
+			<fod:general_description>Слабосолёная форель,сёмга</fod:general_description>
+			<fod:general_portion>100/20/15</fod:general_portion>
+			<fod:general_price>25</fod:general_price>
+		</mn:food>
+
+		<mn:food category="hot_snack" dishes_type="optional_dishes"
+			id="ID-2">
+			<fod:photo>E:\image2.png</fod:photo>
+			<fod:title>Жульен</fod:title>
+			<fod:general_description>Блюдо с запечённой в сметане начинкой под сырной коркой</fod:general_description>
+			<fod:options_description>
+				<opdes:option>
+					<opdes:option_number>1</opdes:option_number>
+					<opdes:option_description>с курицей</opdes:option_description>
+					<opdes:option_portion> 150/5</opdes:option_portion>
+					<opdes:option_price>34</opdes:option_price>
+				</opdes:option>
+				<opdes:option>
+					<opdes:option_number>2</opdes:option_number>
+					<opdes:option_description>с грибами</opdes:option_description>
+					<opdes:option_portion> 150/5</opdes:option_portion>
+					<opdes:option_price>45</opdes:option_price>
+				</opdes:option>
+			</fod:options_description>
+		</mn:food>
+
+		<mn:food category="breakfasts" dishes_type="general_dishes"
+			id="ID-3">
+			<fod:photo>E:\image3.png</fod:photo>
+			<fod:title>Глазунья</fod:title>
+			<fod:general_description>2 яйца (на выбор ветчина, сыр, помидоры)</fod:general_description>
+			<fod:general_portion>150</fod:general_portion>
+			<fod:general_price>58</fod:general_price>
+		</mn:food>
+
+		<mn:food category="salads" dishes_type="optional_dishes"
+			id="ID-4">
+			<fod:photo>E:\image4.png</fod:photo>
+			<fod:title>Салат цезарь</fod:title>
+			<fod:general_description>Листья салата с соусом «цезарь», с пшеничными гренками и начинкой на ваш выбор</fod:general_description>
+			<fod:options_description>
+				<opdes:option>
+					<opdes:option_number>1</opdes:option_number>
+					<opdes:option_description>с креветками</opdes:option_description>
+					<opdes:option_portion>165</opdes:option_portion>
+					<opdes:option_price>60</opdes:option_price>
+				</opdes:option>
+				<opdes:option>
+					<opdes:option_number>2</opdes:option_number>
+					<opdes:option_description>с курицей</opdes:option_description>
+					<opdes:option_portion>165</opdes:option_portion>
+					<opdes:option_price>55</opdes:option_price>
+				</opdes:option>
+			</fod:options_description>
+		</mn:food>
+
+		<mn:food category="soups" dishes_type="general_dishes" id="ID-5">
+			<fod:photo>E:\image5.png</fod:photo>
+			<fod:title>Уха с расстегаями</fod:title>
+			<fod:general_description>Уха из лосося, трески и горбуши с рыбными расстегаями</fod:general_description>
+			<fod:general_portion>300/80</fod:general_portion>
+			<fod:general_price>280</fod:general_price>
+		</mn:food>
+
+		<mn:food category="fish_dishes" dishes_type="optional_dishes"
+			id="ID-6">
+			<fod:photo>E:\image6.png</fod:photo>
+			<fod:title>Сопа Де Мариско</fod:title>
+			<fod:general_description>Густой и наваристый суп из морепродуктов</fod:general_description>
+			<fod:options_description>
+				<opdes:option>
+					<opdes:option_number>1</opdes:option_number>
+					<opdes:option_description>с креветками</opdes:option_description>
+					<opdes:option_portion>280/70</opdes:option_portion>
+					<opdes:option_price>344</opdes:option_price>
+				</opdes:option>
+				<opdes:option>
+					<opdes:option_number>2</opdes:option_number>
+					<opdes:option_description>без креветок</opdes:option_description>
+					<opdes:option_portion>350</opdes:option_portion>
+					<opdes:option_price>320</opdes:option_price>
+				</opdes:option>
+			</fod:options_description>
+		</mn:food>
+
+		<mn:food category="meat_dishes" dishes_type="general_dishes"
+			id="ID-7">
+			<fod:photo>E:\image7.png</fod:photo>
+			<fod:title>Стейк из свинины</fod:title>
+			<fod:general_description>С картофелем фри и соусом «барбекю»</fod:general_description>
+			<fod:general_portion>160/40</fod:general_portion>
+			<fod:general_price>208</fod:general_price>
+		</mn:food>
+
+		<mn:food category="side_dishes" dishes_type="general_dishes"
+			id="ID-8">
+			<fod:photo>E:\image8.png</fod:photo>
+			<fod:title>Овощи на гриле</fod:title>
+			<fod:general_description>Обжаренные баклажаны, цукини, сладкий перец, шампиньоны, помидор, лук и чеснок</fod:general_description>
+			<fod:general_portion>250</fod:general_portion>
+			<fod:general_price>215</fod:general_price>
+		</mn:food>
+
+		<mn:food category="dishes_on_grill"
+			dishes_type="general_dishes" id="ID-9">
+			<fod:photo>E:\image9.png</fod:photo>
+			<fod:title>Филе грудки</fod:title>
+			<fod:general_description>Шашлык из филе куриной грудки. Подается с луком и зеленью.</fod:general_description>
+			<fod:general_portion>100</fod:general_portion>
+			<fod:general_price>145</fod:general_price>
+		</mn:food>
+
+		<mn:food category="from_chef" dishes_type="optional_dishes"
+			id="ID-10">
+			<fod:photo>E:\image10.png</fod:photo>
+			<fod:title>Рулька свиная в медово-горчичном соусе</fod:title>
+			<fod:general_description>Свинина рулька, горчица французская, перец черный молотый, соль, мед, баклажаны сушеные, томаты сушеные, тыква сушенная, лавровый лист, масло растительное</fod:general_description>
+			<fod:options_description>
+				<opdes:option>
+					<opdes:option_number>1</opdes:option_number>
+					<opdes:option_description>с грибами</opdes:option_description>
+					<opdes:option_portion>1000</opdes:option_portion>
+					<opdes:option_price>600</opdes:option_price>
+				</opdes:option>
+				<opdes:option>
+					<opdes:option_number>2</opdes:option_number>
+					<opdes:option_description>без грибов</opdes:option_description>
+					<opdes:option_portion>950</opdes:option_portion>
+					<opdes:option_price>560</opdes:option_price>
+				</opdes:option>
+			</fod:options_description>
+		</mn:food>
+
+		<mn:food category="attachment" dishes_type="general_dishes"
+			id="ID-11">
+			<fod:photo>E:\image11.png</fod:photo>
+			<fod:title>Клубничный коктейль</fod:title>
+			<fod:general_description>Коктейль из клубники, клубничного мороженого и молока</fod:general_description>
+			<fod:general_portion>280</fod:general_portion>
+			<fod:general_price>46</fod:general_price>
+		</mn:food>
+
+		<mn:food category="dessert" dishes_type="optional_dishes"
+			id="ID-12">
+			<fod:photo>E:\image12.png</fod:photo>
+			<fod:title>Творожник c фруктами</fod:title>
+			<fod:general_description>Творожный пирог с кусочками фруктов, подается с клубничным соусом и чёрной смородиной</fod:general_description>
+			<fod:options_description>
+				<opdes:option>
+					<opdes:option_number>1</opdes:option_number>
+					<opdes:option_description>с яблоками</opdes:option_description>
+					<opdes:option_portion>150/20/2</opdes:option_portion>
+					<opdes:option_price>169</opdes:option_price>
+				</opdes:option>
+				<opdes:option>
+					<opdes:option_number>2</opdes:option_number>
+					<opdes:option_description>с грушей</opdes:option_description>
+					<opdes:option_portion>150/20/2</opdes:option_portion>
+					<opdes:option_price>178</opdes:option_price>
+				</opdes:option>
+			</fod:options_description>
+
+		</mn:food>
+	</mn:menu>
+</mn:menus>

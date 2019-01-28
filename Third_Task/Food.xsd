@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.horant.org/food"
+	xmlns:tns="http://www.horant.org/food"
+	xmlns:op_des="http://www.horant.org/options_description"
+	elementFormDefault="qualified">
+	<import schemaLocation="OptionsDescription.xsd"
+		namespace="http://www.horant.org/options_description" />
+
+	<complexType name="FoodType">
+		<sequence>
+			<element name="photo" type="string" />
+			<element name="title" type="string" />
+			<element name="general_description" type="string"
+				minOccurs="0" />
+
+			<element name="options_description"
+				type="op_des:OptionsDescriptionType" minOccurs="0"
+				maxOccurs="unbounded" />
+
+			<element name="general_portion" type="string" minOccurs="0" />
+			<element name="general_price" type="double" minOccurs="0" />
+		</sequence>
+		<attribute name="category" type="tns:categoryType"
+			use="required" />
+		<attribute name="dishes_type" type="tns:dishesType"
+			use="required" />
+		<attribute name="id" type="ID" use="required" />
+	</complexType>
+
+	<simpleType name="categoryType">
+		<restriction base="string">
+			<enumeration value="cold_appetizer" />
+			<enumeration value="hot_snack" />
+			<enumeration value="breakfasts" />
+			<enumeration value="salads" />
+			<enumeration value="soups" />
+			<enumeration value="fish_dishes" />
+			<enumeration value="meat_dishes" />
+			<enumeration value="side_dishes" />
+			<enumeration value="dishes_on_grill" />
+			<enumeration value="from_chef" />
+			<enumeration value="attachment" />
+			<enumeration value="dessert" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="dishesType">
+		<restriction base="string">
+			<enumeration value="general_dishes" />
+			<enumeration value="optional_dishes" />
+		</restriction>
+	</simpleType>
+
+</schema>

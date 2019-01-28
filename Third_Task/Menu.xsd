@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.horant.org/menu"
+	xmlns:tns="http://www.horant.org/menu"
+	xmlns:fod="http://www.horant.org/food" elementFormDefault="qualified">
+	<import schemaLocation="Food.xsd"
+		namespace="http://www.horant.org/food" />
+
+	<element name="menus" type="tns:MenuType" />
+
+	<complexType name="MenuType">
+		<sequence>
+			<element name="menu">
+				<complexType>
+					<sequence>
+						<element name="food" type="fod:FoodType"
+							maxOccurs="unbounded" />
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+</schema>
