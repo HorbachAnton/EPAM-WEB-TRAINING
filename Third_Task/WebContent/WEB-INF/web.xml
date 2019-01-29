@@ -22,12 +22,12 @@
 	</welcome-file-list>
 
 	<servlet>
-		<servlet-name>HelloServlet</servlet-name>
-		<servlet-class>HelloServlet</servlet-class>
+		<servlet-name>ParsedServlet</servlet-name>
+		<servlet-class>by.horant.task3.service.ParsedServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>HelloServlet</servlet-name>
+		<servlet-name>ParsedServlet</servlet-name>
 		<url-pattern>/welcome</url-pattern>
 	</servlet-mapping>
 
