@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -31,22 +30,26 @@ public class ParsedServlet extends HttpServlet {
 	super();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 	doPost(request, response);
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 
-	response.setCharacterEncoding("UTF-8");
 	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
+
 	String parserType = request.getParameter("parser");
 	List<Food> menu = null;
 
 	if (parserType.equals("SAX")) {
 	    try {
 		menu = parseSax();
+		request.setAttribute("parser", "SAX");
 	    } catch (SAXException | ParserConfigurationException e) {
 		e.printStackTrace();
 	    }
@@ -54,19 +57,27 @@ public class ParsedServlet extends HttpServlet {
 	} else if (parserType.equals("StAX")) {
 	    try {
 		menu = parseStax();
+		request.setAttribute("parser", "StAX");
 	    } catch (XMLStreamException e) {
 		e.printStackTrace();
 	    }
 	} else if (parserType.equals("DOM")) {
 	    try {
 		menu = parseDom();
+		request.setAttribute("parser", "DOM");
 	    } catch (SAXException e) {
+		e.printStackTrace();
+	    }
+	} else {
+	    try {
+		menu = parseSax();
+	    } catch (SAXException | ParserConfigurationException e) {
 		e.printStackTrace();
 	    }
 	}
 
-	HttpSession session = request.getSession();
-	session.setAttribute("menu", menu);
+	request.setAttribute("menu", menu);
+	request.setAttribute("pages_number", Math.round(menu.size() / 7));
 	getServletContext().getRequestDispatcher("/menu.jsp").forward(request, response);
     }
 
@@ -85,8 +96,9 @@ public class ParsedServlet extends HttpServlet {
     }
 
     private List<Food> parseDom() throws SAXException, IOException {
-	FoodDomParser.parse();
-	return FoodDomParser.getMenu();
+	FoodDomParser parserDom = new FoodDomParser();
+	parserDom.parse();
+	return parserDom.getMenu();
     }
 
 }

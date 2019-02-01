@@ -20,13 +20,13 @@ import by.horant.task3.entity.enumeration.FoodXmlAttribute;
 public class FoodDomParser {
 
     private static final String REGULAR_EXPRESSION_ID = "[(\\w)]*-";
-    private static List<Food> menu = new ArrayList<>();
+    private List<Food> menu = new ArrayList<>();
 
-    public static List<Food> getMenu() {
+    public List<Food> getMenu() {
 	return menu;
     }
 
-    public static void parse() throws SAXException, IOException {
+    public void parse() throws SAXException, IOException {
 	DOMParser parser = new DOMParser();
 	parser.parse("Menu.xml");
 	Document document = parser.getDocument();
@@ -53,7 +53,7 @@ public class FoodDomParser {
 
     }
 
-    private static void parseGeneralFood(GeneralFood food, Element foodElement) {
+    private void parseGeneralFood(GeneralFood food, Element foodElement) {
 	String id = foodElement.getAttribute(FoodXmlAttribute.ID.getName()).replaceFirst(REGULAR_EXPRESSION_ID, "");
 	String category = foodElement.getAttribute(FoodXmlAttribute.CATEGORY.getName());
 	String photoPath = getSingleChild(foodElement, "fod:photo").getTextContent().trim();
@@ -73,7 +73,7 @@ public class FoodDomParser {
 	menu.add(food);
     }
 
-    private static void parseOptionalFood(OptionalFood food, Element foodElement) {
+    private void parseOptionalFood(OptionalFood food, Element foodElement) {
 	String id = foodElement.getAttribute(FoodXmlAttribute.ID.getName()).replaceFirst(REGULAR_EXPRESSION_ID, "");
 	String category = foodElement.getAttribute(FoodXmlAttribute.CATEGORY.getName());
 	String photoPath = getSingleChild(foodElement, "fod:photo").getTextContent().trim();
