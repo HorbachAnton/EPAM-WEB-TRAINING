@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class ChoosedPageServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
+    private static final int DISHES_NUMBER_ON_PAGE = 7;
+    private static final int SUBTRAHEND_LAST_FOOD = 1;
 
     public ChoosedPageServlet() {
 	super();
@@ -22,9 +25,9 @@ public class ChoosedPageServlet extends HttpServlet {
 	    throws ServletException, IOException {
 
 	int pagesNmber = Integer.parseInt(request.getParameter("choosed_page"));
-	int number = pagesNmber * 7;
-	int firstNumber = number - 7;
-	int lastNumber = number - 1;
+	int number = pagesNmber * DISHES_NUMBER_ON_PAGE;
+	int firstNumber = number - DISHES_NUMBER_ON_PAGE;
+	int lastNumber = number - SUBTRAHEND_LAST_FOOD;
 
 	request.setAttribute("first_food", firstNumber);
 	request.setAttribute("last_food", lastNumber);
