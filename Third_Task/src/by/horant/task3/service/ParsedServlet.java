@@ -24,7 +24,22 @@ import by.horant.task3.dao.FoodStaxParser;
 import by.horant.task3.entity.Food;
 
 public class ParsedServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
+
+    public static final String MENU_FOLDER_PATH = "resources\\Menu.xml";
+    public static final String MENU_PAGE_URL = "/menu.jsp";
+
+    public static final String REQUEST_DEFAULT_ENCODING = "UTF-8";
+    public static final String RESPONSE_DEFAULT_ENCODING = "UTF-8";
+
+    public static final String IDENTIFIER_PARSER = "parser";
+    public static final String IDENTIFIER_SAX = "SAX";
+    public static final String IDENTIFIER_STAX = "StAX";
+    public static final String IDENTIFIER_DOM = "DOM";
+
+    public static final String IDENTIFIER_PAGES_NUMBER = "pages_number";
+    public static final String IDENTIFIER_MENU = "menu";
 
     public ParsedServlet() {
 	super();
@@ -40,64 +55,67 @@ public class ParsedServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 
-	request.setCharacterEncoding("UTF-8");
-	response.setCharacterEncoding("UTF-8");
+	String appPath = request.getServletContext().getRealPath("");
+	String menuPath = appPath + MENU_FOLDER_PATH;
 
-	String parserType = request.getParameter("parser");
+	request.setCharacterEncoding(REQUEST_DEFAULT_ENCODING);
+	response.setCharacterEncoding(RESPONSE_DEFAULT_ENCODING);
+
+	String parserType = request.getParameter(IDENTIFIER_PARSER);
 	List<Food> menu = null;
 
-	if (parserType.equals("SAX")) {
+	if (parserType.equals(IDENTIFIER_SAX)) {
 	    try {
-		menu = parseSax();
-		request.setAttribute("parser", "SAX");
+		menu = parseSax(menuPath);
+		request.setAttribute(IDENTIFIER_PARSER, IDENTIFIER_SAX);
 	    } catch (SAXException | ParserConfigurationException e) {
 		e.printStackTrace();
 	    }
 
-	} else if (parserType.equals("StAX")) {
+	} else if (parserType.equals(IDENTIFIER_STAX)) {
 	    try {
-		menu = parseStax();
-		request.setAttribute("parser", "StAX");
+		menu = parseStax(menuPath);
+		request.setAttribute(IDENTIFIER_PARSER, IDENTIFIER_STAX);
 	    } catch (XMLStreamException e) {
 		e.printStackTrace();
 	    }
-	} else if (parserType.equals("DOM")) {
+	} else if (parserType.equals(IDENTIFIER_DOM)) {
 	    try {
-		menu = parseDom();
-		request.setAttribute("parser", "DOM");
+		menu = parseDom(menuPath);
+		request.setAttribute(IDENTIFIER_PARSER, IDENTIFIER_DOM);
 	    } catch (SAXException e) {
 		e.printStackTrace();
 	    }
 	} else {
 	    try {
-		menu = parseSax();
+		menu = parseSax(menuPath);
 	    } catch (SAXException | ParserConfigurationException e) {
 		e.printStackTrace();
 	    }
 	}
 
-	request.setAttribute("menu", menu);
-	request.setAttribute("pages_number", Math.round(menu.size() / 7));
-	getServletContext().getRequestDispatcher("/menu.jsp").forward(request, response);
+	request.setAttribute(IDENTIFIER_MENU, menu);
+	request.setAttribute(IDENTIFIER_PAGES_NUMBER, Math.round(menu.size() / 7));
+	getServletContext().getRequestDispatcher(MENU_PAGE_URL).forward(request, response);
     }
 
-    private List<Food> parseSax() throws SAXException, IOException, ParserConfigurationException {
+    private List<Food> parseSax(String path) throws SAXException, IOException, ParserConfigurationException {
 	SAXParserFactory spfac = SAXParserFactory.newInstance();
 	SAXParser sp = spfac.newSAXParser();
 	FoodSaxHandler handler = new FoodSaxHandler();
-	sp.parse("Menu.xml", handler);
+	sp.parse(path, handler);
 	return handler.getFoodList();
     }
 
-    private List<Food> parseStax() throws XMLStreamException, FileNotFoundException {
+    private List<Food> parseStax(String path) throws XMLStreamException, FileNotFoundException {
 	XMLInputFactory factory = XMLInputFactory.newInstance();
-	XMLStreamReader reader = factory.createXMLStreamReader(new FileInputStream("Menu.xml"));
+	XMLStreamReader reader = factory.createXMLStreamReader(new FileInputStream(path));
 	return FoodStaxParser.process(reader);
     }
 
-    private List<Food> parseDom() throws SAXException, IOException {
+    private List<Food> parseDom(String menu) throws SAXException, IOException {
 	FoodDomParser parserDom = new FoodDomParser();
-	parserDom.parse();
+	parserDom.parse(menu);
 	return parserDom.getMenu();
     }
 

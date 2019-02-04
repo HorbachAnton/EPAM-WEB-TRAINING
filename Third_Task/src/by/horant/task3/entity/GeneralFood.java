@@ -9,6 +9,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class GeneralFood extends Food implements Serializable{
 
     private static final long serialVersionUID = -4047171491524121259L;
+    
     public static final int VALUE_FOR_HASH_1 = 1;
     public static final int VALUE_FOR_HASH_2 = 31;
 

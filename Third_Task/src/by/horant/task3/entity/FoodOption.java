@@ -10,6 +10,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class FoodOption implements Comparable<FoodOption>, Serializable {
 
     private static final long serialVersionUID = -5656867751828844726L;
+    
     public static final int VALUE_FOR_HASH_1 = 1;
     public static final int VALUE_FOR_HASH_2 = 31;
 

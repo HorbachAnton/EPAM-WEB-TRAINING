@@ -26,9 +26,9 @@ public class FoodDomParser {
 	return menu;
     }
 
-    public void parse() throws SAXException, IOException {
+    public void parse(String path) throws SAXException, IOException {
 	DOMParser parser = new DOMParser();
-	parser.parse("Menu.xml");
+	parser.parse(path);
 	Document document = parser.getDocument();
 
 	Element root = document.getDocumentElement();
