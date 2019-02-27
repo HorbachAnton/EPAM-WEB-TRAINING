@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 
 import by.horant.fintask.dao.DaoException;
@@ -16,10 +18,12 @@ import by.horant.fintask.entity.enumeration.Roles;
 
 public class SQLUserDao implements UserDAO {
 
-    private static final String QUERY_CHECK_CREDENTIONALS = "SELECT * FROM users WHERE user_email=? and user_password=?";
+    private static final String QUERY_CHECK_CREDENTIONALS = "SELECT * FROM users WHERE user_email=?";
     private static final String QUERY_REGISTRATION_USER = "INSERT INTO  users (`user_email`, `user_password`, `Roles_idRole`) VALUES (?, ?, ?)";
 
     private static final ConnectionPool pool = ConnectionPool.getInstance();
+
+    private static final Logger logger = LogManager.getLogger(SQLUserDao.class);
 
     @Override
     public User authentification(String userEmail, String userPassword) throws DaoException {
@@ -34,13 +38,12 @@ public class SQLUserDao implements UserDAO {
 	    st = con.prepareStatement(QUERY_CHECK_CREDENTIONALS);
 
 	    String hashedPassword = BCrypt.hashpw(userPassword, BCrypt.gensalt(12));
-	    
+
 	    st.setString(1, userEmail);
-	    st.setString(2, hashedPassword);
 
 	    rs = st.executeQuery();
 
-	    if (rs.next()) {
+	    if (rs.next() && BCrypt.checkpw(userPassword, hashedPassword)) {
 		user = createUser(rs);
 	    }
 	} catch (SQLException e) {
@@ -103,21 +106,21 @@ public class SQLUserDao implements UserDAO {
 		rs.close();
 	    }
 	} catch (SQLException e) {
-	    // log
+	    logger.info(e);
 	}
 	try {
 	    if (st != null) {
 		st.close();
 	    }
 	} catch (SQLException e) {
-	    // log
+	    logger.info(e);
 	}
 	try {
 	    if (con != null) {
 		con.close();
 	    }
 	} catch (SQLException e) {
-	    // log
+	    logger.info(e);
 	}
     }
 
@@ -127,14 +130,14 @@ public class SQLUserDao implements UserDAO {
 		st.close();
 	    }
 	} catch (SQLException e) {
-	    // log
+	    logger.info(e);
 	}
 	try {
 	    if (con != null) {
 		con.close();
 	    }
 	} catch (SQLException e) {
-	    // log
+	    logger.info(e);
 	}
     }
 

@@ -4,20 +4,26 @@ import by.horant.fintask.service.impl.ClientServiceImpl;
 
 public class ServiceProvider {
 
-    private static final ServiceProvider instance = new ServiceProvider();
-
     private ClientService clientService = new ClientServiceImpl();
 
     private ServiceProvider() {
 
     }
 
-    public ClientService getClientService() {
-	return clientService;
+    private static class ServiceProviderHolder {
+	private static final ServiceProvider instance = new ServiceProvider();
     }
 
     public static ServiceProvider getInstance() {
-	return instance;
+	return ServiceProviderHolder.instance;
+    }
+
+    protected Object readResolve() {
+	return getInstance();
+    }
+
+    public ClientService getClientService() {
+	return clientService;
     }
 
 }

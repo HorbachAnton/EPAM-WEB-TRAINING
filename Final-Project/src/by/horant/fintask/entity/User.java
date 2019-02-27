@@ -1,9 +1,13 @@
 package by.horant.fintask.entity;
 
+import java.io.Serializable;
+
 import by.horant.fintask.entity.enumeration.Roles;
 
-public class User {
+public class User implements Serializable{
 
+    private static final long serialVersionUID = 1646459556345904320L;
+    
     private int id;
     private String email;
     private String password;

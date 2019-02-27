@@ -28,6 +28,7 @@ public class RegistrationCommand implements Command {
     private static final String PARAMETER_PASSWORD = "password";
 
     private static final String MAIN_PAGE = "/WEB-INF/jsp/main.jsp";
+    private static final String REGISTRATION_PAGE = "/WEB-INF/jsp/registration.jsp";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,6 +52,7 @@ public class RegistrationCommand implements Command {
 	    page = MAIN_PAGE;
 	} catch (ServiceException e) {
 	    logger.info("Register failed.", e);
+	    page = REGISTRATION_PAGE;
 	}
 
 	String url = CreatorFullURL.create(request);

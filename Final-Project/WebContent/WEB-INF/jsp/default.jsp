@@ -13,8 +13,8 @@
 						<fmt:setLocale value="${sessionScope.local}"/>
 						<fmt:setBundle basename="resources.locale" var="loc"/>
 						<fmt:message bundle="${loc}" key="locale.default.welcom_message" var="welcom_message"/>
-						<fmt:message bundle="${loc}" key="locale.default.locale_botton.en" var="locale_button_ru"/>
-						<fmt:message bundle="${loc}" key="locale.default.locale_botton.ru" var="locale_button_en"/>
+						<fmt:message bundle="${loc}" key="locale.default.locale_botton.en" var="locale_button_en"/>
+						<fmt:message bundle="${loc}" key="locale.default.locale_botton.ru" var="locale_button_ru"/>
 
 						<div align="right">
 							<form action="contoller" method="post">
@@ -33,7 +33,7 @@
 
 										<form action="contoller" method="post">
 											<input type="hidden" name="command" value="authorization">
-												Login:
+												Email:
 												<input type="text" name="email" value=""/>
 												<br/>
 												Password:

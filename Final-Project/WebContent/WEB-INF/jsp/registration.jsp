@@ -10,7 +10,7 @@
 <body>
     <fmt:setLocale value="${sessionScope.local}" />
     <fmt:setBundle basename="resources.locale" var="loc" />
-    <fmt:message bundle="${loc}" key="locale.registration.enter_login_message" var="enter_login" />
+    <fmt:message bundle="${loc}" key="locale.registration.enter_email_message" var="enter_email" />
     <fmt:message bundle="${loc}" key="locale.registration.enter_password_message" var="enter_password" />
 
 <div align="right">
@@ -29,7 +29,7 @@
 
  <form action="contoller" method="post" >
     <input type="hidden" name="command" value="registration">
-   ${enter_login}:
+   ${enter_email}:
   	<input type="text" name="email" value=""/>
   	<br/>
   	${enter_password}:  	

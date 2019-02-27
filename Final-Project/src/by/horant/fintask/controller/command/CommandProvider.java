@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import by.horant.fintask.controller.command.impl.AuthorizationCommand;
+import by.horant.fintask.controller.command.impl.ChangeLocale;
 import by.horant.fintask.controller.command.impl.GoToIndexPageCommand;
 import by.horant.fintask.controller.command.impl.GoToRegistrationCommand;
 import by.horant.fintask.controller.command.impl.RegistrationCommand;
@@ -17,6 +18,7 @@ public class CommandProvider {
 	commands.put("authorization", new AuthorizationCommand());
 	commands.put("registration", new RegistrationCommand());
 	commands.put("goToRegistrationPage", new GoToRegistrationCommand());
+	commands.put("change_locale", new ChangeLocale());
     }
 
     public Command getCommand(String commandName) {
