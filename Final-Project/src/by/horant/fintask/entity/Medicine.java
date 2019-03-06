@@ -13,6 +13,19 @@ public class Medicine implements Serializable {
     private String dosage;
     private boolean isNeedPrescription;
 
+    public Medicine() {
+
+    }
+
+    public Medicine(int id, String name, String description, String type, String dosage, boolean isNeedPrescription) {
+	this.id = id;
+	this.name = name;
+	this.description = description;
+	this.type = type;
+	this.dosage = dosage;
+	this.isNeedPrescription = isNeedPrescription;
+    }
+
     public int getId() {
 	return id;
     }

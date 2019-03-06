@@ -12,12 +12,16 @@ import by.horant.fintask.controller.command.util.CreatorFullURL;
 
 public class GoToRegistrationCommand implements Command {
 
+    private static final String ATTRIBUTE_PREV_REQUEST_NAME = "prev_request";
+
+    private static final String REGISTRATIION_PAGE_PATH = "/WEB-INF/jsp/registration.jsp";
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	String url = CreatorFullURL.create(request);
-	request.getSession(true).setAttribute("prev_request", url);
+	request.getSession(true).setAttribute(ATTRIBUTE_PREV_REQUEST_NAME, url);
 
-	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp");
+	RequestDispatcher dispatcher = request.getRequestDispatcher(REGISTRATIION_PAGE_PATH);
 	dispatcher.forward(request, response);
     }
 

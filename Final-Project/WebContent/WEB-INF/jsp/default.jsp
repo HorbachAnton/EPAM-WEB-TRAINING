@@ -46,6 +46,6 @@
 												<c:out value="${requestScope.error}"/>
 											</h3>
 
-											<a href="contoller?command=goToRegistrationPage">Registration</a>
+											<a href="contoller?command=go_to_registration_page">Registration</a>
 										</body>
 									</html>

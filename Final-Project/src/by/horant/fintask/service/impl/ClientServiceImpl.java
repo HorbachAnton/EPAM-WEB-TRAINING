@@ -33,21 +33,38 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public boolean registration(RegistrationData userData) throws ServiceException {
+    public User registration(RegistrationData userData) throws ServiceException {
+
+	if (!CredentionalValidator.isCorrect(userData.getEmail(), userData.getPassword())) {
+	    throw new ServiceException();
+	}
+
 	DAOProvider daoProvider = DAOProvider.getInstance();
 	UserDAO userDAO = daoProvider.getUserDAO();
 
-	boolean result = false;
+	User user = null;
 
 	try {
-	    userDAO.registration(userData);
-	    result = true;
+	    if (userDAO.registration(userData)) {
+		user = createUser(userData);
+	    }
 	} catch (DaoException e) {
 	    throw new ServiceException(e);
 	}
 
-	return result;
+	return user;
 
+    }
+
+    private User createUser(RegistrationData userData) {
+
+	User user = new User();
+
+	user.setEmail(userData.getEmail());
+	user.setPassword(userData.getPassword());
+	user.setRole(userData.getRole());
+
+	return user;
     }
 
 }

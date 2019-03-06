@@ -2,7 +2,6 @@ package by.horant.fintask.controller.command.impl;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,21 +10,31 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.horant.fintask.controller.command.Command;
-import by.horant.fintask.controller.command.util.CreatorFullURL;
 import by.horant.fintask.entity.User;
+import by.horant.fintask.entity.enumeration.Roles;
 import by.horant.fintask.service.ClientService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
 public class AuthorizationCommand implements Command {
-    
+
     private static final Logger logger = LogManager.getLogger(AuthorizationCommand.class);
+    private static final String LOGGER_ERROR_MESSAGE = "Could not log in.";
 
-    private static final String PARAMETER_EMAIL = "email";
-    private static final String PARAMETER_PASSWORD = "password";
+    private static final String PARAMETER_EMAIL_NAME = "email";
+    private static final String PARAMETER_PASSWORD_NAME = "password";
+    
+    private static final String ATTRIBUTE_USER_NAME = "user";
 
-    private static final String MAIN_PAGE = "/WEB-INF/jsp/main.jsp";
-    private static final String INDEX_PAGE = "/WEB-INF/jsp/default.jsp";
+    private static final String ERROR_NULL_USER_NAME = "error";
+    private static final String ERROR_NULL_USER_MESSAGE = "email or password error";
+
+    private static final String ERROR_SERVICE_EXCEPTION_NAME = "error";
+    private static final String ERROR_SERVICE_EXCEPTION_MESSAGE = "Login or Password Error";
+
+    private Command goToAdminPage = new GoToAdminPageCommand();
+    private Command goToUserPage = new GoToUserPageCommand();
+    private Command goToIndexPage = new GoToIndexPageCommand();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,35 +42,47 @@ public class AuthorizationCommand implements Command {
 	String email;
 	String password;
 
-	email = request.getParameter(PARAMETER_EMAIL);
-	password = request.getParameter(PARAMETER_PASSWORD);
+	email = request.getParameter(PARAMETER_EMAIL_NAME);
+	password = request.getParameter(PARAMETER_PASSWORD_NAME);
 
 	ServiceProvider provider = ServiceProvider.getInstance();
 	ClientService service = provider.getClientService();
 
 	User user = null;
-	String page;
+
 	try {
 	    user = service.authorization(email, password);
 
 	    if (user == null) {
-		request.setAttribute("error", "email or password error");
-		page = INDEX_PAGE;
+		request.setAttribute(ERROR_NULL_USER_NAME, ERROR_NULL_USER_MESSAGE);
+		goToIndexPage.execute(request, response);
 	    } else {
-		request.setAttribute("user", user);
-		page = MAIN_PAGE;
+
+		request.getSession().setAttribute(ATTRIBUTE_USER_NAME, user);
+		definePage(user.getRole(), request, response);
 	    }
 	} catch (ServiceException e) {
-	    logger.info("Could not log in.", e);
-	    request.setAttribute("error", "Login or Password Error");
-	    page = INDEX_PAGE;
+	    logger.info(LOGGER_ERROR_MESSAGE, e);
+	    request.setAttribute(ERROR_SERVICE_EXCEPTION_NAME, ERROR_SERVICE_EXCEPTION_MESSAGE);
+	    goToIndexPage.execute(request, response);
 	}
 
-	String url = CreatorFullURL.create(request);
-	request.getSession(true).setAttribute("prev_request", url);
+    }
 
-	RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-	dispatcher.forward(request, response);
+    private void definePage(Roles role, HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
+
+	switch (role) {
+	case ADMIN:
+	    goToAdminPage.execute(request, response);
+	    break;
+	case USER:
+	    goToUserPage.execute(request, response);
+	    break;
+	default:
+	    goToUserPage.execute(request, response);
+	    break;
+	}
 
     }
 

@@ -1,6 +1,7 @@
 package by.horant.fintask.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order implements Serializable {
@@ -11,6 +12,26 @@ public class Order implements Serializable {
     private User customer;
     private List<Prescription> prescriptions;
     private List<Medicine> purchasedMedications;
+
+    public Order() {
+	prescriptions = new ArrayList<>();
+	purchasedMedications = new ArrayList<>();
+    }
+
+    public Order(int id, User customer, List<Prescription> prescriptions, List<Medicine> purchasedMedications) {
+	this.id = id;
+	this.customer = customer;
+	this.prescriptions = prescriptions;
+	this.purchasedMedications = purchasedMedications;
+    }
+
+    public void addMedicine(Medicine medicine) {
+	purchasedMedications.add(medicine);
+    }
+
+    public void removeMedicine(Medicine medicine) {
+	purchasedMedications.remove(medicine);
+    }
 
     public int getId() {
 	return id;

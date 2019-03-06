@@ -13,6 +13,17 @@ public class Prescription implements Serializable {
     private LocalDateTime expirationDate;
     private List<Medicine> prescribedMedications;
 
+    public Prescription() {
+
+    }
+
+    public Prescription(int id, User recipient, LocalDateTime expirationDate, List<Medicine> prescribedMedications) {
+	this.id = id;
+	this.recipient = recipient;
+	this.expirationDate = expirationDate;
+	this.prescribedMedications = prescribedMedications;
+    }
+
     public int getId() {
 	return id;
     }

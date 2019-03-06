@@ -5,13 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 
 import by.horant.fintask.dao.DaoException;
 import by.horant.fintask.dao.UserDAO;
 import by.horant.fintask.dao.util.RolesIdentifier;
+import by.horant.fintask.dao.util.ShutterDao;
 import by.horant.fintask.entity.RegistrationData;
 import by.horant.fintask.entity.User;
 import by.horant.fintask.entity.enumeration.Roles;
@@ -22,8 +21,6 @@ public class SQLUserDao implements UserDAO {
     private static final String QUERY_REGISTRATION_USER = "INSERT INTO  users (`user_email`, `user_password`, `Roles_idRole`) VALUES (?, ?, ?)";
 
     private static final ConnectionPool pool = ConnectionPool.getInstance();
-
-    private static final Logger logger = LogManager.getLogger(SQLUserDao.class);
 
     @Override
     public User authentification(String userEmail, String userPassword) throws DaoException {
@@ -49,7 +46,7 @@ public class SQLUserDao implements UserDAO {
 	} catch (SQLException e) {
 	    throw new DaoException(e);
 	} finally {
-	    close(rs, st, con);
+	    ShutterDao.close(rs, st, con);
 	}
 
 	return user;
@@ -57,10 +54,11 @@ public class SQLUserDao implements UserDAO {
 
     @Override
     public boolean registration(RegistrationData userData) throws DaoException {
-	boolean result = false;
 
 	Connection con = null;
 	PreparedStatement st = null;
+
+	boolean result = false;
 
 	try {
 	    con = pool.getConnection();
@@ -74,10 +72,12 @@ public class SQLUserDao implements UserDAO {
 
 	    st.executeUpdate();
 
+	    result = true;
+
 	} catch (SQLException e) {
 	    throw new DaoException(e);
 	} finally {
-	    close(st, con);
+	    ShutterDao.close(st, con);
 	}
 
 	return result;
@@ -98,47 +98,6 @@ public class SQLUserDao implements UserDAO {
 
     private Roles defineRole(int identifier) {
 	return RolesIdentifier.defineByIndex(identifier);
-    }
-
-    private void close(ResultSet rs, PreparedStatement st, Connection con) {
-	try {
-	    if (rs != null) {
-		rs.close();
-	    }
-	} catch (SQLException e) {
-	    logger.info(e);
-	}
-	try {
-	    if (st != null) {
-		st.close();
-	    }
-	} catch (SQLException e) {
-	    logger.info(e);
-	}
-	try {
-	    if (con != null) {
-		con.close();
-	    }
-	} catch (SQLException e) {
-	    logger.info(e);
-	}
-    }
-
-    private void close(PreparedStatement st, Connection con) {
-	try {
-	    if (st != null) {
-		st.close();
-	    }
-	} catch (SQLException e) {
-	    logger.info(e);
-	}
-	try {
-	    if (con != null) {
-		con.close();
-	    }
-	} catch (SQLException e) {
-	    logger.info(e);
-	}
     }
 
 }

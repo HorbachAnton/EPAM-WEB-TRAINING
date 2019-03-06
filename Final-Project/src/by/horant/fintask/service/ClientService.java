@@ -6,6 +6,6 @@ import by.horant.fintask.entity.User;
 public interface ClientService {
     
 	User authorization(String userLogin, String userPassword) throws ServiceException;
-	boolean registration(RegistrationData userData) throws ServiceException;
+	User registration(RegistrationData userData) throws ServiceException;
 
 }

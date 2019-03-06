@@ -1,10 +1,14 @@
 package by.horant.fintask.service;
 
 import by.horant.fintask.service.impl.ClientServiceImpl;
+import by.horant.fintask.service.impl.DataServiceImpl;
+import by.horant.fintask.service.impl.UpdateServiceImpl;
 
 public class ServiceProvider {
 
     private ClientService clientService = new ClientServiceImpl();
+    private UpdateService updateService = new UpdateServiceImpl();
+    private DataService dataService = new DataServiceImpl();
 
     private ServiceProvider() {
 
@@ -24,6 +28,14 @@ public class ServiceProvider {
 
     public ClientService getClientService() {
 	return clientService;
+    }
+
+    public DataService getDataService() {
+        return dataService;
+    }
+
+    public UpdateService getUpdateService() {
+	return updateService;
     }
 
 }
