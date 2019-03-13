@@ -15,7 +15,7 @@ public class ClientServiceImpl implements ClientService {
     public User authorization(String userLogin, String userPassword) throws ServiceException {
 
 	if (!CredentionalValidator.isCorrect(userLogin, userPassword)) {
-	    throw new ServiceException();
+	    throw new ServiceException("Invalid login or password.");
 	}
 
 	DAOProvider daoProvider = DAOProvider.getInstance();
@@ -36,7 +36,7 @@ public class ClientServiceImpl implements ClientService {
     public User registration(RegistrationData userData) throws ServiceException {
 
 	if (!CredentionalValidator.isCorrect(userData.getEmail(), userData.getPassword())) {
-	    throw new ServiceException();
+	    throw new ServiceException("Invalid login or password.");
 	}
 
 	DAOProvider daoProvider = DAOProvider.getInstance();

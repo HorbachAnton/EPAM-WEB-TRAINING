@@ -10,11 +10,11 @@ import org.apache.logging.log4j.Logger;
 
 public class ShutterDao {
     
+    private static final Logger logger = LogManager.getLogger(ShutterDao.class);
+    
     private ShutterDao(){
 	
     }
-
-    private static final Logger logger = LogManager.getLogger(ShutterDao.class);
 
     public static void close(ResultSet rs, PreparedStatement st, Connection con) {
 	try {

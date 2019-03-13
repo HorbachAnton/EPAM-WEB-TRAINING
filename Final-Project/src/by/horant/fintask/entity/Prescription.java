@@ -2,7 +2,9 @@ package by.horant.fintask.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
+
+import by.horant.fintask.entity.enumeration.ApprovedStages;
+import by.horant.fintask.entity.enumeration.UsedStages;
 
 public class Prescription implements Serializable {
 
@@ -10,18 +12,23 @@ public class Prescription implements Serializable {
 
     private int id;
     private User recipient;
-    private LocalDateTime expirationDate;
-    private List<Medicine> prescribedMedications;
+    private LocalDateTime issueDate;
+    private ApprovedStages approvedStage;
+    private UsedStages usedStage;
+    private Medicine prescribedMedication;
 
     public Prescription() {
 
     }
 
-    public Prescription(int id, User recipient, LocalDateTime expirationDate, List<Medicine> prescribedMedications) {
+    public Prescription(int id, User recipient, LocalDateTime issueDate, ApprovedStages approvedStage,
+	    UsedStages usedStage, Medicine prescribedMedication) {
 	this.id = id;
 	this.recipient = recipient;
-	this.expirationDate = expirationDate;
-	this.prescribedMedications = prescribedMedications;
+	this.issueDate = issueDate;
+	this.approvedStage = approvedStage;
+	this.usedStage = usedStage;
+	this.prescribedMedication = prescribedMedication;
     }
 
     public int getId() {
@@ -40,30 +47,48 @@ public class Prescription implements Serializable {
 	this.recipient = recipient;
     }
 
-    public LocalDateTime getExpirationDate() {
-	return expirationDate;
+    public LocalDateTime getIssueDate() {
+	return issueDate;
     }
 
-    public void setExpirationDate(LocalDateTime expirationDate) {
-	this.expirationDate = expirationDate;
+    public void setIssueDate(LocalDateTime issueDate) {
+	this.issueDate = issueDate;
     }
 
-    public List<Medicine> getPrescribedMedications() {
-	return prescribedMedications;
+    public ApprovedStages getApprovedStage() {
+	return approvedStage;
     }
 
-    public void setPrescribedMedications(List<Medicine> prescribedMedications) {
-	this.prescribedMedications = prescribedMedications;
+    public void setApprovedStage(ApprovedStages approvedStage) {
+	this.approvedStage = approvedStage;
+    }
+
+    public UsedStages getUsedStage() {
+	return usedStage;
+    }
+
+    public void setUsedStage(UsedStages usedStage) {
+	this.usedStage = usedStage;
+    }
+
+    public Medicine getPrescribedMedication() {
+	return prescribedMedication;
+    }
+
+    public void setPrescribedMedication(Medicine prescribedMedication) {
+	this.prescribedMedication = prescribedMedication;
     }
 
     @Override
     public int hashCode() {
 	final int prime = 31;
 	int result = 1;
-	result = prime * result + ((expirationDate == null) ? 0 : expirationDate.hashCode());
+	result = prime * result + ((approvedStage == null) ? 0 : approvedStage.hashCode());
 	result = prime * result + id;
-	result = prime * result + ((prescribedMedications == null) ? 0 : prescribedMedications.hashCode());
+	result = prime * result + ((issueDate == null) ? 0 : issueDate.hashCode());
+	result = prime * result + ((prescribedMedication == null) ? 0 : prescribedMedication.hashCode());
 	result = prime * result + ((recipient == null) ? 0 : recipient.hashCode());
+	result = prime * result + ((usedStage == null) ? 0 : usedStage.hashCode());
 	return result;
     }
 
@@ -76,30 +101,34 @@ public class Prescription implements Serializable {
 	if (getClass() != obj.getClass())
 	    return false;
 	Prescription other = (Prescription) obj;
-	if (expirationDate == null) {
-	    if (other.expirationDate != null)
-		return false;
-	} else if (!expirationDate.equals(other.expirationDate))
+	if (approvedStage != other.approvedStage)
 	    return false;
 	if (id != other.id)
 	    return false;
-	if (prescribedMedications == null) {
-	    if (other.prescribedMedications != null)
+	if (issueDate == null) {
+	    if (other.issueDate != null)
 		return false;
-	} else if (!prescribedMedications.equals(other.prescribedMedications))
+	} else if (!issueDate.equals(other.issueDate))
+	    return false;
+	if (prescribedMedication == null) {
+	    if (other.prescribedMedication != null)
+		return false;
+	} else if (!prescribedMedication.equals(other.prescribedMedication))
 	    return false;
 	if (recipient == null) {
 	    if (other.recipient != null)
 		return false;
 	} else if (!recipient.equals(other.recipient))
 	    return false;
+	if (usedStage != other.usedStage)
+	    return false;
 	return true;
     }
 
     @Override
     public String toString() {
-	return "Prescription [id=" + id + ", recipient=" + recipient + ", expirationDate=" + expirationDate
-		+ ", prescribedMedications=" + prescribedMedications + "]";
+	return "Prescription [id=" + id + ", recipient=" + recipient + ", issueDate=" + issueDate + ", approvedStage="
+		+ approvedStage + ", usedStage=" + usedStage + ", prescribedMedication=" + prescribedMedication + "]";
     }
 
 }

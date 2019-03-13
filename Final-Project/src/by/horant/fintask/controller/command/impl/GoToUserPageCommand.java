@@ -17,10 +17,11 @@ import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
 public class GoToUserPageCommand implements Command {
-    private static final Logger logger = LogManager.getLogger(AuthorizationCommand.class);
+    private static final Logger logger = LogManager.getLogger(GoToUserPageCommand.class);
     private static final String LOGGER_ERROR_MESSAGE = "Can't find any medicine.";
 
     private static final String ATTRIBUTE_PREV_REQUEST_NAME = "prev_request";
+    private static final String ATTRIBUTE_LIST_MEDICINES_NAME = "listMedicines";
 
     private static final String USER_MAIN_PAGE = "/WEB-INF/jsp/user_page.jsp";
 
@@ -31,7 +32,7 @@ public class GoToUserPageCommand implements Command {
 	DataService dataService = provider.getDataService();
 
 	try {
-	    request.setAttribute("listMedicines", dataService.getMedicines());
+	    request.setAttribute(ATTRIBUTE_LIST_MEDICINES_NAME, dataService.getMedicines());
 	} catch (ServiceException e) {
 	    logger.info(LOGGER_ERROR_MESSAGE, e);
 	}

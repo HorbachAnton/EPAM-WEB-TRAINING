@@ -20,6 +20,9 @@ public class SQLUserDao implements UserDAO {
     private static final String QUERY_CHECK_CREDENTIONALS = "SELECT * FROM users WHERE user_email=?";
     private static final String QUERY_REGISTRATION_USER = "INSERT INTO  users (`user_email`, `user_password`, `Roles_idRole`) VALUES (?, ?, ?)";
 
+    private static final String COLUMN_USER_ID_NAME = "idUser";
+    private static final String COLUMN_USER_EMAIL_NAME = "user_email";
+
     private static final ConnectionPool pool = ConnectionPool.getInstance();
 
     @Override
@@ -86,8 +89,8 @@ public class SQLUserDao implements UserDAO {
     private User createUser(ResultSet rs) throws SQLException {
 	User user = new User();
 
-	user.setId(rs.getInt("idUser"));
-	user.setEmail(rs.getString("user_email"));
+	user.setId(rs.getInt(COLUMN_USER_ID_NAME));
+	user.setEmail(rs.getString(COLUMN_USER_EMAIL_NAME));
 	user.setPassword(rs.getString("user_password"));
 	user.setFirstName(rs.getString("user_firstName"));
 	user.setSecondName(rs.getString("user_secondName"));

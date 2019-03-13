@@ -1,6 +1,8 @@
 package by.horant.fintask.dao;
 
 import by.horant.fintask.dao.impl.SQLDataDao;
+import by.horant.fintask.dao.impl.SQLOrderDao;
+import by.horant.fintask.dao.impl.SQLPrescriptionDao;
 import by.horant.fintask.dao.impl.SQLUpdateUserDao;
 import by.horant.fintask.dao.impl.SQLUserDao;
 
@@ -9,6 +11,8 @@ public class DAOProvider {
     private final UserDAO userDAO = new SQLUserDao();
     private final UpdateUserDao updateDAO = new SQLUpdateUserDao();
     private final DataDAO dataDAO = new SQLDataDao();
+    private final OrderDAO orderDAO = new SQLOrderDao();
+    private final PrescriptionDAO prescriptionDAO = new SQLPrescriptionDao();
 
     private DAOProvider() {
 
@@ -33,10 +37,18 @@ public class DAOProvider {
     public UpdateUserDao getUpdateUserDAO() {
 	return updateDAO;
     }
-    
-    public DataDAO detDataDao() {
+
+    public DataDAO getDataDAO() {
 	return dataDAO;
-	
+
+    }
+
+    public OrderDAO getOrderDAO() {
+	return orderDAO;
+    }
+
+    public PrescriptionDAO getPrescriptionDAO() {
+	return prescriptionDAO;
     }
 
 }

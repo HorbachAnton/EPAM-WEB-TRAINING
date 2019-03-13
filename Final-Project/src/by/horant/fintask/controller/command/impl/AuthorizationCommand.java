@@ -57,7 +57,6 @@ public class AuthorizationCommand implements Command {
 		request.setAttribute(ERROR_NULL_USER_NAME, ERROR_NULL_USER_MESSAGE);
 		goToIndexPage.execute(request, response);
 	    } else {
-
 		request.getSession().setAttribute(ATTRIBUTE_USER_NAME, user);
 		definePage(user.getRole(), request, response);
 	    }

@@ -10,6 +10,7 @@ public class Order implements Serializable {
 
     private int id;
     private User customer;
+    private boolean isCompleted;
     private List<Prescription> prescriptions;
     private List<Medicine> purchasedMedications;
 
@@ -18,9 +19,11 @@ public class Order implements Serializable {
 	purchasedMedications = new ArrayList<>();
     }
 
-    public Order(int id, User customer, List<Prescription> prescriptions, List<Medicine> purchasedMedications) {
+    public Order(int id, User customer, boolean isCompleted, List<Prescription> prescriptions,
+	    List<Medicine> purchasedMedications) {
 	this.id = id;
 	this.customer = customer;
+	this.isCompleted = isCompleted;
 	this.prescriptions = prescriptions;
 	this.purchasedMedications = purchasedMedications;
     }
@@ -49,6 +52,14 @@ public class Order implements Serializable {
 	this.customer = customer;
     }
 
+    public boolean isCompleted() {
+	return isCompleted;
+    }
+
+    public void setCompleted(boolean isCompleted) {
+	this.isCompleted = isCompleted;
+    }
+
     public List<Prescription> getPrescriptions() {
 	return prescriptions;
     }
@@ -71,6 +82,7 @@ public class Order implements Serializable {
 	int result = 1;
 	result = prime * result + ((customer == null) ? 0 : customer.hashCode());
 	result = prime * result + id;
+	result = prime * result + (isCompleted ? 1231 : 1237);
 	result = prime * result + ((prescriptions == null) ? 0 : prescriptions.hashCode());
 	result = prime * result + ((purchasedMedications == null) ? 0 : purchasedMedications.hashCode());
 	return result;
@@ -92,6 +104,8 @@ public class Order implements Serializable {
 	    return false;
 	if (id != other.id)
 	    return false;
+	if (isCompleted != other.isCompleted)
+	    return false;
 	if (prescriptions == null) {
 	    if (other.prescriptions != null)
 		return false;
@@ -107,8 +121,8 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-	return "Order [id=" + id + ", customer=" + customer + ", prescriptions=" + prescriptions
-		+ ", purchasedMedications=" + purchasedMedications + "]";
+	return "Order [id=" + id + ", customer=" + customer + ", isCompleted=" + isCompleted + ", prescriptions="
+		+ prescriptions + ", purchasedMedications=" + purchasedMedications + "]";
     }
 
 }

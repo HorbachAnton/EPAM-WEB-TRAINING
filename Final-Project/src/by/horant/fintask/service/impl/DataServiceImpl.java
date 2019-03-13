@@ -28,7 +28,7 @@ public class DataServiceImpl implements DataService{
     public List<Medicine> getMedicines() throws ServiceException {
 	
 	DAOProvider daoProvider = DAOProvider.getInstance();
-	DataDAO dataDao = daoProvider.detDataDao();
+	DataDAO dataDao = daoProvider.getDataDAO();
 	
 	List<Medicine> medicines = null;
 	

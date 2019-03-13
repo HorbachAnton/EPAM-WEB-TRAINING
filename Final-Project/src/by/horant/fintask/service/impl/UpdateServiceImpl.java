@@ -27,15 +27,36 @@ public class UpdateServiceImpl implements UpdateService{
     }
 
     @Override
-    public boolean updatePassword() {
-	// TODO Auto-generated method stub
-	return false;
+    public boolean updatePassword(String email, String password) throws ServiceException {
+	
+	DAOProvider daoProvider = DAOProvider.getInstance();
+	UpdateUserDao updateDAO = daoProvider.getUpdateUserDAO();	
+	
+	boolean result = false;
+	
+	try {
+	    result = updateDAO.updatePassword(email, password);
+	} catch (DaoException e) {
+	    throw new ServiceException(e);
+	}
+	
+	return result;
     }
 
     @Override
-    public boolean updateEmail() {
-	// TODO Auto-generated method stub
-	return false;
+    public boolean updateEmail(String newEmail, String oldEmail) throws ServiceException {
+
+	DAOProvider daoProvider = DAOProvider.getInstance();
+	UpdateUserDao updateDAO = daoProvider.getUpdateUserDAO();
+	
+	boolean result = false;
+	try {
+	    result = updateDAO.updateEmail(newEmail, oldEmail);
+	}catch (DaoException e) {
+	    throw new ServiceException(e);
+	}
+	
+	return result;
     }
 
 }

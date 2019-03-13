@@ -6,8 +6,8 @@ public interface UpdateService {
     
     boolean updateProfile(String email, UpdateProfileData updateData) throws ServiceException;
     
-    boolean updatePassword();
+    boolean updatePassword(String email, String password) throws ServiceException; 
     
-    boolean updateEmail();
+    boolean updateEmail(String newEmail, String oldEmail) throws ServiceException;
 
 }

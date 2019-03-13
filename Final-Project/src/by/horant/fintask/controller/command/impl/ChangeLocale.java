@@ -22,7 +22,7 @@ public class ChangeLocale implements Command {
 	HttpSession session;
 
 	newLocale = request.getParameter(PARAMETER_LOCALE_NAME);
-
+	
 	session = request.getSession(true);
 	session.setAttribute(ATTRIBUTE_LOCALE_NAME, newLocale);
 

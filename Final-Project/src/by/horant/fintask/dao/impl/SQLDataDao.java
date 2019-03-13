@@ -26,7 +26,6 @@ public class SQLDataDao implements DataDAO {
     @Override
     public List<User> getUsers() throws DaoException {
 	List<User> users = new ArrayList<>();
-	;
 
 	Connection con = null;
 	PreparedStatement st = null;
