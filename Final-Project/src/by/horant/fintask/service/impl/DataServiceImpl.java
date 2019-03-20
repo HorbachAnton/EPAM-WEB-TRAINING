@@ -7,11 +7,12 @@ import by.horant.fintask.dao.DaoException;
 import by.horant.fintask.dao.DataDAO;
 import by.horant.fintask.entity.Medicine;
 import by.horant.fintask.entity.Order;
+import by.horant.fintask.entity.RequestedPrescription;
 import by.horant.fintask.entity.User;
 import by.horant.fintask.service.DataService;
 import by.horant.fintask.service.ServiceException;
 
-public class DataServiceImpl implements DataService{
+public class DataServiceImpl implements DataService {
 
     @Override
     public List<User> getUsers() {
@@ -20,25 +21,41 @@ public class DataServiceImpl implements DataService{
 
     @Override
     public List<Order> getOrders() {
-	// TODO Auto-generated method stub
 	return null;
     }
 
     @Override
     public List<Medicine> getMedicines() throws ServiceException {
-	
+
 	DAOProvider daoProvider = DAOProvider.getInstance();
 	DataDAO dataDao = daoProvider.getDataDAO();
-	
+
 	List<Medicine> medicines = null;
-	
+
 	try {
 	    medicines = dataDao.getMedicines();
 	} catch (DaoException e) {
 	    throw new ServiceException(e);
 	}
-	
+
 	return medicines;
+    }
+
+    @Override
+    public List<RequestedPrescription> getRequestedPrescriptions() throws ServiceException {
+
+	DAOProvider daoProvider = DAOProvider.getInstance();
+	DataDAO dataDao = daoProvider.getDataDAO();
+
+	List<RequestedPrescription> requestedPrescriptions = null;
+
+	try {
+	    requestedPrescriptions = dataDao.getRequestedPrescriptions();
+	} catch (DaoException e) {
+	    throw new ServiceException(e);
+	}
+
+	return requestedPrescriptions;
     }
 
 }

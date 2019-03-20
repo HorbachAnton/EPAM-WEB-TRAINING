@@ -13,11 +13,8 @@ public class EncodingFilter implements Filter {
 
     private static final String DEFAULT_ENCODING = "UTF-8";
 
-    private FilterConfig filterConfig = null;
-
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-	this.filterConfig = filterConfig;
     }
 
     @Override
@@ -35,7 +32,6 @@ public class EncodingFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 
 }

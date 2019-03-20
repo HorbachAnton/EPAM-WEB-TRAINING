@@ -36,6 +36,14 @@ public class Order implements Serializable {
 	purchasedMedications.remove(medicine);
     }
 
+    public void addPrescription(Prescription prescription) {
+	prescriptions.add(prescription);
+    }
+
+    public void removePrescription(Prescription prescription) {
+	prescriptions.remove(prescription);
+    }
+
     public int getId() {
 	return id;
     }

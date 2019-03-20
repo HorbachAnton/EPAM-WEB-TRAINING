@@ -26,7 +26,6 @@ public class Controller extends HttpServlet {
 	String commandName = request.getParameter(PARAMETER_COMMAND);
 	Command command = provider.getCommand(commandName);
 	command.execute(request, response);
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

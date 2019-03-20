@@ -1,7 +1,7 @@
 package by.horant.fintask.entity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import by.horant.fintask.entity.enumeration.ApprovedStages;
 import by.horant.fintask.entity.enumeration.UsedStages;
@@ -12,7 +12,7 @@ public class Prescription implements Serializable {
 
     private int id;
     private User recipient;
-    private LocalDateTime issueDate;
+    private LocalDate issueDate;
     private ApprovedStages approvedStage;
     private UsedStages usedStage;
     private Medicine prescribedMedication;
@@ -21,8 +21,8 @@ public class Prescription implements Serializable {
 
     }
 
-    public Prescription(int id, User recipient, LocalDateTime issueDate, ApprovedStages approvedStage,
-	    UsedStages usedStage, Medicine prescribedMedication) {
+    public Prescription(int id, User recipient, LocalDate issueDate, ApprovedStages approvedStage, UsedStages usedStage,
+	    Medicine prescribedMedication) {
 	this.id = id;
 	this.recipient = recipient;
 	this.issueDate = issueDate;
@@ -47,11 +47,11 @@ public class Prescription implements Serializable {
 	this.recipient = recipient;
     }
 
-    public LocalDateTime getIssueDate() {
+    public LocalDate getIssueDate() {
 	return issueDate;
     }
 
-    public void setIssueDate(LocalDateTime issueDate) {
+    public void setIssueDate(LocalDate issueDate) {
 	this.issueDate = issueDate;
     }
 

@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import by.horant.fintask.controller.command.Command;
 import by.horant.fintask.controller.command.util.CreatorFullURL;
+import by.horant.fintask.entity.MedicationWithoutRecipes;
 import by.horant.fintask.entity.Medicine;
 import by.horant.fintask.entity.Order;
 import by.horant.fintask.service.OrderService;
@@ -44,6 +45,7 @@ public class GoToOrderPageCommand implements Command {
 	OrderService service = provider.getOrderService();
 	try {
 	    medicationWithoutRecipes = service.checkRecipes(order);
+	    MedicationWithoutRecipes medicationContainer = new MedicationWithoutRecipes(medicationWithoutRecipes);
 
 	    if (medicationWithoutRecipes.isEmpty()) {
 		String url = CreatorFullURL.create(request);
@@ -52,11 +54,12 @@ public class GoToOrderPageCommand implements Command {
 		RequestDispatcher dispatcher = request.getRequestDispatcher(ORDER_PAGE_PATH);
 		dispatcher.forward(request, response);
 	    } else {
-		request.setAttribute("medication_without_recipes", medicationWithoutRecipes);
+		request.getSession().setAttribute("medication_without_recipes", medicationContainer);
 		goUnapprovedOrderPage.execute(request, response);
 	    }
 
 	} catch (ServiceException e) {
+	    e.printStackTrace();
 	    logger.info(LOGGER_ERROR_MESSAGE, e);
 	    request.setAttribute(ERROR_SERVICE_EXCEPTION_NAME, ERROR_SERVICE_EXCEPTION_MESSAGE);
 	    goUserPage.execute(request, response);

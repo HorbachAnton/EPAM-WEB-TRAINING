@@ -1,0 +1,134 @@
+body {
+  background: rosybrown;
+}
+
+.slider {
+  padding: 0;
+}
+
+.navbar {
+  background: lightseagreen;
+}
+
+.navbar img {
+  height: 40px;
+  width: 40px;
+}
+
+.navbar button {
+  color: black;
+}
+
+.form {
+  height: 300px;
+}
+
+.form img {
+  width: 120px;
+}
+
+.form .row {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.from .registration {
+  background: cornsilk;
+}
+
+.form .password {
+  background: lightgray;
+}
+
+.form .email {
+  background: lightgray;
+}
+
+.form button {
+  margin-bottom: 10px;
+}
+
+.form a {
+  float: right;
+}
+
+.slider img {
+  height: 300px;
+}
+
+.footer {
+  background: lightseagreen;
+  margin-top: 60px;
+}
+
+.footer p {
+  padding-top: 16px;
+}
+
+.user_container {
+  height: 300px;
+}
+
+.user_container {
+  padding-top: 30px;
+}
+
+.email_form {
+  padding-top: 20px;
+}
+
+.hello_phrase {
+  font-size: 16pt;
+}
+
+.profile_service {
+  background: lightgray;
+  height: 300px;
+}
+
+.hello_part {
+  background: cornsilk;
+  height: 300px;
+}
+
+.container_medicine {
+  background: bisque;
+  margin-top: 30px;
+}
+
+.container_medicine {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+}
+
+.header_medicine {
+  border: 3px;
+  margin: auto;
+}
+
+.row_medicine {
+  border: 3px;
+  margin: auto;
+}
+
+.user_btn {
+  margin: 10px;
+}
+
+.your_order_container {
+  background: bisque;
+  margin-top: 30px;
+  min-height: 300px;
+}
+
+.your_order_container {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+}
+
+.container_unapproved_prescriptions {
+  background: bisque;
+  min-height: 300px;
+}

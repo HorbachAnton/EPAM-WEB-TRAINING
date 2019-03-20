@@ -24,4 +24,36 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 	return result;
     }
 
+    @Override
+    public boolean approvePrescription(int prescriptionId) throws ServiceException {
+	boolean result = false;
+
+	DAOProvider daoProvider = DAOProvider.getInstance();
+	PrescriptionDAO prescriptionDao = daoProvider.getPrescriptionDAO();
+
+	try {
+	    result = prescriptionDao.approvePrescription(prescriptionId);
+	} catch (DaoException e) {
+	    throw new ServiceException(e);
+	}
+
+	return result;
+    }
+
+    @Override
+    public boolean unapprovePrescription(int prescriptionId) throws ServiceException {
+	boolean result = false;
+
+	DAOProvider daoProvider = DAOProvider.getInstance();
+	PrescriptionDAO prescriptionDao = daoProvider.getPrescriptionDAO();
+
+	try {
+	    result = prescriptionDao.unapprovePrescription(prescriptionId);
+	} catch (DaoException e) {
+	    throw new ServiceException(e);
+	}
+
+	return result;
+    }
+
 }

@@ -95,7 +95,7 @@ public class SQLUserDao implements UserDAO {
 	user.setFirstName(rs.getString("user_firstName"));
 	user.setSecondName(rs.getString("user_secondName"));
 	user.setRole(defineRole(rs.getInt("Roles_idRole")));
-
+	
 	return user;
     }
 

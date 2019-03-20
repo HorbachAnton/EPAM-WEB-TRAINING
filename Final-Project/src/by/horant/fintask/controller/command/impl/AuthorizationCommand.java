@@ -23,7 +23,7 @@ public class AuthorizationCommand implements Command {
 
     private static final String PARAMETER_EMAIL_NAME = "email";
     private static final String PARAMETER_PASSWORD_NAME = "password";
-    
+
     private static final String ATTRIBUTE_USER_NAME = "user";
 
     private static final String ERROR_NULL_USER_NAME = "error";
@@ -35,6 +35,7 @@ public class AuthorizationCommand implements Command {
     private Command goToAdminPage = new GoToAdminPageCommand();
     private Command goToUserPage = new GoToUserPageCommand();
     private Command goToIndexPage = new GoToIndexPageCommand();
+    private Command goToPharmacistPage = new GoToPharmacistPageCommand();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -77,6 +78,9 @@ public class AuthorizationCommand implements Command {
 	    break;
 	case USER:
 	    goToUserPage.execute(request, response);
+	    break;
+	case PHARMACIST:
+	    goToPharmacistPage.execute(request, response);
 	    break;
 	default:
 	    goToUserPage.execute(request, response);

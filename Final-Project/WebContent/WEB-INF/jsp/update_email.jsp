@@ -2,8 +2,7 @@
     pageEncoding="utf-8"%>
   <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
     <!DOCTYPE html>
-    <html lang="en">
-
+    <html>
       <head>
         <!-- Required meta tags -->
         <meta charset="utf-8"/>
@@ -12,21 +11,19 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
         <link rel="stylesheet" href="css/style.css"/>
-        <title>Authorisation</title>
+        <title>Update email</title>
       </head>
-
       <body>
+
         <fmt:setLocale value="${sessionScope.locale}"/>
         <fmt:setBundle basename="resources.locale" var="loc"/>
         <fmt:message bundle="${loc}" key="locale.default.locale_botton.ru" var="ru"/>
         <fmt:message bundle="${loc}" key="locale.default.locale_botton.en" var="en"/>
-        <fmt:message bundle="${loc}" key="locale.default.quality_message" var="quality_message"/>
-        <fmt:message bundle="${loc}" key="locale.default.quality_description" var="quality_description"/>
-        <fmt:message bundle="${loc}" key="locale.default.assortiment_message" var="assortiment_message"/>
-        <fmt:message bundle="${loc}" key="locale.default.assortiment_description" var="assortiment_description"/>
-        <fmt:message bundle="${loc}" key="locale.default.enter_email" var="enter_email"/>
-        <fmt:message bundle="${loc}" key="locale.default.enter_email_help" var="enter_email_help"/>
-        <fmt:message bundle="${loc}" key="locale.default.enter_password" var="enter_password"/>
+        <fmt:message bundle="${loc}" key="locale.update_email.email_message" var="email_message"/>
+        <fmt:message bundle="${loc}" key="locale.update_email.email_description" var="email_description"/>
+        <fmt:message bundle="${loc}" key="locale.update_email.quality_message" var="quality_message"/>
+        <fmt:message bundle="${loc}" key="locale.update_email.quality_description" var="quality_description"/>
+        <fmt:message bundle="${loc}" key="locale.update_email.enter_email" var="enter_email"/>
 
         <nav class="navbar navbar-expand-lg navbar-light sticky-top">
           <a class="navbar-brand" href="#"><img src="./images/logo.png"/></a>
@@ -81,63 +78,53 @@
 
           <div class="container form">
             <div class="row">
-              <div class="col-sm-4 text-center border border-secondary rounded-lg password">
+              <div class="col-sm-4 text-center border border-secondary rounded-lg email">
                 <p>
-                  ${quality_message}
+                  ${email_message}
                 </p>
-                <img src="images/quality.jpg" alt="">
+                <img src="images/email.png" alt="">
                   <p>
-                    ${quality_description}
+                    ${email_description}
                   </p>
                 </div>
                 <div class="col-sm-4 border border-secondary rounded-lg registration" style="background:cornsilk;">
-                  <form action="contoller" method="post">
-                    <input type="hidden" name="command" value="authorization"/>
+                  <form class="text-center" action="contoller" method="post">
+                    <input type="hidden" name="command" value="update_email"/>
                     <div class="form-group">
                       <label for="exampleInputEmail1">${enter_email}</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>
-                      <small id="emailHelp" class="form-text text-muted">${enter_email_help}</small>
+                      <input type="email" name="new_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>
                     </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">${enter_password}</label>
-                      <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required="required" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})"></div>
-                      <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        <a href="contoller?command=go_to_registration_page">Registration</a>
-                      </div>
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                  </div>
-                  <div class="col-sm-4 text-center border border-secondary rounded-lg email">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+                <div class="col-sm-4 text-center border border-secondary rounded-lg email">
+                  <p>
+                    ${quality_message}
+                  </p>
+                  <img src="images/quality.jpg" alt="">
                     <p>
-                      ${assortiment_message}
+                      ${quality_description}
                     </p>
-                    <img src="images/assortiment.png" alt="">
-                      <p>
-                        ${assortiment_description}
-                      </p>
-                    </div>
                   </div>
                 </div>
+              </div>
 
-                <footer class="footer navbar-fixed-bottom">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-sm-12 text-center">
-                        <p>
-                          onlinepharmacy.com
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </footer>
+          <footer class="footer navbar-fixed-bottom">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-12 text-center">
+                  <p>
+                    onlinepharmacy.com
+                  </p>
+                </div>
+              </div>
+            </div>
+          </footer>
 
-                <!-- Optional JavaScript -->
-                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-              </body>
-
-            </html>
+          <!-- Optional JavaScript -->
+          <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        </body>
+      </html>
