@@ -9,6 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import by.horant.fintask.controller.command.Command;
 
+/**
+ * 
+ * @author y50-70
+ *
+ */
 public class ChangeLocale implements Command {
 
     private static final String PARAMETER_LOCALE_NAME = "locale";
@@ -16,13 +21,16 @@ public class ChangeLocale implements Command {
     private static final String ATTRIBUTE_LOCALE_NAME = "locale";
     private static final String ATTRIBUTE_PREV_REQUEST_NAME = "prev_request";
 
+    /**
+     * 
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	String newLocale;
 	HttpSession session;
 
 	newLocale = request.getParameter(PARAMETER_LOCALE_NAME);
-	
+
 	session = request.getSession(true);
 	session.setAttribute(ATTRIBUTE_LOCALE_NAME, newLocale);
 

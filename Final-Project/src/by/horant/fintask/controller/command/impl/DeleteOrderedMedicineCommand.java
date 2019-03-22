@@ -13,12 +13,20 @@ import by.horant.fintask.entity.Order;
 import by.horant.fintask.service.OrderService;
 import by.horant.fintask.service.ServiceProvider;
 
+/**
+ * 
+ * @author y50-70
+ *
+ */
 public class DeleteOrderedMedicineCommand implements Command {
 
     private static final String ATTRIBUTE_PREV_REQUEST_NAME = "prev_request";
 
     private static final String ORDER_PAGE_PATH = "/WEB-INF/jsp/order.jsp";
 
+    /**
+     * 
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

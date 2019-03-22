@@ -16,6 +16,11 @@ import by.horant.fintask.service.DataService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
+/**
+ * 
+ * @author y50-70
+ *
+ */
 public class ChoosePrecriptionPageCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger(ChoosePrecriptionPageCommand.class);
@@ -29,11 +34,14 @@ public class ChoosePrecriptionPageCommand implements Command {
     private static final String ATTRIBUTE_LAST_PRESCRIPTION_NAME = "last_prescription";
     private static final String ATTRIBUTE_PAGES_NUMBER_NAME = "pages_number";
 
-    private static final String PHARMACIST_MAIN_PAGE = "/WEB-INF/jsp/pharmacist_page.jsp";
+    private static final String DOCTOR_MAIN_PAGE = "/WEB-INF/jsp/doctor_page.jsp";
 
     private static final int PRESCRIPTIONS_NUMBER_ON_PAGE = 6;
     private static final int SUBTRAHEND_LAST_PRESCRIPTION = 1;
 
+    /**
+     * 
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	int pagesNumber = Integer.parseInt(request.getParameter(PARAMETER_CHOOSED_PAGE_NAME));
@@ -63,7 +71,7 @@ public class ChoosePrecriptionPageCommand implements Command {
 	String url = CreatorFullURL.create(request);
 	request.getSession(true).setAttribute(ATTRIBUTE_PREV_REQUEST_NAME, url);
 
-	RequestDispatcher dispatcher = request.getRequestDispatcher(PHARMACIST_MAIN_PAGE);
+	RequestDispatcher dispatcher = request.getRequestDispatcher(DOCTOR_MAIN_PAGE);
 	dispatcher.forward(request, response);
     }
 

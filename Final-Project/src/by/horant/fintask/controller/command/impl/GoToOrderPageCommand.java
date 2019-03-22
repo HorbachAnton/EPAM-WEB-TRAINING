@@ -20,6 +20,11 @@ import by.horant.fintask.service.OrderService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
+/**
+ * 
+ * @author y50-70
+ *
+ */
 public class GoToOrderPageCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger(GoToOrderPageCommand.class);
@@ -35,6 +40,9 @@ public class GoToOrderPageCommand implements Command {
     private Command goUserPage = new GoToUserPageCommand();
     private Command goUnapprovedOrderPage = new GoToUnapprovedOrderPageCommand();
 
+    /**
+     * 
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	List<Medicine> medicationWithoutRecipes = null;

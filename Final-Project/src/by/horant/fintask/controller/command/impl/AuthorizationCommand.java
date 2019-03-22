@@ -16,6 +16,11 @@ import by.horant.fintask.service.ClientService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
+/**
+ * 
+ * @author y50-70
+ *
+ */
 public class AuthorizationCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger(AuthorizationCommand.class);
@@ -35,8 +40,12 @@ public class AuthorizationCommand implements Command {
     private Command goToAdminPage = new GoToAdminPageCommand();
     private Command goToUserPage = new GoToUserPageCommand();
     private Command goToIndexPage = new GoToIndexPageCommand();
+    private Command goToDoctorPage = new GoToDoctorPageCommand();
     private Command goToPharmacistPage = new GoToPharmacistPageCommand();
 
+    /**
+     * 
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -81,6 +90,9 @@ public class AuthorizationCommand implements Command {
 	    break;
 	case PHARMACIST:
 	    goToPharmacistPage.execute(request, response);
+	    break;
+	case DOCTOR:
+	    goToDoctorPage.execute(request, response);
 	    break;
 	default:
 	    goToUserPage.execute(request, response);

@@ -12,4 +12,6 @@ public interface OrderDAO {
 
     boolean addOrder(User user, Order order) throws DaoException;
 
+    boolean completeOrder(int orderId) throws DaoException;
+
 }

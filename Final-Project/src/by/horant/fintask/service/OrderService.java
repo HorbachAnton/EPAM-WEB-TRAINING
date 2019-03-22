@@ -18,4 +18,6 @@ public interface OrderService {
     void deleteMedicinesPrescription(List<Prescription> prescriptions, int deletedMedicineId);
 
     boolean addOrder(User user, Order order) throws ServiceException;
+    
+    boolean completeOrder(int orderId) throws ServiceException;
 }

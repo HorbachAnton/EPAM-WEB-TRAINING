@@ -10,12 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 import by.horant.fintask.controller.command.Command;
 import by.horant.fintask.controller.command.util.CreatorFullURL;
 
+/**
+ * 
+ * @author y50-70
+ *
+ */
 public class GoToAdminPageCommand implements Command {
 
     private static final String ADMIN_MAIN_PAGE = "/WEB-INF/jsp/admin_page.jsp";
 
     private static final String ATTRIBUTE_PREV_REQUEST_NAME = "prev_request";
 
+    /**
+     * 
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	String url = CreatorFullURL.create(request);

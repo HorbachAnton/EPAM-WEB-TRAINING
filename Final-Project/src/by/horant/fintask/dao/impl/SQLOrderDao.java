@@ -29,6 +29,7 @@ public class SQLOrderDao implements OrderDAO {
     private static final String QUERRY_UPDATE_PRESCRIPTION_TO_USED = "UPDATE prescriptions SET prescriptions.isUsed = ? WHERE prescriptions.idPrescription = ?";
     private static final String QUERRY_ADD_PRESCRIPTION_TO_ORDER = "INSERT INTO orders_has_prescriptions (`orders_idOrder`, `prescriptions_idPrescription`) VALUES (?, ?)";
     private static final String QUERRY_ADD_ORDER = "INSERT INTO orders (`isCompleted`, `Users_idUser`) VALUES (?, ?);";
+    private static final String QUERRY_COMPLETE_ORDER = "UPDATE orders SET orders.isCompleted = ? WHERE idOrder = ?";
 
     private static final ConnectionPool pool = ConnectionPool.getInstance();
 
@@ -249,5 +250,30 @@ public class SQLOrderDao implements OrderDAO {
 	}
 
 	return orderId;
+    }
+
+    @Override
+    public boolean completeOrder(int orderId) throws DaoException {
+	boolean result = false;
+
+	Connection con = null;
+	PreparedStatement st = null;
+
+	try {
+	    con = pool.getConnection();
+	    st = con.prepareStatement(QUERRY_COMPLETE_ORDER);
+
+	    st.setInt(1, OrderComleteStages.COMPLETED.getIdentifier());
+	    st.setInt(2, orderId);
+
+	    st.executeUpdate();
+	    result = true;
+	} catch (SQLException e) {
+	    throw new DaoException(e);
+	} finally {
+	    ShutterDao.close(st, con);
+	}
+
+	return result;
     }
 }

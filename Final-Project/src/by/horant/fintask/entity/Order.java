@@ -4,13 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import by.horant.fintask.entity.enumeration.OrderComleteStages;
+
 public class Order implements Serializable {
 
     private static final long serialVersionUID = -3103026815995987629L;
 
     private int id;
     private User customer;
-    private boolean isCompleted;
+    private OrderComleteStages completeStage;
     private List<Prescription> prescriptions;
     private List<Medicine> purchasedMedications;
 
@@ -19,11 +21,11 @@ public class Order implements Serializable {
 	purchasedMedications = new ArrayList<>();
     }
 
-    public Order(int id, User customer, boolean isCompleted, List<Prescription> prescriptions,
+    public Order(int id, User customer, OrderComleteStages completeStage, List<Prescription> prescriptions,
 	    List<Medicine> purchasedMedications) {
 	this.id = id;
 	this.customer = customer;
-	this.isCompleted = isCompleted;
+	this.completeStage = completeStage;
 	this.prescriptions = prescriptions;
 	this.purchasedMedications = purchasedMedications;
     }
@@ -60,12 +62,12 @@ public class Order implements Serializable {
 	this.customer = customer;
     }
 
-    public boolean isCompleted() {
-	return isCompleted;
+    public OrderComleteStages getCompleteStage() {
+	return completeStage;
     }
 
-    public void setCompleted(boolean isCompleted) {
-	this.isCompleted = isCompleted;
+    public void setCompleteStage(OrderComleteStages completeStage) {
+	this.completeStage = completeStage;
     }
 
     public List<Prescription> getPrescriptions() {
@@ -90,7 +92,7 @@ public class Order implements Serializable {
 	int result = 1;
 	result = prime * result + ((customer == null) ? 0 : customer.hashCode());
 	result = prime * result + id;
-	result = prime * result + (isCompleted ? 1231 : 1237);
+	result = prime * result + ((completeStage == null) ? 0 : completeStage.hashCode());
 	result = prime * result + ((prescriptions == null) ? 0 : prescriptions.hashCode());
 	result = prime * result + ((purchasedMedications == null) ? 0 : purchasedMedications.hashCode());
 	return result;
@@ -112,7 +114,7 @@ public class Order implements Serializable {
 	    return false;
 	if (id != other.id)
 	    return false;
-	if (isCompleted != other.isCompleted)
+	if (completeStage != other.completeStage)
 	    return false;
 	if (prescriptions == null) {
 	    if (other.prescriptions != null)
@@ -129,7 +131,7 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-	return "Order [id=" + id + ", customer=" + customer + ", isCompleted=" + isCompleted + ", prescriptions="
+	return "Order [id=" + id + ", customer=" + customer + ", completeStage=" + completeStage + ", prescriptions="
 		+ prescriptions + ", purchasedMedications=" + purchasedMedications + "]";
     }
 

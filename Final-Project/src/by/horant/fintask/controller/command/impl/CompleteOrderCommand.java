@@ -10,40 +10,30 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.horant.fintask.controller.command.Command;
-import by.horant.fintask.service.PrescriptionService;
+import by.horant.fintask.service.OrderService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
-/**
- * 
- * @author y50-70
- *
- */
-public class ApprovePrescriptionCommand implements Command {
-
-    private static final Logger logger = LogManager.getLogger(ApprovePrescriptionCommand.class);
-    private static final String LOGGER_ERROR_MESSAGE = "Could not approve prescription.";
+public class CompleteOrderCommand implements Command {
     
-    Command goDoctorPage = new GoToDoctorPageCommand();
+    private static final Logger logger = LogManager.getLogger(CompleteOrderCommand.class);
+    private static final String LOGGER_ERROR_MESSAGE = "Could not complete order.";
 
-    /**
-     * 
-     */
+    Command goPharmacistPage = new GoToPharmacistPageCommand();
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	int prescriptionId = Integer.parseInt(request.getParameter("idPrescription"));
+	int orderId = Integer.parseInt(request.getParameter("id_order"));
 
 	ServiceProvider serviceProvider = ServiceProvider.getInstance();
-	PrescriptionService prescriptionService = serviceProvider.getPrescriptionService();
+	OrderService orderService = serviceProvider.getOrderService();
 
 	try {
-	    prescriptionService.approvePrescription(prescriptionId);
-	    goDoctorPage.execute(request, response);
+	    orderService.completeOrder(orderId);
+	    goPharmacistPage.execute(request, response);
 	} catch (ServiceException e) {
 	    logger.info(LOGGER_ERROR_MESSAGE, e);
 	}
-
     }
 
 }

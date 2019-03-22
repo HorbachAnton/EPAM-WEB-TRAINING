@@ -16,42 +16,35 @@ import by.horant.fintask.service.DataService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
-/**
- * 
- * @author y50-70
- *
- */
-public class ChooseMedicinePageCommand implements Command {
+public class ChooseOrderPageCommand implements Command {
 
-    private static final Logger logger = LogManager.getLogger(ChooseMedicinePageCommand.class);
-    private static final String LOGGER_ERROR_MESSAGE = "Can't find any medicine.";
+    private static final Logger logger = LogManager.getLogger(ChooseOrderPageCommand.class);
+    private static final String LOGGER_ERROR_MESSAGE = "Can't find any orders.";
+
+    private static final String ATTRIBUTE_FIRST_ORDERS_NAME = "first_order";
+    private static final String ATTRIBUTE_LAST_ORDERS_NAME = "last_order";
+    private static final String ATTRIBUTE_LIST_ORDERS_NAME = "listOrders";
+
+    private static final String ATTRIBUTE_PAGES_NUMBER_NAME = "pages_number";
+    private static final String ATTRIBUTE_PREV_REQUEST_NAME = "prev_request";
 
     private static final String PARAMETER_CHOOSED_PAGE_NAME = "choosed_page";
 
-    private static final String ATTRIBUTE_PREV_REQUEST_NAME = "prev_request";
-    private static final String ATTRIBUTE_LIST_MEDICINES_NAME = "listMedicines";
-    private static final String ATTRIBUTE_FIRST_MEDICINES_NAME = "first_medicine";
-    private static final String ATTRIBUTE_LAST_MEDICINES_NAME = "last_medicine";
-    private static final String ATTRIBUTE_PAGES_NUMBER_NAME = "pages_number";
+    private static final String PHARMACIST_MAIN_PAGE = "/WEB-INF/jsp/pharmacist_page.jsp";
 
-    private static final String USER_MAIN_PAGE = "/WEB-INF/jsp/user_page.jsp";
+    private static final int ORDERS_NUMBER_ON_PAGE = 6;
+    private static final int SUBTRAHEND_LAST_ORDER = 1;
 
-    private static final int MEDICINES_NUMBER_ON_PAGE = 6;
-    private static final int SUBTRAHEND_LAST_MEDICINE = 1;
-
-    /**
-     * 
-     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	int pagesNumber = Integer.parseInt(request.getParameter(PARAMETER_CHOOSED_PAGE_NAME));
 
-	int number = pagesNumber * MEDICINES_NUMBER_ON_PAGE;
-	int firstNumber = number - MEDICINES_NUMBER_ON_PAGE;
-	int lastNumber = number - SUBTRAHEND_LAST_MEDICINE;
+	int number = pagesNumber * ORDERS_NUMBER_ON_PAGE;
+	int firstNumber = number - ORDERS_NUMBER_ON_PAGE;
+	int lastNumber = number - SUBTRAHEND_LAST_ORDER;
 
-	request.setAttribute(ATTRIBUTE_FIRST_MEDICINES_NAME, firstNumber);
-	request.setAttribute(ATTRIBUTE_LAST_MEDICINES_NAME, lastNumber);
+	request.setAttribute(ATTRIBUTE_FIRST_ORDERS_NAME, firstNumber);
+	request.setAttribute(ATTRIBUTE_LAST_ORDERS_NAME, lastNumber);
 
 	if (pagesNumber != 1) {
 	    request.setAttribute(ATTRIBUTE_PAGES_NUMBER_NAME, pagesNumber - 1);
@@ -63,7 +56,7 @@ public class ChooseMedicinePageCommand implements Command {
 	DataService dataService = provider.getDataService();
 
 	try {
-	    request.setAttribute(ATTRIBUTE_LIST_MEDICINES_NAME, dataService.getMedicines());
+	    request.setAttribute(ATTRIBUTE_LIST_ORDERS_NAME, dataService.getOrders());
 	} catch (ServiceException e) {
 	    logger.info(LOGGER_ERROR_MESSAGE, e);
 	}
@@ -71,7 +64,8 @@ public class ChooseMedicinePageCommand implements Command {
 	String url = CreatorFullURL.create(request);
 	request.getSession(true).setAttribute(ATTRIBUTE_PREV_REQUEST_NAME, url);
 
-	RequestDispatcher dispatcher = request.getRequestDispatcher(USER_MAIN_PAGE);
+	RequestDispatcher dispatcher = request.getRequestDispatcher(PHARMACIST_MAIN_PAGE);
 	dispatcher.forward(request, response);
     }
+
 }

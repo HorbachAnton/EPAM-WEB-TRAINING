@@ -11,6 +11,11 @@ import by.horant.fintask.entity.Medicine;
 import by.horant.fintask.entity.Order;
 import by.horant.fintask.entity.User;
 
+/**
+ * 
+ * @author y50-70
+ *
+ */
 public class AddToOrderCommand implements Command {
 
     private static final String SELECTED_MEDICINE_ID_PARAMETER = "selected_medicine_id";
@@ -24,6 +29,9 @@ public class AddToOrderCommand implements Command {
 
     private Command goUserPage = new GoToUserPageCommand();
 
+    /**
+     * 
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

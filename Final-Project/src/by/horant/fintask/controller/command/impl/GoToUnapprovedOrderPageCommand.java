@@ -10,12 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 import by.horant.fintask.controller.command.Command;
 import by.horant.fintask.controller.command.util.CreatorFullURL;
 
+/**
+ * 
+ * @author y50-70
+ *
+ */
 public class GoToUnapprovedOrderPageCommand implements Command{
     
     private static final String ATTRIBUTE_PREV_REQUEST_NAME = "prev_request";
 
     private static final String UNAPPROVED_ORDER_PAGE_PATH = "/WEB-INF/jsp/order_unapproved.jsp";
 
+    /**
+     * 
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	String url = CreatorFullURL.create(request);

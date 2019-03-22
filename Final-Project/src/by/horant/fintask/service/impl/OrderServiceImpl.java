@@ -85,4 +85,20 @@ public class OrderServiceImpl implements OrderService {
 	return result;
     }
 
+    @Override
+    public boolean completeOrder(int orderId) throws ServiceException {
+	boolean result = false;
+
+	DAOProvider daoProvider = DAOProvider.getInstance();
+	OrderDAO orderDao = daoProvider.getOrderDAO();
+
+	try {
+	    result = orderDao.completeOrder(orderId);
+	} catch (DaoException e) {
+	    throw new ServiceException(e);
+	}
+
+	return result;
+    }
+
 }

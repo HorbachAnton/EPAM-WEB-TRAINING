@@ -9,9 +9,9 @@ import by.horant.fintask.entity.User;
 
 public interface DataService {
 
-    List<User> getUsers();
+    List<User> getUsers() throws ServiceException;
 
-    List<Order> getOrders();
+    List<Order> getOrders() throws ServiceException;
 
     List<Medicine> getMedicines() throws ServiceException;
     

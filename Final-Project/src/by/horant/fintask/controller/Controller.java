@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import by.horant.fintask.controller.command.Command;
 import by.horant.fintask.controller.command.CommandProvider;
 
+/**
+ * 
+ * @author y50-70
+ *
+ */
 public class Controller extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -20,6 +25,9 @@ public class Controller extends HttpServlet {
 	super();
     }
 
+    /**
+     * 
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 
@@ -28,6 +36,9 @@ public class Controller extends HttpServlet {
 	command.execute(request, response);
     }
 
+    /**
+     * 
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 	doGet(request, response);

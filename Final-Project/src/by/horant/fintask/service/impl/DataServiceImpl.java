@@ -15,13 +15,37 @@ import by.horant.fintask.service.ServiceException;
 public class DataServiceImpl implements DataService {
 
     @Override
-    public List<User> getUsers() {
-	return null;
+    public List<User> getUsers() throws ServiceException {
+
+	DAOProvider daoProvider = DAOProvider.getInstance();
+	DataDAO dataDao = daoProvider.getDataDAO();
+
+	List<User> users = null;
+
+	try {
+	    users = dataDao.getUsers();
+	} catch (DaoException e) {
+	    throw new ServiceException(e);
+	}
+
+	return users;
     }
 
     @Override
-    public List<Order> getOrders() {
-	return null;
+    public List<Order> getOrders() throws ServiceException {
+
+	DAOProvider daoProvider = DAOProvider.getInstance();
+	DataDAO dataDao = daoProvider.getDataDAO();
+
+	List<Order> orders = null;
+
+	try {
+	    orders = dataDao.getOrders();
+	} catch (DaoException e) {
+	    throw new ServiceException(e);
+	}
+
+	return orders;
     }
 
     @Override

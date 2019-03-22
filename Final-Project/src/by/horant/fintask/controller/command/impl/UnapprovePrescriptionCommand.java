@@ -18,9 +18,9 @@ public class UnapprovePrescriptionCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger(AuthorizationCommand.class);
     private static final String LOGGER_ERROR_MESSAGE = "Could not unapprove prescription.";
-    
-    Command GoPharmacistPage = new GoToPharmacistPageCommand();
-    
+
+    Command goDoctorPage = new GoToDoctorPageCommand();
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	int prescriptionId = Integer.parseInt(request.getParameter("idPrescription"));
@@ -30,7 +30,7 @@ public class UnapprovePrescriptionCommand implements Command {
 
 	try {
 	    prescriptionService.unapprovePrescription(prescriptionId);
-	    GoPharmacistPage.execute(request, response);
+	    goDoctorPage.execute(request, response);
 	} catch (ServiceException e) {
 	    logger.info(LOGGER_ERROR_MESSAGE, e);
 	}

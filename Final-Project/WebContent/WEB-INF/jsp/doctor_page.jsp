@@ -12,20 +12,20 @@
           <!-- Bootstrap CSS -->
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
           <link rel="stylesheet" href="css/style.css"/>
-          <title>Pharmacist Page</title>
+          <title>Doctor Page</title>
         </head>
         <body>
           <fmt:setLocale value="${sessionScope.locale}"/>
           <fmt:setBundle basename="resources.locale" var="loc"/>
           <fmt:message bundle="${loc}" key="locale.default.locale_botton.ru" var="ru"/>
           <fmt:message bundle="${loc}" key="locale.default.locale_botton.en" var="en"/>
-          <fmt:message bundle="${loc}" key="locale.pharmacist_page.order_id" var="order_id"/>
-          <fmt:message bundle="${loc}" key="locale.pharmacist_page.is_completed" var="is_completed"/>
-          <fmt:message bundle="${loc}" key="locale.pharmacist_page.user_first_name" var="user_first_name"/>
-          <fmt:message bundle="${loc}" key="locale.pharmacist_page.user_second_name" var="user_second_name"/>
+          <fmt:message bundle="${loc}" key="locale.doctor_page.prescription_id" var="prescription_id"/>
+          <fmt:message bundle="${loc}" key="locale.doctor_page.user_first_name" var="user_first_name"/>
+          <fmt:message bundle="${loc}" key="locale.doctor_page.user_second_name" var="user_second_name"/>
+          <fmt:message bundle="${loc}" key="locale.doctor_page.medicine_name" var="medicine_name"/>
 
-          <c:set var="first_order" value="${not empty first_order ? first_order : 0 }"/>
-          <c:set var="last_order" value="${not empty last_order ? last_order : 5 }"/>
+          <c:set var="first_prescription" value="${not empty first_prescription ? first_prescription : 0 }"/>
+          <c:set var="last_prescription" value="${not empty last_prescription ? last_prescription : 5 }"/>
 
           <nav class="navbar navbar-expand-lg navbar-light sticky-top">
             <a class="navbar-brand" href="#"><img src="./images/logo.png"/></a>
@@ -79,20 +79,17 @@
             </div>
           </div>
 
-          <div class="container container_order">
+          <div class="container container_unapproved_prescriptions">
             <div class="row">
               <div class="col-xl-12 col-sm-12 d-flex align-items-center justify-content-center">
                 <p>
-                  Заказы
+                  Запрашиваемые рецепты
                 </p>
               </div>
             </div>
-            <div class="row d-flex align-items-center justify-content-center border border-secondary header_order">
+            <div class="row d-flex align-items-center justify-content-center border border-secondary header_medicine">
               <div class="col-xl-3 col-sm-3 d-flex align-items-center justify-content-center">
-                ${order_id}
-              </div>
-              <div class="col-xl-3 col-sm-3 d-flex align-items-center justify-content-center">
-                ${is_completed}
+                ${prescription_id}
               </div>
               <div class="col-xl-3 col-sm-3 d-flex align-items-center justify-content-center">
                 ${user_first_name}
@@ -100,39 +97,40 @@
               <div class="col-xl-3 col-sm-3 d-flex align-items-center justify-content-center">
                 ${user_second_name}
               </div>
+              <div class="col-xl-3 col-sm-3 d-flex align-items-center justify-content-center">
+                ${medicine_name}
+              </div>
             </div>
-            <c:forEach var="order" items="${listOrders}" begin="${first_order}" end="${last_order}">
-              <div class="row d-flex align-items-center justify-content-center border border-secondary row_order">
+            <c:forEach var="prescription" items="${listPrescriptions}" begin="${first_prescription}" end="${last_prescription}">
+              <div class="row d-flex align-items-center justify-content-center border border-secondary row_medicine">
                 <div class="col-xl-3 col-sm-3 d-flex align-items-center justify-content-center">
-                  <c:out value="${order.getId()}"/>
+                  <c:out value="${prescription.getId()}"/>
                 </div>
                 <div class="col-xl-3 col-sm-3 d-flex align-items-center justify-content-center">
-                  <c:if test="${order.getCompleteStage().getIdentifier() == 0}">
-                    Заказ не завершён.
-                  </c:if>
-                  <c:if test="${order.getCompleteStage().getIdentifier() == 1}">
-                    Заказ завершён.
-                  </c:if>
+                  <c:out value="${prescription.getUserFirstName()}"/>
                 </div>
                 <div class="col-xl-3 col-sm-3 d-flex align-items-center justify-content-center">
-                  <c:out value="${order.getCustomer().getFirstName()}"/>
+                  <c:out value="${prescription.getUserSecondName()}"/>
                 </div>
                 <div class="col-xl-3 col-sm-3 d-flex align-items-center justify-content-center">
-                  <c:out value="${order.getCustomer().getSecondName()}"/>
+                  <c:out value="${prescription.getMedicineName()}"/>
                 </div>
-                <c:if test="${order.getCompleteStage().getIdentifier() == 0}">
-                  <form action="contoller" method="post">
-                    <input type="hidden" name="command" value="complete_order"/>
-                    <input type="hidden" name="id_order" value="${order.getId()}"/>
-                    <input type="submit" class="btn btn-secondary" value="Завершить заказ"/>
-                  </form>
-                </c:if>
+                <form action="contoller" method="post">
+                  <input type="hidden" name="command" value="approve_prescription"/>
+                  <input type="hidden" name="idPrescription" value="${prescription.getId()}"/>
+                  <input type="submit" class="btn btn-secondary" value="Одобрить рецепт"/>
+                </form>
+                <form action="contoller" method="post">
+                  <input type="hidden" name="command" value="unapprove_prescription"/>
+                  <input type="hidden" name="idPrescription" value="${prescription.getId()}"/>
+                  <input type="submit" class="btn btn-secondary" value="Отклонить рецепт"/>
+                </form>
               </div>
             </c:forEach>
             <div class="row d-flex align-items-center justify-content-center">
               <c:forEach var="count" begin="0" end="${pages_number}">
                 <form class="text-center" action="contoller" method="post">
-                  <input type="hidden" name="command" value="choose_order_page"/>
+                  <input type="hidden" name="command" value="choose_prescription_page"/>
                   <input type="submit" class="btn btn-secondary user_btn" name="choosed_page" value="${count + 1}"/>
                 </form>
               </c:forEach>

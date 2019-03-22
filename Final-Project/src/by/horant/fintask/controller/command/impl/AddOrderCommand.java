@@ -16,6 +16,11 @@ import by.horant.fintask.service.OrderService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
+/**
+ * 
+ * @author y50-70
+ *
+ */
 public class AddOrderCommand implements Command {
 
     Command goUserPage = new GoToUserPageCommand();
@@ -26,6 +31,9 @@ public class AddOrderCommand implements Command {
     private static final String ERROR_SERVICE_EXCEPTION_NAME = "error";
     private static final String ERROR_SERVICE_EXCEPTION_MESSAGE = "Could not add order.";
 
+    /**
+     * 
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
