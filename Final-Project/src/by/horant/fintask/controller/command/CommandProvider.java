@@ -14,7 +14,6 @@ import by.horant.fintask.controller.command.impl.ChoosePrecriptionPageCommand;
 import by.horant.fintask.controller.command.impl.CompleteOrderCommand;
 import by.horant.fintask.controller.command.impl.DeleteMedicineWithoutPrescriptionCommand;
 import by.horant.fintask.controller.command.impl.DeleteOrderedMedicineCommand;
-import by.horant.fintask.controller.command.impl.GoToAdminPageCommand;
 import by.horant.fintask.controller.command.impl.GoToDoctorPageCommand;
 import by.horant.fintask.controller.command.impl.GoToIndexPageCommand;
 import by.horant.fintask.controller.command.impl.GoToOrderPageCommand;
@@ -42,7 +41,6 @@ public class CommandProvider {
     private Map<String, Command> commands = new HashMap<>();
 
     private static final String TO_INDEX_PAGE_COMMAND_NAME = "go_to_index";
-    private static final String TO_ADMIN_PAGE_COMMAND_NAME = "go_to_user_page";
     private static final String TO_USER_PAGE_COMMAND_NAME = "go_to_user_page";
     private static final String TO_REGISTRATION_PAGE_COMMAND_NAME = "go_to_registration_page";
     private static final String TO_UPDATE_PROFILE_PAGE_COMMAND_NAME = "go_to_update_profile_page";
@@ -75,7 +73,6 @@ public class CommandProvider {
 
     public CommandProvider() {
 	commands.put(TO_INDEX_PAGE_COMMAND_NAME, new GoToIndexPageCommand());
-	commands.put(TO_ADMIN_PAGE_COMMAND_NAME, new GoToAdminPageCommand());
 	commands.put(TO_USER_PAGE_COMMAND_NAME, new GoToUserPageCommand());
 	commands.put(TO_DOCTOR_PAGE_COMMAND_NAME, new GoToDoctorPageCommand());
 	commands.put(TO_REGISTRATION_PAGE_COMMAND_NAME, new GoToRegistrationCommand());

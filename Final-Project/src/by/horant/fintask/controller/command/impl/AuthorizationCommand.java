@@ -37,7 +37,6 @@ public class AuthorizationCommand implements Command {
     private static final String ERROR_SERVICE_EXCEPTION_NAME = "error";
     private static final String ERROR_SERVICE_EXCEPTION_MESSAGE = "Login or Password Error";
 
-    private Command goToAdminPage = new GoToAdminPageCommand();
     private Command goToUserPage = new GoToUserPageCommand();
     private Command goToIndexPage = new GoToIndexPageCommand();
     private Command goToDoctorPage = new GoToDoctorPageCommand();
@@ -82,9 +81,6 @@ public class AuthorizationCommand implements Command {
 	    throws ServletException, IOException {
 
 	switch (role) {
-	case ADMIN:
-	    goToAdminPage.execute(request, response);
-	    break;
 	case USER:
 	    goToUserPage.execute(request, response);
 	    break;
