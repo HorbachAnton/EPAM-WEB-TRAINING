@@ -13,8 +13,24 @@ import by.horant.fintask.entity.User;
 import by.horant.fintask.service.OrderService;
 import by.horant.fintask.service.ServiceException;
 
+/**
+ * This class is an implementation of the OrderService interface and thus
+ * provides interaction with the order. It includes such opportunities (methods)
+ * as checking the availability of all necessary prescriptions for drugs
+ * included in this order, removing drugs from an order, removing drugs without
+ * the necessary prescriptions for purchasing them, deleting a prescription for
+ * the appropriate drug, adding an order to the database and completing an
+ * order.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class OrderServiceImpl implements OrderService {
 
+    /**
+     * Checks the availability of all necessary prescriptions for drugs included in
+     * this order
+     */
     @Override
     public List<Medicine> checkRecipes(Order order) throws ServiceException {
 	List<Medicine> medicationWithoutRecipes = null;
@@ -31,6 +47,9 @@ public class OrderServiceImpl implements OrderService {
 	return medicationWithoutRecipes;
     }
 
+    /**
+     * Removes drugs from an order.
+     */
     @Override
     public void deleteMedicine(List<Medicine> orderedMedicine, int deletedMedicineId) {
 	Iterator<Medicine> iterator = orderedMedicine.iterator();
@@ -45,6 +64,9 @@ public class OrderServiceImpl implements OrderService {
 	}
     }
 
+    /**
+     * Removes drugs without the necessary prescriptions for purchasing them.
+     */
     @Override
     public void deleteMedicinesPrescription(List<Prescription> prescriptions, int deletedMedicineId) {
 	Iterator<Prescription> iterator = prescriptions.iterator();
@@ -59,16 +81,18 @@ public class OrderServiceImpl implements OrderService {
 	}
     }
 
+    /**
+     * Removes a prescription for the appropriate drug.
+     */
     @Override
     public void deleteMedicinesWithoutPrescription(List<Medicine> medicinesWithoutPrescription, Order order) {
 	List<Medicine> purchasedMedicine = order.getPurchasedMedications();
-
-	for (Medicine medicine : medicinesWithoutPrescription) {
-	    purchasedMedicine.remove(medicine);
-	}
-
+	purchasedMedicine.removeAll(medicinesWithoutPrescription);
     }
 
+    /**
+     * Adds an order to the database
+     */
     @Override
     public boolean addOrder(User user, Order order) throws ServiceException {
 	boolean result = false;
@@ -85,6 +109,9 @@ public class OrderServiceImpl implements OrderService {
 	return result;
     }
 
+    /**
+     * Completes order.
+     */
     @Override
     public boolean completeOrder(int orderId) throws ServiceException {
 	boolean result = false;

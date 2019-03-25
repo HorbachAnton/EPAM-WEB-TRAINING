@@ -12,8 +12,20 @@ import by.horant.fintask.entity.User;
 import by.horant.fintask.service.DataService;
 import by.horant.fintask.service.ServiceException;
 
+/**
+ * This class is an implementation of the DataService interface and thus
+ * provides interaction with several types of entity classes, implementing such
+ * methods as obtaining users, receiving orders, receiving medicines and
+ * obtaining the requested prescriptions.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class DataServiceImpl implements DataService {
 
+    /**
+     * Returns users list.
+     */
     @Override
     public List<User> getUsers() throws ServiceException {
 
@@ -31,6 +43,9 @@ public class DataServiceImpl implements DataService {
 	return users;
     }
 
+    /**
+     * Returns orders list.
+     */
     @Override
     public List<Order> getOrders() throws ServiceException {
 
@@ -48,6 +63,9 @@ public class DataServiceImpl implements DataService {
 	return orders;
     }
 
+    /**
+     * Returns medicines list.
+     */
     @Override
     public List<Medicine> getMedicines() throws ServiceException {
 
@@ -65,6 +83,9 @@ public class DataServiceImpl implements DataService {
 	return medicines;
     }
 
+    /**
+     * Returns requested prescriptions list.
+     */
     @Override
     public List<RequestedPrescription> getRequestedPrescriptions() throws ServiceException {
 

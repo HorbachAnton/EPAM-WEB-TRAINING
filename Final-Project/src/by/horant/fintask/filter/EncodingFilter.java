@@ -9,6 +9,14 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+/**
+ * This class implements the Filter interface and serves to define the encoding
+ * of the request / response pair. If the encoding is different from the UTF-8
+ * encoding, the filter sets it up on its own.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class EncodingFilter implements Filter {
 
     private static final String DEFAULT_ENCODING = "UTF-8";

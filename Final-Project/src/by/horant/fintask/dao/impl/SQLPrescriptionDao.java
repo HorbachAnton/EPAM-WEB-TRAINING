@@ -112,7 +112,7 @@ public class SQLPrescriptionDao implements PrescriptionDAO {
 	    st = con.prepareStatement(QUERRY_UNAPPROVE_PRESCRIPTION);
 
 	    st.setInt(1, ApprovedStages.UNAPPROVED.getIdentifier());
-	    st.setInt(2, UsedStages.USED.getIdentifier());
+	    st.setInt(2, UsedStages.UNUSED.getIdentifier());
 	    st.setInt(3, prescriptionId);
 
 	    st.executeUpdate();

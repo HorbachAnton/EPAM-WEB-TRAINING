@@ -15,6 +15,18 @@ import by.horant.fintask.entity.RegistrationData;
 import by.horant.fintask.entity.User;
 import by.horant.fintask.entity.enumeration.Roles;
 
+/**
+ * This class is an implementation of the UserDAO interface and thus provides
+ * interaction with the MySQL database implementing such methods as
+ * authorization and registration. Authorization involves searching for a user
+ * in the database based on the password and mailbox sent, as well as creating
+ * and returning the object that encapsulates this user. Registration implies
+ * the transfer of a RegistrationData class object as a parameter and entering
+ * all user information into the database.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class SQLUserDao implements UserDAO {
 
     private static final String QUERY_CHECK_CREDENTIONALS = "SELECT * FROM users WHERE user_email=?";
@@ -25,6 +37,10 @@ public class SQLUserDao implements UserDAO {
 
     private static final ConnectionPool pool = ConnectionPool.getInstance();
 
+    /**
+     * The method of user authorization in the systems. It returns an object of
+     * authorized user.
+     */
     @Override
     public User authentification(String userEmail, String userPassword) throws DaoException {
 	Connection con = null;
@@ -55,6 +71,10 @@ public class SQLUserDao implements UserDAO {
 	return user;
     }
 
+    /**
+     * The method of user registration in the system. It returns an object of
+     * registered user.
+     */
     @Override
     public boolean registration(RegistrationData userData) throws DaoException {
 
@@ -86,6 +106,13 @@ public class SQLUserDao implements UserDAO {
 	return result;
     }
 
+    /**
+     * Creates and returns user object.
+     * 
+     * @param rs object that implement interface ResultSet.
+     * @return user object.
+     * @throws SQLException
+     */
     private User createUser(ResultSet rs) throws SQLException {
 	User user = new User();
 
@@ -95,10 +122,16 @@ public class SQLUserDao implements UserDAO {
 	user.setFirstName(rs.getString("user_firstName"));
 	user.setSecondName(rs.getString("user_secondName"));
 	user.setRole(defineRole(rs.getInt("Roles_idRole")));
-	
+
 	return user;
     }
 
+    /**
+     * Defines user role by identifier.
+     * 
+     * @param identifier integer role identifier.
+     * @return user role.
+     */
     private Roles defineRole(int identifier) {
 	return RolesIdentifier.defineByIndex(identifier);
     }

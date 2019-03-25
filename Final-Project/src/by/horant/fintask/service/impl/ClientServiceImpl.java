@@ -9,12 +9,24 @@ import by.horant.fintask.service.ClientService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.validation.CredentionalValidator;
 
+/**
+ * This class is an implementation of the ClientService interface and thus
+ * provides client interaction with the application by implementing such methods
+ * as authorization and registration.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class ClientServiceImpl implements ClientService {
 
+    /**
+     * The method of user authorization in the system. It returns an object of
+     * authorized user.
+     */
     @Override
-    public User authorization(String userLogin, String userPassword) throws ServiceException {
+    public User authorization(String userEmail, String userPassword) throws ServiceException {
 
-	if (!CredentionalValidator.isCorrect(userLogin, userPassword)) {
+	if (!CredentionalValidator.isCorrect(userEmail, userPassword)) {
 	    throw new ServiceException("Invalid login or password.");
 	}
 
@@ -24,7 +36,7 @@ public class ClientServiceImpl implements ClientService {
 	User user = null;
 
 	try {
-	    user = userDAO.authentification(userLogin, userPassword);
+	    user = userDAO.authentification(userEmail, userPassword);
 	} catch (DaoException e) {
 	    throw new ServiceException(e);
 	}
@@ -32,6 +44,10 @@ public class ClientServiceImpl implements ClientService {
 	return user;
     }
 
+    /**
+     * The method of user registration in the system. It returns an object of
+     * registered user.
+     */
     @Override
     public User registration(RegistrationData userData) throws ServiceException {
 
@@ -56,6 +72,13 @@ public class ClientServiceImpl implements ClientService {
 
     }
 
+    /**
+     * Creates user object for registration.
+     * 
+     * @param userData object of class RegistrationData which encapsulates in itself
+     *                 user password, email and role.
+     * @return object of class User
+     */
     private User createUser(RegistrationData userData) {
 
 	User user = new User();

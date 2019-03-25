@@ -2,6 +2,13 @@ package by.horant.fintask.entity;
 
 import java.io.Serializable;
 
+/**
+ * Class Medicine is entity class, which encapsulates in itself all medicine
+ * information. 
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class Medicine implements Serializable {
 
     private static final long serialVersionUID = 5391578435782265496L;
@@ -13,10 +20,25 @@ public class Medicine implements Serializable {
     private String dosage;
     private boolean isNeedPrescription;
 
+    /**
+     * Class constructor.
+     */
     public Medicine() {
 
     }
 
+    /**
+     * Class constructor specifying medicine id, name, description, type, dosage and
+     * the need for a recipe when ordering.
+     * 
+     * @param id                 medicine number in integer format
+     * @param name               medicine name
+     * @param description        medicine description
+     * @param type               medicine type
+     * @param dosage             medicine dosage
+     * @param isNeedPrescription a flag indicating whether or not a prescription is
+     *                           needed when ordering this medicine.
+     */
     public Medicine(int id, String name, String description, String type, String dosage, boolean isNeedPrescription) {
 	this.id = id;
 	this.name = name;
@@ -26,54 +48,121 @@ public class Medicine implements Serializable {
 	this.isNeedPrescription = isNeedPrescription;
     }
 
+    /**
+     * Returns medicine id.
+     * 
+     * @return medicine id.
+     */
     public int getId() {
 	return id;
     }
 
+    /**
+     * Sets medicine id.
+     * 
+     * @param id medicine id.
+     */
     public void setId(int id) {
 	this.id = id;
     }
 
+    /**
+     * Returns medicine name.
+     * 
+     * @return medicine name,
+     */
     public String getName() {
 	return name;
     }
 
+    /**
+     * Sets medicine name.
+     * 
+     * @param name medicine name.
+     */
     public void setName(String name) {
 	this.name = name;
     }
 
+    /**
+     * Returns medicine description.
+     * 
+     * @return medicine description.
+     */
     public String getDescription() {
 	return description;
     }
 
+    /**
+     * Sets medicine description.
+     * 
+     * @param description medicine description.
+     */
     public void setDescription(String description) {
 	this.description = description;
     }
 
+    /**
+     * Returns medicine type.
+     * 
+     * @return medicine type.
+     */
     public String getType() {
 	return type;
     }
 
+    /**
+     * Sets medicine type.
+     * 
+     * @param type medicine type.
+     */
     public void setType(String type) {
 	this.type = type;
     }
 
+    /**
+     * Returns medicine dosage.
+     * 
+     * @return medicine dosage.
+     */
     public String getDosage() {
 	return dosage;
     }
 
+    /**
+     * Sets medicine dosage.
+     * 
+     * @param dosage medicine dosage.
+     */
     public void setDosage(String dosage) {
 	this.dosage = dosage;
     }
 
+    /**
+     * Returns a flag indicating whether or not a prescription is needed when
+     * ordering this medicine.
+     * 
+     * @return a flag indicating whether or not a prescription is needed when
+     *         ordering this medicine
+     */
     public boolean isNeedPrescription() {
 	return isNeedPrescription;
     }
 
+    /**
+     * Sets a flag indicating whether or not a prescription is needed when ordering
+     * this medicine.
+     * 
+     * @param isNeedPrescription a flag indicating whether or not a prescription is
+     *                           needed when ordering this medicine
+     */
     public void setNeedPrescription(boolean isNeedPrescription) {
 	this.isNeedPrescription = isNeedPrescription;
     }
 
+    /**
+     * Returns a hash code value for the object.
+     */
     @Override
     public int hashCode() {
 	final int prime = 31;
@@ -87,6 +176,9 @@ public class Medicine implements Serializable {
 	return result;
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     */
     @Override
     public boolean equals(Object obj) {
 	if (this == obj)
@@ -123,6 +215,9 @@ public class Medicine implements Serializable {
 	return true;
     }
 
+    /**
+     * Returns a string representation of the object.
+     */
     @Override
     public String toString() {
 	return "Medicine [id=" + id + ", name=" + name + ", description=" + description + ", type=" + type + ", dosage="

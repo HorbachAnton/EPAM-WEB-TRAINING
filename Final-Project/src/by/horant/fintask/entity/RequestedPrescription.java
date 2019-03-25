@@ -11,10 +11,22 @@ public class RequestedPrescription implements Serializable {
     private String userSecondName;
     private String medicineName;
 
+    /**
+     * Class constructor.
+     */
     public RequestedPrescription() {
 
     }
 
+    /**
+     * Class constructor specifying id requested prescription, the name and surname
+     * of the user who requested the recipe and name of the requested medicine.
+     * 
+     * @param id             id requested prescription
+     * @param userFirstName  first name of the user who requested the recipe
+     * @param userSecondName second name of the user who requested the recipe
+     * @param medicineName   name of the requested medicine
+     */
     public RequestedPrescription(int id, String userFirstName, String userSecondName, String medicineName) {
 	this.id = id;
 	this.userFirstName = userFirstName;
@@ -22,6 +34,11 @@ public class RequestedPrescription implements Serializable {
 	this.medicineName = medicineName;
     }
 
+    /**
+     * Copy Constructor
+     * 
+     * @param requestedPrescription copied recipe object
+     */
     public RequestedPrescription(RequestedPrescription requestedPrescription) {
 	this.id = requestedPrescription.id;
 	this.userFirstName = requestedPrescription.userFirstName;

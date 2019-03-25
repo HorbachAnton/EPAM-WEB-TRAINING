@@ -4,10 +4,17 @@ import java.io.Serializable;
 
 import by.horant.fintask.entity.enumeration.Roles;
 
-public class User implements Serializable{
+/**
+ * Class User is entity class, which encapsulates in itself all user
+ * information.
+ * 
+ * @author Anton Horbach
+ *
+ */
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1646459556345904320L;
-    
+
     private int id;
     private String email;
     private String password;
@@ -15,10 +22,24 @@ public class User implements Serializable{
     private String secondName;
     private Roles role;
 
+    /**
+     * Class constructor.
+     */
     public User() {
 
     }
 
+    /**
+     * Class constructor specifying user id, email, password, first and second name
+     * and user role in systems.
+     * 
+     * @param id         user id
+     * @param email      user email
+     * @param password   user password
+     * @param firstName  user first name
+     * @param secondName user second name
+     * @param role       user role in systems
+     */
     public User(int id, String email, String password, String firstName, String secondName, Roles role) {
 	this.id = id;
 	this.email = email;
@@ -28,54 +49,117 @@ public class User implements Serializable{
 	this.role = role;
     }
 
+    /**
+     * Returns user id.
+     * 
+     * @return user id
+     */
     public int getId() {
 	return id;
     }
 
+    /**
+     * Sets user id.
+     * 
+     * @param id user id
+     */
     public void setId(int id) {
 	this.id = id;
     }
 
+    /**
+     * Returns user email.
+     * 
+     * @return user email.
+     */
     public String getEmail() {
 	return email;
     }
 
+    /**
+     * Sets user email.
+     * 
+     * @param email user email.
+     */
     public void setEmail(String email) {
 	this.email = email;
     }
 
+    /**
+     * Returns user password.
+     * 
+     * @return user password.
+     */
     public String getPassword() {
 	return password;
     }
 
+    /**
+     * Sets user password.
+     * 
+     * @param password user password.
+     */
     public void setPassword(String password) {
 	this.password = password;
     }
 
+    /**
+     * Returns user first name.
+     * 
+     * @return user first name
+     */
     public String getFirstName() {
 	return firstName;
     }
 
+    /**
+     * Sets user first name.
+     * 
+     * @param firstName user first name
+     */
     public void setFirstName(String firstName) {
 	this.firstName = firstName;
     }
 
+    /**
+     * Returns user second name.
+     * 
+     * @return user second name.
+     */
     public String getSecondName() {
 	return secondName;
     }
 
+    /**
+     * Sets user second name.
+     * 
+     * @param secondName user second name.
+     */
     public void setSecondName(String secondName) {
 	this.secondName = secondName;
     }
 
+    /**
+     * Returns user role.
+     * 
+     * @return user role.
+     */
     public Roles getRole() {
 	return role;
     }
 
+    /**
+     * Sets user role.
+     * 
+     * @param role user role.
+     */
     public void setRole(Roles role) {
 	this.role = role;
     }
 
+    /**
+     * Returns a hash code value for the object.
+     */
     @Override
     public int hashCode() {
 	final int prime = 31;
@@ -89,6 +173,9 @@ public class User implements Serializable{
 	return result;
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     */
     @Override
     public boolean equals(Object obj) {
 	if (this == obj) {
@@ -133,6 +220,9 @@ public class User implements Serializable{
 	return true;
     }
 
+    /**
+     * Returns a string representation of the object.
+     */
     @Override
     public String toString() {
 	return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName

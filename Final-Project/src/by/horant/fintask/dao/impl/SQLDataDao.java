@@ -17,6 +17,15 @@ import by.horant.fintask.entity.Order;
 import by.horant.fintask.entity.RequestedPrescription;
 import by.horant.fintask.entity.User;
 
+/**
+ * This class is an implementation of the DataDAO interface and thus provides
+ * interaction with the database for obtaining various list of entity objects,
+ * implementing such methods as obtaining users, receiving orders, obtaining
+ * drugs and obtaining the requested recipes.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class SQLDataDao implements DataDAO {
 
     private static final String QUERY_GET_ALL_USERS = "SELECT * FROM users";
@@ -26,6 +35,9 @@ public class SQLDataDao implements DataDAO {
 
     private static final ConnectionPool pool = ConnectionPool.getInstance();
 
+    /**
+     * Returns users list.
+     */
     @Override
     public List<User> getUsers() throws DaoException {
 	List<User> users = new ArrayList<>();
@@ -58,6 +70,9 @@ public class SQLDataDao implements DataDAO {
 	return users;
     }
 
+    /**
+     * Returns orders list.
+     */
     @Override
     public List<Order> getOrders() throws DaoException {
 	List<Order> orders = new ArrayList<>();
@@ -85,6 +100,13 @@ public class SQLDataDao implements DataDAO {
 	return orders;
     }
 
+    /**
+     * Creates and returns object of Order.
+     * 
+     * @param rs object that implement interface ResultSet.
+     * @return object of Order.
+     * @throws SQLException
+     */
     private Order createOrder(ResultSet rs) throws SQLException {
 	Order order = new Order();
 
@@ -95,6 +117,13 @@ public class SQLDataDao implements DataDAO {
 	return order;
     }
 
+    /**
+     * Creates and returns object of User.
+     * 
+     * @param rs object that implement interface ResultSet.
+     * @return object of User.
+     * @throws SQLException
+     */
     private User createUser(ResultSet rs) throws SQLException {
 	User user = new User();
 
@@ -104,6 +133,9 @@ public class SQLDataDao implements DataDAO {
 	return user;
     }
 
+    /**
+     * Returns medicines list.
+     */
     @Override
     public List<Medicine> getMedicines() throws DaoException {
 	List<Medicine> medicines = new ArrayList<>();
@@ -144,6 +176,9 @@ public class SQLDataDao implements DataDAO {
 	return medicines;
     }
 
+    /**
+     * Returns requested prescriptions list.
+     */
     @Override
     public List<RequestedPrescription> getRequestedPrescriptions() throws DaoException {
 	List<RequestedPrescription> requestedPrescriptons = new ArrayList<>();
