@@ -33,6 +33,10 @@ public class SQLOrderDao implements OrderDAO {
 
     private static final ConnectionPool pool = ConnectionPool.getInstance();
 
+    /**
+     * Checks the availability of all necessary prescriptions for drugs included in
+     * this order.
+     */
     @Override
     public List<Medicine> checkRecipes(Order order) throws DaoException {
 	List<Medicine> medicationWithoutRecipes = null;
@@ -99,6 +103,15 @@ public class SQLOrderDao implements OrderDAO {
 	return medicationWithoutRecipes;
     }
 
+    /**
+     * Creates a prescription for the appropriate medicine.
+     * 
+     * @param rs         object that implement interface ResultSet.
+     * @param medication the medicine for which the prescription is written.
+     * @param order      order to which this recipe will apply
+     * @return prescription for the appropriate medicine.
+     * @throws SQLException
+     */
     private Prescription createPrescription(ResultSet rs, Medicine medication, Order order) throws SQLException {
 	Prescription prescription = new Prescription();
 
@@ -112,6 +125,9 @@ public class SQLOrderDao implements OrderDAO {
 	return prescription;
     }
 
+    /**
+     * Adds an order to the database.
+     */
     @Override
     public boolean addOrder(User user, Order order) throws DaoException {
 	boolean result = false;
@@ -138,6 +154,15 @@ public class SQLOrderDao implements OrderDAO {
 	return result;
     }
 
+    /**
+     * Adds the medicine to the appropriate order by its id.
+     * 
+     * @param orderId    order id to which the medicine is added.
+     * @param medicineId medicine id which is added to the order.
+     * @param amount     amount of medicine added.
+     * @param con        object that implement interface Connection.
+     * @throws DaoException
+     */
     private void addMedicineToOrder(int orderId, int medicineId, int amount, Connection con) throws DaoException {
 
 	PreparedStatement st = null;
@@ -157,6 +182,15 @@ public class SQLOrderDao implements OrderDAO {
 	}
     }
 
+    /**
+     * Adds the prescription to the appropriate order by its id.
+     * 
+     * @param orderId    order id to which the prescription is added.
+     * @param userId     user id on whose face prescription is written.
+     * @param medicineId medicine id for which the prescription is written.
+     * @param con        object that implement interface Connection.
+     * @throws DaoException
+     */
     private void addPrescriptionToOrder(int orderId, int userId, int medicineId, Connection con) throws DaoException {
 
 	PreparedStatement st = null;
@@ -185,6 +219,13 @@ public class SQLOrderDao implements OrderDAO {
 	}
     }
 
+    /**
+     * Updates prescription status to 'used' in database.
+     * 
+     * @param prescriptionId id prescription we want to update.
+     * @param con            object that implement interface Connection.
+     * @throws DaoException
+     */
     private void updatePrescriptionToUsed(int prescriptionId, Connection con) throws DaoException {
 
 	PreparedStatement st = null;
@@ -204,6 +245,14 @@ public class SQLOrderDao implements OrderDAO {
 	}
     }
 
+    /**
+     * Adds prescription to oder in database.
+     * 
+     * @param orderId        the recipe id we want to add.
+     * @param prescriptionId id prescription we want to add.
+     * @param con            object that implement interface Connection.
+     * @throws DaoException
+     */
     private void addPrescriptionOrder(int orderId, int prescriptionId, Connection con) throws DaoException {
 
 	PreparedStatement st = null;
@@ -223,6 +272,14 @@ public class SQLOrderDao implements OrderDAO {
 
     }
 
+    /**
+     * Adds order in database.
+     * 
+     * @param userId id of the user who placed the order.
+     * @param con    object that implement interface Connection.
+     * @return the generated key of the added order.
+     * @throws DaoException
+     */
     private int addOrderSQL(int userId, Connection con) throws DaoException {
 	int orderId = 0;
 
@@ -252,6 +309,9 @@ public class SQLOrderDao implements OrderDAO {
 	return orderId;
     }
 
+    /**
+     * Completes order.
+     */
     @Override
     public boolean completeOrder(int orderId) throws DaoException {
 	boolean result = false;
