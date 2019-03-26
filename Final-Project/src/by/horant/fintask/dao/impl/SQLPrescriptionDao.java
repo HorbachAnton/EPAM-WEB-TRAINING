@@ -15,6 +15,15 @@ import by.horant.fintask.dao.util.ShutterDao;
 import by.horant.fintask.entity.enumeration.ApprovedStages;
 import by.horant.fintask.entity.enumeration.UsedStages;
 
+/**
+ * This class is an implementation of the PrescriptionDAO interface and provides
+ * the functionality of interaction with the recipe through the database. This
+ * includes methods such as requesting a recipe, approval of a recipe, and
+ * non-approval of a recipe.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class SQLPrescriptionDao implements PrescriptionDAO {
 
     private static final String QUERY_REQUEST_PRESCRIPTION_PART_1 = "INSERT INTO prescriptions (`Users_idUser`) VALUES (?)";
@@ -25,6 +34,9 @@ public class SQLPrescriptionDao implements PrescriptionDAO {
 
     private static final ConnectionPool pool = ConnectionPool.getInstance();
 
+    /**
+     * Creates a request for a recipe.
+     */
     @Override
     public boolean requestPrescription(int userId, int medicineId) throws DaoException {
 	boolean result = false;
@@ -69,6 +81,9 @@ public class SQLPrescriptionDao implements PrescriptionDAO {
 	return result;
     }
 
+    /**
+     * Approves a recipe request.
+     */
     @Override
     public boolean approvePrescription(int prescriptionId) throws DaoException {
 	boolean result = false;
@@ -100,6 +115,9 @@ public class SQLPrescriptionDao implements PrescriptionDAO {
 	return result;
     }
 
+    /**
+     * Unapproves a recipe request.
+     */
     @Override
     public boolean unapprovePrescription(int prescriptionId) throws DaoException {
 	boolean result = false;

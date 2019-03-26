@@ -14,6 +14,13 @@ import by.horant.fintask.service.PrescriptionService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
+/**
+ * The UnapprovePrescriptionCommand class implements the Command interface and
+ * contains logic for unapproving a request for a recipe.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class UnapprovePrescriptionCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger(AuthorizationCommand.class);
@@ -21,6 +28,9 @@ public class UnapprovePrescriptionCommand implements Command {
 
     Command goDoctorPage = new GoToDoctorPageCommand();
 
+    /**
+     * Unapproves a request for a recipe.
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	int prescriptionId = Integer.parseInt(request.getParameter("idPrescription"));

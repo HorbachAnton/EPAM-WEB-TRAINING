@@ -17,8 +17,10 @@ import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
 /**
+ * The AuthorizationCommand class implements the Command interface and
+ * authorizes the user in the system.
  * 
- * @author y50-70
+ * @author Anton Horbach
  *
  */
 public class AuthorizationCommand implements Command {
@@ -43,7 +45,7 @@ public class AuthorizationCommand implements Command {
     private Command goToPharmacistPage = new GoToPharmacistPageCommand();
 
     /**
-     * 
+     * Authorizes the user in the system.
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -77,6 +79,9 @@ public class AuthorizationCommand implements Command {
 
     }
 
+    /**
+     * Defines and returns the user role.
+     */
     private void definePage(Roles role, HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 

@@ -19,8 +19,10 @@ import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
 /**
+ * The GoToDoctorPageCommand class implements the Command interface and
+ * represents the command to forward the user to the page of the doctor.
  * 
- * @author y50-70
+ * @author Anton Horbach
  *
  */
 public class GoToDoctorPageCommand implements Command {
@@ -35,7 +37,7 @@ public class GoToDoctorPageCommand implements Command {
     private static final String DOCTOR_MAIN_PAGE = "/WEB-INF/jsp/doctor_page.jsp";
 
     /**
-     * 
+     * Forwards the user to the page of the doctor.
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

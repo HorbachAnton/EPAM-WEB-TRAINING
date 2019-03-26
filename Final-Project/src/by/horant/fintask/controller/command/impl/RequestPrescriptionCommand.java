@@ -14,6 +14,14 @@ import by.horant.fintask.service.PrescriptionService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
+/**
+ * The RequestPrescriptionCommand class implements the Command interface and
+ * represents a command to request a prescription by a user for a particular
+ * medicine.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class RequestPrescriptionCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger(RequestPrescriptionCommand.class);
@@ -21,9 +29,13 @@ public class RequestPrescriptionCommand implements Command {
 
     private static final String PARAMETER_USER_ID_NAME = "userId";
     private static final String PARAMETER_MEDICINE_ID_NAME = "medicineId";
-    
+
     Command goUserPage = new GoToUserPageCommand();
-    
+
+    /**
+     * Requests a prescription by a user for a particular medicine. Uses for this
+     * user id and medicine id.
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

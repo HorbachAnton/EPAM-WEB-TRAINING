@@ -11,8 +11,10 @@ import by.horant.fintask.controller.command.Command;
 import by.horant.fintask.controller.command.util.CreatorFullURL;
 
 /**
+ * The GoToRegistrationCommand class implements the Command interface and
+ * represents the command to forward the user to the page of the registration.
  * 
- * @author y50-70
+ * @author Anton Horbach
  *
  */
 public class GoToRegistrationCommand implements Command {
@@ -22,7 +24,7 @@ public class GoToRegistrationCommand implements Command {
     private static final String REGISTRATIION_PAGE_PATH = "/WEB-INF/jsp/registration.jsp";
 
     /**
-     * 
+     * Forwards the user to the page of the registration.
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

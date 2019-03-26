@@ -16,6 +16,13 @@ import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 import by.horant.fintask.service.UpdateService;
 
+/**
+ * The UpdateProfileCommand class implements the Command interface and
+ * represents a command to update user profile.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class UpdateProfileCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger(UpdateProfileCommand.class);
@@ -32,6 +39,9 @@ public class UpdateProfileCommand implements Command {
     private final GoToUserPageCommand goUserPage = new GoToUserPageCommand();
     private final GoToUpdateProfilePageCommand goUpdateProfile = new GoToUpdateProfilePageCommand();
 
+    /**
+     * Updates user profile.
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

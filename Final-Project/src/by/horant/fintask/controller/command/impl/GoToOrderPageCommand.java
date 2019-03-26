@@ -21,8 +21,10 @@ import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
 /**
+ * The GoToOrderPageCommand class implements the Command interface and
+ * represents the command to forward the user to the page of the order.
  * 
- * @author y50-70
+ * @author Anton Horbach
  *
  */
 public class GoToOrderPageCommand implements Command {
@@ -41,7 +43,7 @@ public class GoToOrderPageCommand implements Command {
     private Command goUnapprovedOrderPage = new GoToUnapprovedOrderPageCommand();
 
     /**
-     * 
+     * Forwards the user to the page of the order
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -67,7 +69,6 @@ public class GoToOrderPageCommand implements Command {
 	    }
 
 	} catch (ServiceException e) {
-	    e.printStackTrace();
 	    logger.info(LOGGER_ERROR_MESSAGE, e);
 	    request.setAttribute(ERROR_SERVICE_EXCEPTION_NAME, ERROR_SERVICE_EXCEPTION_MESSAGE);
 	    goUserPage.execute(request, response);

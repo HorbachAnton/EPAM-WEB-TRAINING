@@ -17,8 +17,12 @@ import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
 /**
+ * The ChoosePrecriptionPageCommand class implements the Command interface and
+ * determines which next section of prescriptions to display on the page. The
+ * total number of section depends on the number of prescriptions displayed on
+ * the page.
  * 
- * @author y50-70
+ * @author Anton Horbach
  *
  */
 public class ChoosePrecriptionPageCommand implements Command {
@@ -40,7 +44,7 @@ public class ChoosePrecriptionPageCommand implements Command {
     private static final int SUBTRAHEND_LAST_PRESCRIPTION = 1;
 
     /**
-     * 
+     * Determines which next section of prescriptions to display on the page.
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

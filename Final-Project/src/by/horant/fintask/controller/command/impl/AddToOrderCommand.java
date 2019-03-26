@@ -12,8 +12,10 @@ import by.horant.fintask.entity.Order;
 import by.horant.fintask.entity.User;
 
 /**
+ * The AddToOrderCommand class implements the Command interface and adds a new
+ * drug to an object of the Order class that is in session.
  * 
- * @author y50-70
+ * @author Anton Horbach
  *
  */
 public class AddToOrderCommand implements Command {
@@ -30,7 +32,7 @@ public class AddToOrderCommand implements Command {
     private Command goUserPage = new GoToUserPageCommand();
 
     /**
-     * 
+     * Adds a new medicine to an object of the Order class that is in session.
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -65,6 +67,14 @@ public class AddToOrderCommand implements Command {
 	goUserPage.execute(request, response);
     }
 
+    /**
+     * Determines whether a prescription is needed for the appropriate medicine for
+     * the flag being passed.
+     * 
+     * @param flagNeedPrescription a flag whose value indicates whether a recipe is
+     *                             necessary.
+     * @return true - if prescription is needed, false is prescription isn't needed.
+     */
     private boolean isNeedPrescription(String flagNeedPrescription) {
 	boolean result = true;
 

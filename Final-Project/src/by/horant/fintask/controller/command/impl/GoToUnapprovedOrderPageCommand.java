@@ -11,18 +11,21 @@ import by.horant.fintask.controller.command.Command;
 import by.horant.fintask.controller.command.util.CreatorFullURL;
 
 /**
+ * The GoToUnapprovedOrderPageCommand class implements the Command interface and
+ * represents the command to forward the user to the page of the unapproved
+ * order.
  * 
- * @author y50-70
+ * @author Anton Horbach
  *
  */
-public class GoToUnapprovedOrderPageCommand implements Command{
-    
+public class GoToUnapprovedOrderPageCommand implements Command {
+
     private static final String ATTRIBUTE_PREV_REQUEST_NAME = "prev_request";
 
     private static final String UNAPPROVED_ORDER_PAGE_PATH = "/WEB-INF/jsp/order_unapproved.jsp";
 
     /**
-     * 
+     * Forwards the user to the page of the unapproved order.
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

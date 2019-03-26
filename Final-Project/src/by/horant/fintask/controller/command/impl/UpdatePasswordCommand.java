@@ -15,6 +15,13 @@ import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 import by.horant.fintask.service.UpdateService;
 
+/**
+ * The UpdatePasswordCommand class implements the Command interface and
+ * represents a command to update user password.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class UpdatePasswordCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger(UpdatePasswordCommand.class);
@@ -30,6 +37,9 @@ public class UpdatePasswordCommand implements Command {
     private Command goUpdatePassword = new GoToUpdatePasswordPageCommand();
     private Command goUserPage = new GoToUserPageCommand();
 
+    /**
+     * Updates user password.
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

@@ -32,8 +32,10 @@ import by.horant.fintask.controller.command.impl.UpdatePasswordCommand;
 import by.horant.fintask.controller.command.impl.UpdateProfileCommand;
 
 /**
+ * The class responsible for storing objects that implement the Command
+ * interface, and also responsible for providing access to them.
  * 
- * @author y50-70
+ * @author Anton Horbach
  *
  */
 public class CommandProvider {
@@ -71,6 +73,9 @@ public class CommandProvider {
     private static final String UNAPPROVE_PRESCRIPTION_COMMAND = "unapprove_prescription";
     private static final String COMPLETE_ORDER_COMMAND = "complete_order";
 
+    /**
+     * Class constructor
+     */
     public CommandProvider() {
 	commands.put(TO_INDEX_PAGE_COMMAND_NAME, new GoToIndexPageCommand());
 	commands.put(TO_USER_PAGE_COMMAND_NAME, new GoToUserPageCommand());
@@ -105,8 +110,10 @@ public class CommandProvider {
     }
 
     /**
+     * Returns an object that implements the Command interface corresponding to the
+     * given name.
      * 
-     * @param commandName
+     * @param commandName command name that we want to get.
      * @return
      */
     public Command getCommand(String commandName) {

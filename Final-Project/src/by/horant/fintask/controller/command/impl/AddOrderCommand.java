@@ -17,8 +17,10 @@ import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
 /**
+ * The AddOrderCommand class implements the Command interface and adds a new
+ * order to the database.
  * 
- * @author y50-70
+ * @author Anton Horbach
  *
  */
 public class AddOrderCommand implements Command {
@@ -32,7 +34,7 @@ public class AddOrderCommand implements Command {
     private static final String ERROR_SERVICE_EXCEPTION_MESSAGE = "Could not add order.";
 
     /**
-     * 
+     * Adds a new order to the database.
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

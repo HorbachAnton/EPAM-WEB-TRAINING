@@ -11,8 +11,10 @@ import by.horant.fintask.controller.command.Command;
 import by.horant.fintask.controller.command.util.CreatorFullURL;
 
 /**
+ * The GoToIndexPageCommand class implements the Command interface and
+ * represents the command to forward the user to the index page.
  * 
- * @author y50-70
+ * @author Anton Horbach
  *
  */
 public class GoToIndexPageCommand implements Command {
@@ -22,7 +24,7 @@ public class GoToIndexPageCommand implements Command {
     private static final String INDEX_PAGE_PATH = "/WEB-INF/jsp/default.jsp";
 
     /**
-     * 
+     * Forwards the user to the index page.
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

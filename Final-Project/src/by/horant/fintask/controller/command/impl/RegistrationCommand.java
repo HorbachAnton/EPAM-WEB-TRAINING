@@ -19,6 +19,13 @@ import by.horant.fintask.service.ClientService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
+/**
+ * The RegistrationCommand class implements the Command interface and represents
+ * a command to register a user in the system.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class RegistrationCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger(RegistrationCommand.class);
@@ -35,6 +42,9 @@ public class RegistrationCommand implements Command {
     private static final String UPDATE_PROFILE_PAGE = "/WEB-INF/jsp/update_profile.jsp";
     private static final String REGISTRATION_PAGE = "/WEB-INF/jsp/registration.jsp";
 
+    /**
+     * Registers a user in the system.
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

@@ -15,8 +15,11 @@ import by.horant.fintask.service.OrderService;
 import by.horant.fintask.service.ServiceProvider;
 
 /**
+ * The DeleteMedicineWithoutPrescriptionCommand class implements the Command
+ * interface and represents the command of removing from the order drugs for
+ * which there are no appropriate recipes.
  * 
- * @author y50-70
+ * @author Anton Horbach
  *
  */
 public class DeleteMedicineWithoutPrescriptionCommand implements Command {
@@ -27,7 +30,7 @@ public class DeleteMedicineWithoutPrescriptionCommand implements Command {
     private static final String ORDER_PAGE_PATH = "/WEB-INF/jsp/order.jsp";
 
     /**
-     * 
+     * Removes from the order drugs for which there are no appropriate recipes.
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

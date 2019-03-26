@@ -20,7 +20,7 @@ public interface OrderDAO {
 
     /**
      * Checks the availability of all necessary prescriptions for drugs included in
-     * this order
+     * this order.
      * 
      * @param order order which we check for all required recipes.
      * @return a collection of drugs without the appropriate recipes in the order.
@@ -30,7 +30,7 @@ public interface OrderDAO {
     List<Medicine> checkRecipes(Order order) throws DaoException;
 
     /**
-     * Adds an order to the database
+     * Adds an order to the database.
      * 
      * @param user  user in whose name the order is issued.
      * @param order the order we want to add.

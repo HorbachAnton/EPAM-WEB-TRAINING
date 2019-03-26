@@ -15,19 +15,21 @@ import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
 /**
+ * The ApprovePrescriptionCommand class implements the Command interface and
+ * contains logic for approving a request for a recipe.
  * 
- * @author y50-70
+ * @author Anton Horbach
  *
  */
 public class ApprovePrescriptionCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger(ApprovePrescriptionCommand.class);
     private static final String LOGGER_ERROR_MESSAGE = "Could not approve prescription.";
-    
+
     Command goDoctorPage = new GoToDoctorPageCommand();
 
     /**
-     * 
+     * Approves a request for a recipe.
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

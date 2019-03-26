@@ -14,13 +14,23 @@ import by.horant.fintask.service.OrderService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
+/**
+ * The CompleteOrderCommand class implements the Command interface and
+ * represents the order completion command.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class CompleteOrderCommand implements Command {
-    
+
     private static final Logger logger = LogManager.getLogger(CompleteOrderCommand.class);
     private static final String LOGGER_ERROR_MESSAGE = "Could not complete order.";
 
     Command goPharmacistPage = new GoToPharmacistPageCommand();
 
+    /**
+     * Completes the order.
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	int orderId = Integer.parseInt(request.getParameter("id_order"));

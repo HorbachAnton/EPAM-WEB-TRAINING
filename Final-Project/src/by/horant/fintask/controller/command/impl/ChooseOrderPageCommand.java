@@ -16,6 +16,14 @@ import by.horant.fintask.service.DataService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
+/**
+ * The ChooseOrderPageCommand class implements the Command interface and
+ * determines which next section of orders to display on the page. The total
+ * number of section depends on the number of orders displayed on the page.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class ChooseOrderPageCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger(ChooseOrderPageCommand.class);
@@ -35,6 +43,9 @@ public class ChooseOrderPageCommand implements Command {
     private static final int ORDERS_NUMBER_ON_PAGE = 6;
     private static final int SUBTRAHEND_LAST_ORDER = 1;
 
+    /**
+     * Determines which next section of orders to display on the page.
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	int pagesNumber = Integer.parseInt(request.getParameter(PARAMETER_CHOOSED_PAGE_NAME));

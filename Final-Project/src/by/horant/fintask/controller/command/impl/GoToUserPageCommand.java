@@ -18,6 +18,13 @@ import by.horant.fintask.service.DataService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
+/**
+ * The GoToUserPageCommand class implements the Command interface and represents
+ * the command to forward the user to the page of the user.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class GoToUserPageCommand implements Command {
     private static final Logger logger = LogManager.getLogger(GoToUserPageCommand.class);
     private static final String LOGGER_ERROR_MESSAGE = "Can't find any medicine.";
@@ -28,6 +35,9 @@ public class GoToUserPageCommand implements Command {
 
     private static final String USER_MAIN_PAGE = "/WEB-INF/jsp/user_page.jsp";
 
+    /**
+     * Forwards the user to the page of the user.
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -37,7 +47,7 @@ public class GoToUserPageCommand implements Command {
 	try {
 	    List<Medicine> medicines = dataService.getMedicines();
 	    request.setAttribute(ATTRIBUTE_LIST_MEDICINES_NAME, medicines);
-	    request.setAttribute(ATTRIBUTE_PAGES_NUMBER_NAME, medicines.size()/6);
+	    request.setAttribute(ATTRIBUTE_PAGES_NUMBER_NAME, medicines.size() / 6);
 	} catch (ServiceException e) {
 	    logger.info(LOGGER_ERROR_MESSAGE, e);
 	}

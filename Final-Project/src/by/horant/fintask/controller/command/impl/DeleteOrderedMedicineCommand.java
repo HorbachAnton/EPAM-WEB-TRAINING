@@ -14,8 +14,10 @@ import by.horant.fintask.service.OrderService;
 import by.horant.fintask.service.ServiceProvider;
 
 /**
+ * The DeleteOrderedMedicineCommand class implements the Command interface and
+ * represents the command of removing from the order medicine by its id.
  * 
- * @author y50-70
+ * @author Anton Horbach
  *
  */
 public class DeleteOrderedMedicineCommand implements Command {
@@ -25,7 +27,7 @@ public class DeleteOrderedMedicineCommand implements Command {
     private static final String ORDER_PAGE_PATH = "/WEB-INF/jsp/order.jsp";
 
     /**
-     * 
+     * Removes from the order medicine by its id.
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -18,6 +18,13 @@ import by.horant.fintask.service.DataService;
 import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
+/**
+ * The GoToPharmacistPageCommand class implements the Command interface and
+ * represents the command to forward the user to the page of the pharmacist.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class GoToPharmacistPageCommand implements Command {
     private static final Logger logger = LogManager.getLogger(GoToPharmacistPageCommand.class);
     private static final String LOGGER_ERROR_MESSAGE = "Can't find any orders.";
@@ -28,6 +35,9 @@ public class GoToPharmacistPageCommand implements Command {
 
     private static final String PHARMACIST_MAIN_PAGE = "/WEB-INF/jsp/pharmacist_page.jsp";
 
+    /**
+     * Forward the user to the page of the pharmacist.
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

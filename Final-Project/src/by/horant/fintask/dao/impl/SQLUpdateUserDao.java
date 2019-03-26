@@ -11,6 +11,15 @@ import by.horant.fintask.dao.UpdateUserDao;
 import by.horant.fintask.dao.util.ShutterDao;
 import by.horant.fintask.entity.UpdateProfileData;
 
+/**
+ * This class is an implementation of the UpdateUserDao interface and provides
+ * the functionality of updating user data in the MySQL database. This includes
+ * updating your password, email, and personal information (for example, first
+ * and last name).
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class SQLUpdateUserDao implements UpdateUserDao {
 
     private static final String QUERY_UPDATE_PROFILE = "UPDATE users SET user_firstName = ?, user_secondName = ? WHERE user_email = ?";
@@ -19,6 +28,9 @@ public class SQLUpdateUserDao implements UpdateUserDao {
 
     private static final ConnectionPool pool = ConnectionPool.getInstance();
 
+    /**
+     * Updates user profile(first and second name).
+     */
     @Override
     public boolean updateProfile(String email, UpdateProfileData updateData) throws DaoException {
 	boolean result = false;
@@ -46,6 +58,9 @@ public class SQLUpdateUserDao implements UpdateUserDao {
 	return result;
     }
 
+    /**
+     * Updates user password.
+     */
     @Override
     public boolean updatePassword(String email, String password) throws DaoException {
 	boolean result = false;
@@ -74,6 +89,9 @@ public class SQLUpdateUserDao implements UpdateUserDao {
 	return result;
     }
 
+    /**
+     * Updates user email.
+     */
     @Override
     public boolean updateEmail(String newEmail, String oldEmail) throws DaoException {
 	boolean result = false;

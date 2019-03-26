@@ -15,21 +15,31 @@ import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 import by.horant.fintask.service.UpdateService;
 
+/**
+ * The UpdateEmailCommand class implements the Command interface and
+ * represents a command to update user email.
+ * 
+ * @author Anton Horbach
+ *
+ */
 public class UpdateEmailCommand implements Command {
-    
+
     private static final Logger logger = LogManager.getLogger(UpdatePasswordCommand.class);
     private static final String LOGGER_ERROR_MESSAGE = "Could not update email.";
 
     private static final String PARAMETER_EMAIL = "new_email";
 
     private static final String ATTRIBUTE_USER_NAME = "user";
-    
+
     private static final String ERROR_SERVICE_EXCEPTION_NAME = "error";
     private static final String ERROR_SERVICE_EXCEPTION_MESSAGE = "Your entered email is invalid.";
-    
+
     private Command goUserPage = new GoToUserPageCommand();
     private Command goUpdateEmail = new GoToUpdateEmailPageCommand();
 
+    /**
+     * Updates user email.
+     */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

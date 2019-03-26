@@ -17,8 +17,11 @@ import by.horant.fintask.service.ServiceException;
 import by.horant.fintask.service.ServiceProvider;
 
 /**
+ * The ChooseMedicinePageCommand class implements the Command interface and
+ * determines which next section of drugs to display on the page. The total
+ * number of section depends on the number of drugs displayed on the page.
  * 
- * @author y50-70
+ * @author Anton Horbach
  *
  */
 public class ChooseMedicinePageCommand implements Command {
@@ -40,7 +43,7 @@ public class ChooseMedicinePageCommand implements Command {
     private static final int SUBTRAHEND_LAST_MEDICINE = 1;
 
     /**
-     * 
+     * Determines which next section of drugs to display on the page.
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
