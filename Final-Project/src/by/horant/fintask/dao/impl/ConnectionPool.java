@@ -8,7 +8,13 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class ConnectionPool {
+
+    private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
+    private static final String LOGGER_ERROR_MESSAGE = "Failed get connection.";
 
     private ConnectionPool() {
 
@@ -33,10 +39,8 @@ public class ConnectionPool {
 	    ctx = new InitialContext();
 	    DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/fintask");
 	    c = ds.getConnection();
-	} catch (NamingException e) {
-	    e.printStackTrace();
-	} catch (SQLException e) {
-	    e.printStackTrace();
+	} catch (NamingException | SQLException e) {
+	    logger.info(LOGGER_ERROR_MESSAGE, e);
 	}
 	return c;
     }
