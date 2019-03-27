@@ -135,20 +135,27 @@ public class SQLOrderDao implements OrderDAO {
 	List<Medicine> purchasedMedicines = order.getPurchasedMedications();
 	List<Medicine> copyMedicines = new ArrayList<>();
 
-	Connection con = pool.getConnection();
+	try {
+	    Connection con = pool.getConnection();
+	    con.setAutoCommit(false);
 
-	for (int i = 0; i < purchasedMedicines.size(); i++) {
-	    Medicine currentMedicine = purchasedMedicines.get(i);
-	    copyMedicines.add(currentMedicine);
-	    int earlySize = purchasedMedicines.size();
-	    purchasedMedicines.removeAll(copyMedicines);
-	    int amount = earlySize - purchasedMedicines.size();
+	    for (int i = 0; i < purchasedMedicines.size(); i++) {
+		Medicine currentMedicine = purchasedMedicines.get(i);
+		copyMedicines.add(currentMedicine);
+		int earlySize = purchasedMedicines.size();
+		purchasedMedicines.removeAll(copyMedicines);
+		int amount = earlySize - purchasedMedicines.size();
 
-	    int orderId = addOrderSQL(user.getId(), con);
-	    addMedicineToOrder(orderId, currentMedicine.getId(), amount, con);
-	    addPrescriptionToOrder(orderId, user.getId(), currentMedicine.getId(), con);
+		int orderId = addOrderSQL(user.getId(), con);
+		addMedicineToOrder(orderId, currentMedicine.getId(), amount, con);
+		addPrescriptionToOrder(orderId, user.getId(), currentMedicine.getId(), con);
 
-	    result = true;
+		result = true;
+	    }
+
+	    con.commit();
+	} catch (SQLException e) {
+	    throw new DaoException(e);
 	}
 
 	return result;
